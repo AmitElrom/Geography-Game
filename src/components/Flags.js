@@ -1,31 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import Card from './UI/Card/Card';
 
 const Flags = () => {
 
-    const [states, setStates] = useState([]);
-
-    console.log(states);
+    const [countries, setCountries] = useState([]);
 
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get('https://restcountries.com/v2/all')
-            const statesData = data.map(state => {
-                return {
-                    name: state.name,
-                    flag: state.flags.svg
-                }
-            })
-            setStates(statesData)
+            const { data: countriesData } = await axios.get('http://localhost:8000/countries-elrom')
+            setCountries(countriesData)
         })()
     }, [])
 
-    const statesList = states.map(state => {
-        return <img style={{
+    const statesList = countries.map(country => {
+        return <Card style={{
             margin: '1rem',
             width: '30%',
             height: '10%'
-        }} src={state.flag} alt={state.name} />
+        }} key={country.name} ><img style={{
+            boxSizing: 'content-box',
+            width: '100%'
+        }} src={country.flag} alt={`${country.name} flag`} /></Card>
     })
 
     return (
