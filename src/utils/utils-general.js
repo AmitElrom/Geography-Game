@@ -1,4 +1,4 @@
-const getMeRandomElements = function (sourceArray, neededElements) {
+const getMeRandomElements = function (neededElements, sourceArray) {
     var result = [];
     for (var i = 0; i < neededElements; i++) {
         var index = Math.floor(Math.random() * sourceArray.length);

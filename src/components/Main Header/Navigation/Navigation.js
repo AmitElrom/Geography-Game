@@ -12,9 +12,8 @@ const Navigation = () => {
             <nav className={classes.nav} >
                 <ul>
                     <li>
-                        <NavLink to='/about' className={(navLinkObj) => navLinkObj.isActive && classes.active} >About</NavLink>
+                        <NavLink to='/about' className={(navLinkObj) => navLinkObj.isActive ? classes.active : ''} >About</NavLink>
                     </li>
-                    {/*  className={navData => navData.isActive && classes.active} */}
                 </ul>
             </nav>
         </header>

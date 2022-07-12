@@ -1,26 +1,48 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import useHttp from '../../hooks/use-http';
 
 import Level from '../UI/Difficulty Level/DifficultyLevel';
 
 import { getMeRandomElements } from '../../utils/utils-general';
+import { countriesActions } from '../../store/countries-slice';
+// const { applyCountries } = countriesActions;
 
 const MainLevel = () => {
 
-    // pending - work with redux
-    const [countries, setCountries] = useState([]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const startPlayingHandler = async () => {
-        const { data: countriesData } = await axios.get('http://localhost:8000/countries-elrom?minknown?=1&maxknown=4')
-        const randomCountries = getMeRandomElements(countriesData, 3);
-        setCountries(randomCountries)
+    const { isLoading, error, sendRequest: getCountries } = useHttp();
+
+    const startPlayingHandler = () => {
+
+        const getMeRandomCountries = (countriesData) => {
+            getMeRandomElements(20, countriesData)
+        };
+
+        // const randomCountries = getCountries({
+        //     url: 'http://localhost:8000/countries-elrom'
+        // }, getMeRandomCountries)
+
+        const randomCountries = getCountries({
+            url: 'http://localhost:8000/countries-elrom',
+            method: 'GET'
+        }, getMeRandomCountries)
+
+        console.log(randomCountries);
+        dispatch(countriesActions.applyCountries(randomCountries))
+
+        navigate('/countries/1', { replace: true });
     }
 
     return (
-        //className='centered'
-        <Level size='100' className={'centered-horizontally'} onClick={startPlayingHandler} >
-            start playing
-        </Level>
+        <div className='centered-horizontally' >
+            <Level size='100' onClick={startPlayingHandler} >
+                start playing
+            </Level>
+        </div>
     )
 }
 
