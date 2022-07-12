@@ -19,3 +19,14 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+.centered-horizontally {
+  display: table;
+  margin: 0 auto;
+}
+
+.centered-horizontally2 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

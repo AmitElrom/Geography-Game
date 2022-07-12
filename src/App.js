@@ -1,12 +1,18 @@
-import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import Flags from './components/Flags';
+import Layout from './components/Main Header/Layout/Layout';
+import Main from './components/Main/Main';
+import About from './components/About/About';
 
 function App() {
   return (
-    <div className="App">
-      <Flags />
-    </div>
+    <Layout>
+      <Routes>
+        <Route path='/' element={<Navigate to='/welcome' />} />
+        <Route path='/welcome' element={<Main />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
+    </Layout>
   );
 }
 
