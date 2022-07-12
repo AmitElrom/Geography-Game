@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import classes from './Navigation.module.css';
 
@@ -12,8 +12,9 @@ const Navigation = () => {
             <nav className={classes.nav} >
                 <ul>
                     <li>
-                        <Link to='/about' className={navData => navData.isActive && classes.active} >About</Link>
+                        <NavLink to='/about' className={(navLinkObj) => navLinkObj.isActive && classes.active} >About</NavLink>
                     </li>
+                    {/*  className={navData => navData.isActive && classes.active} */}
                 </ul>
             </nav>
         </header>

@@ -17,6 +17,7 @@ const MainLevel = () => {
     }
 
     return (
+        //className='centered'
         <Level size='100' className={'centered-horizontally'} onClick={startPlayingHandler} >
             start playing
         </Level>
