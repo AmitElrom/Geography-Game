@@ -1,17 +1,31 @@
-import React from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Question = () => {
 
-    // const { countryNumber } = useParams();
-    // const { countries } = useSelector(state => state);
+    const [isMoreCountrirs, setIsMoreCountries] = useState(true);
 
-    // const country = countries[countryNumber - 1];
+    const navigate = useNavigate();
+    const { countryNumber } = useParams();
+    const { countries } = useSelector(state => state);
+
+    let countryIndex = countryNumber - 1;
+    const country = countries[countryIndex];
+
+    const nextCountryHandler = () => {
+        // if (country !== null) {
+        // increase countryNumber by 1
+        navigate(`/countries/${+countryNumber + 1}`)
+        // } else {
+        //     setIsMoreCountries(false);
+        // }
+    }
 
     return (
         <div>
-            {/* {country.name} */}
+            {country.name}
+            {isMoreCountrirs && <button onClick={nextCountryHandler} >Next</button>}
         </div>
     )
 }

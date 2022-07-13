@@ -7,31 +7,30 @@ import Level from '../UI/Difficulty Level/DifficultyLevel';
 
 import { getMeRandomElements } from '../../utils/utils-general';
 import { countriesActions } from '../../store/countries-slice';
-// const { applyCountries } = countriesActions;
+import useHttpAxios from '../../hooks/use-http-axios';
+
+
+const getMeRandomCountries = (countriesData) => {
+    const randomCountries = getMeRandomElements(countriesData, 10);
+    return randomCountries;
+};
 
 const MainLevel = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { isLoading, error, sendRequest: getCountries } = useHttp();
+    const { isLoading, error, sendRequest: getCountries } = useHttpAxios();
 
-    const startPlayingHandler = () => {
+    const startPlayingHandler = async () => {
 
-        const getMeRandomCountries = (countriesData) => {
-            getMeRandomElements(20, countriesData)
-        };
-
-        // const randomCountries = getCountries({
-        //     url: 'http://localhost:8000/countries-elrom'
-        // }, getMeRandomCountries)
-
-        const randomCountries = getCountries({
-            url: 'http://localhost:8000/countries-elrom',
-            method: 'GET'
+        const randomCountries = await getCountries({
+            method: 'GET',
+            url: 'http://localhost:8000/countries-elrom'
         }, getMeRandomCountries)
 
         console.log(randomCountries);
+
         dispatch(countriesActions.applyCountries(randomCountries))
 
         navigate('/countries/1', { replace: true });

@@ -1,7 +1,7 @@
-const getMeRandomElements = function (neededElements, sourceArray) {
-    var result = [];
-    for (var i = 0; i < neededElements; i++) {
-        var index = Math.floor(Math.random() * sourceArray.length);
+const getMeRandomElements = (sourceArray, neededElements) => {
+    const result = [];
+    for (let i = 0; i < neededElements; i++) {
+        let index = Math.floor(Math.random() * sourceArray.length);
         result.push(sourceArray[index]);
         sourceArray.splice(index, 1);
     }

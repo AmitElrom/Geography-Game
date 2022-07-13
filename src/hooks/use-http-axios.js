@@ -1,7 +1,8 @@
 import { useState, useCallback } from "react";
 
-const useHttp = () => {
+import axios from "axios";
 
+const useHttpAxios = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -9,15 +10,15 @@ const useHttp = () => {
         setIsLoading(true)
         setError(null)
         try {
-            const resp = await fetch(requestData.url, {
+            const { data } = await axios(requestData.url, {
                 method: requestData.method,
                 body: requestData.body ? JSON.stringify(requestData.body) : null,
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            const data = await resp.json()
-            applyDataFunc(data)
+            const finalData = applyDataFunc ? applyDataFunc(data) : data
+            return finalData
         } catch (err) {
             setError(err.message)
         }
@@ -31,4 +32,4 @@ const useHttp = () => {
     }
 }
 
-export default useHttp;
+export default useHttpAxios;
