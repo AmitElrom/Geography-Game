@@ -5,6 +5,7 @@ import Card from '../../UI/Card/Card';
 import Flag from '../Flag/Flag';
 import Options from '../Options General/Options/Options';
 
+
 const Question = () => {
 
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Question = () => {
     }
 
     return (
-        <Card className='centered-horizontally' >
+        <Card className='centered-horizontally' style={{ width: '40%' }} >
             <Flag flag={answer.flag} />
             <Options questionData={question} />
             <button onClick={nextCountryHandler} >Next</button>

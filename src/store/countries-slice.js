@@ -56,23 +56,20 @@ const countriesSlice = createSlice({
             })
 
             const transformedCountries = [];
+            let wrongIndex = countriesWithIsCountry.length / 4;
             for (let i = 0; i < countriesWithIsCountry.length / 4; i++) {
                 const question = [];
 
                 const trueCountry = countriesWithIsCountry[i];
-                let wrongIndex = countriesWithIsCountry.length / 4;
                 const falseCountries = [countriesWithIsCountry[wrongIndex],
                 countriesWithIsCountry[wrongIndex + 1],
                 countriesWithIsCountry[wrongIndex + 2]];
-
                 question.push(trueCountry, ...falseCountries)
 
-                wrongIndex += 3;
-
                 transformedCountries.push(question)
+                wrongIndex += 3;
             }
             state.countries = transformedCountries;
-            console.log(state.countries);
         }
     }
 })

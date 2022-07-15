@@ -13,4 +13,9 @@ const getMeRandomCountriesNoNumber = (countriesArr, number) => {
     return randomCountries;
 }
 
-export { getMeRandomElements, getMeRandomCountriesNoNumber };
+const shuffleArray = (array) => {
+    const shuffledArray = [...array].sort(() => 0.5 - Math.random())
+    return shuffledArray;
+}
+
+export { getMeRandomElements, getMeRandomCountriesNoNumber, shuffleArray };
