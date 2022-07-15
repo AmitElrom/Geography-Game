@@ -1,9 +1,11 @@
 import React from 'react'
 import Card from '../../../UI/Card/Card'
 
-const Option = ({ optionData }) => {
+import classes from './Option.module.css';
+
+const Option = ({ optionData, onNext }) => {
     return (
-        <Card>
+        <Card className={classes.option} onClick={onNext} >
             {optionData.name}
         </Card>
     )

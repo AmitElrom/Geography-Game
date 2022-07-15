@@ -6,7 +6,7 @@ import Card from '../../../UI/Card/Card'
 
 import { shuffleArray } from '../../../../utils/utils-general';
 
-const Options = ({ questionData }) => {
+const Options = ({ questionData, onNext }) => {
 
     const [options, setOptions] = useState([]);
 
@@ -16,7 +16,11 @@ const Options = ({ questionData }) => {
     }, [questionData])
 
     const optionsList = options.map(option => {
-        return <Option key={option.id} optionData={option} />
+        return <Option
+            key={option.id}
+            optionData={option}
+            onNext={option.isCountry && onNext}
+        />
     })
 
     return (

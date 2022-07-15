@@ -13,17 +13,21 @@ const Question = () => {
     const { countryNumber } = useParams();
     let countryIndex = countryNumber - 1;
     const question = useSelector(state => state.countries[countryIndex]);
+    const { questionsQuantity } = useSelector(state => state);
     const answer = question[0];
 
     const nextCountryHandler = () => {
-        navigate(`/countries/${+countryNumber + 1}`)
+        if (+countryNumber !== questionsQuantity) {
+            navigate(`/countries/${+countryNumber + 1}`)
+        } else {
+            navigate('/welcome')
+        }
     }
 
     return (
         <Card className='centered-horizontally' style={{ width: '40%' }} >
             <Flag flag={answer.flag} />
-            <Options questionData={question} />
-            <button onClick={nextCountryHandler} >Next</button>
+            <Options onNext={nextCountryHandler} questionData={question} />
         </Card>
     )
 }
