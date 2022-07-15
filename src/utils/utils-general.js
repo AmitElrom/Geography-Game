@@ -8,4 +8,9 @@ const getMeRandomElements = (sourceArray, neededElements) => {
     return result;
 }
 
-export { getMeRandomElements };
+const getMeRandomCountriesNoNumber = (countriesArr, number) => {
+    const randomCountries = getMeRandomElements(countriesArr, number * 4);
+    return randomCountries;
+}
+
+export { getMeRandomElements, getMeRandomCountriesNoNumber };

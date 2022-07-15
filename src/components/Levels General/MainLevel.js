@@ -5,13 +5,13 @@ import useHttp from '../../hooks/use-http';
 
 import Level from '../UI/Difficulty Level/DifficultyLevel';
 
-import { getMeRandomElements } from '../../utils/utils-general';
+import { getMeRandomCountriesNoNumber } from '../../utils/utils-general';
 import { countriesActions } from '../../store/countries-slice';
 import useHttpAxios from '../../hooks/use-http-axios';
 
 
 const getMeRandomCountries = (countriesData) => {
-    const randomCountries = getMeRandomElements(countriesData, 10);
+    const randomCountries = getMeRandomCountriesNoNumber(countriesData, 10);
     return randomCountries;
 };
 
@@ -29,9 +29,7 @@ const MainLevel = () => {
             url: 'http://localhost:8000/countries-elrom'
         }, getMeRandomCountries)
 
-        console.log(randomCountries);
-
-        dispatch(countriesActions.applyCountries(randomCountries))
+        dispatch(countriesActions.maipulateCountries(randomCountries))
 
         navigate('/countries/1', { replace: true });
     }
