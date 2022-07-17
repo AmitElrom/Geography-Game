@@ -1,19 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import useHttp from '../../hooks/use-http';
-
 import Level from '../UI/Difficulty Level/DifficultyLevel';
 
-import { getMeRandomCountriesNoNumber } from '../../utils/utils-general';
 import { countriesActions } from '../../store/countries-slice';
 import useHttpAxios from '../../hooks/use-http-axios';
-
-
-const getMeRandomCountries = (countriesData) => {
-    const randomCountries = getMeRandomCountriesNoNumber(countriesData, 10);
-    return randomCountries;
-};
 
 const MainLevel = () => {
 
@@ -22,14 +13,22 @@ const MainLevel = () => {
 
     const { isLoading, error, sendRequest: getCountries } = useHttpAxios();
 
-    const startPlayingHandler = async () => {
+    const startPlayingHandler = () => {
 
-        const randomCountries = await getCountries({
+        const countriesFromAPI = {};
+
+        getCountries({
             method: 'GET',
             url: 'http://localhost:8000/countries-elrom'
-        }, getMeRandomCountries)
+        }).then(data => {
+            countriesFromAPI.potentialFalseCountries = data.potentialFalseCountries;
+            countriesFromAPI.potentialTrueCountries = data.potentialTrueCountries;
+        })
 
-        dispatch(countriesActions.maipulateCountries(randomCountries))
+        dispatch(countriesActions.manipulateCountries({
+            countriesFromAPI,
+            questionsQuantity: 10
+        }))
 
         navigate('/countries/1', { replace: true });
     }
