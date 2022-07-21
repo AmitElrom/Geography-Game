@@ -15,22 +15,18 @@ const MainLevel = () => {
 
     const startPlayingHandler = () => {
 
-        const countriesFromAPI = {};
-
         getCountries({
             method: 'GET',
             url: 'http://localhost:8000/countries-elrom'
-        }).then(data => {
-            countriesFromAPI.potentialFalseCountries = data.potentialFalseCountries;
-            countriesFromAPI.potentialTrueCountries = data.potentialTrueCountries;
+        }, (data) => {
+            console.log(data);
+            dispatch(countriesActions.manipulateCountries({
+                countriesFromAPI: data,
+                questionsQuantity: 10
+            }))
         })
 
-        dispatch(countriesActions.manipulateCountries({
-            countriesFromAPI,
-            questionsQuantity: 10
-        }))
-
-        navigate('/countries/1', { replace: true });
+        // navigate('/countries/1', { replace: true });
     }
 
     return (

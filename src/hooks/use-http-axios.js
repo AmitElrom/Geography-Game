@@ -10,15 +10,16 @@ const useHttpAxios = () => {
         setIsLoading(true)
         setError(null)
         try {
-            const { data } = await axios(requestData.url, {
+            const { data } = await axios({
+                url: requestData.url,
                 method: requestData.method,
                 body: requestData.body ? JSON.stringify(requestData.body) : null,
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            const finalData = applyDataFunc ? applyDataFunc(data) : data
-            return finalData
+            const d = await data;
+            applyDataFunc(d)
         } catch (err) {
             setError(err.message)
         }

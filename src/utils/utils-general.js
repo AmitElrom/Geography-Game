@@ -6,6 +6,7 @@ const getMeRandomElements = (sourceArray, neededElements) => {
         sourceArray.splice(index, 1);
     }
     result.falseArray = [...sourceArray];
+    console.log(result);
     return result;
 }
 

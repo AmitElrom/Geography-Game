@@ -42,21 +42,23 @@ const countriesSlice = createSlice({
         //     state.countries = transformedCountries;
         //     state.questionsQuantity = transformedCountries.length;
         // }
-        manipulateCountries(
-            state, { payload: {
-                countriesFromAPI, questionsQuantity
-            } }) {
+        manipulateCountries(state, { payload }) {
 
-            console.log(countriesFromAPI.potentialTrueCountries);
+            const { countriesFromAPI, questionsQuantity } = payload;
 
-            const { trueArray: chosenTrueCountries, falseArray: chosenFalseCountries } = getMeRandomElements(countriesFromAPI.potentialTrueCountries, questionsQuantity);
+
+            const potentialTrueCountries = [...countriesFromAPI.potentialTrueCountries];
+            const potentialFalseCountries = [...countriesFromAPI.potentialFalseCountries];
+
+            const { trueArray: chosenTrueCountries, falseArray: chosenFalseCountries } = getMeRandomElements(potentialTrueCountries, questionsQuantity);
             const trueCountries = chosenTrueCountries.map(country => {
                 return {
                     ...country,
                     isCountry: true
                 }
             })
-            const preFalseCountries = countriesFromAPI.potentialFalseCountries.push(...chosenFalseCountries)
+            const preFalseCountries = potentialFalseCountries.push(...chosenFalseCountries)
+            console.log(preFalseCountries);
             const falseCountries = preFalseCountries.map(country => {
                 return {
                     ...country,
