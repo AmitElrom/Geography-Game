@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Level from '../UI/Difficulty Level/DifficultyLevel';
@@ -19,14 +19,13 @@ const MainLevel = () => {
             method: 'GET',
             url: 'http://localhost:8000/countries-elrom'
         }, (data) => {
-            console.log(data);
             dispatch(countriesActions.manipulateCountries({
                 countriesFromAPI: data,
                 questionsQuantity: 10
             }))
         })
 
-        // navigate('/countries/1', { replace: true });
+        navigate('/countries/1', { replace: true });
     }
 
     return (

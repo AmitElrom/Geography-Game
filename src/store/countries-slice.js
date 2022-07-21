@@ -11,54 +11,20 @@ const countriesSlice = createSlice({
     name: 'countries',
     initialState: countriesInitialState,
     reducers: {
-        // maipulateCountries(state, { payload: countriesArr }) {
-        //     // payload is countries array, with number of items - 4 times the number of questions
-        //     // if there are 10 questions - there are 40 items (countries) in the payload/countriesArr
-
-        //     // add to each item/country a field that represents - if the country is the right answer
-        //     // 1/4 of countries gets a true value, the rest false value
-        //     const countriesWithIsCountry = countriesArr.map((country, index) => {
-        //         if (index < countriesArr.length / 4) {
-        //             return { ...country, isCountry: true }
-        //         } else {
-        //             return { ...country, isCountry: false }
-        //         }
-        //     })
-
-        //     const transformedCountries = [];
-        //     let wrongIndex = countriesWithIsCountry.length / 4;
-        //     for (let i = 0; i < countriesWithIsCountry.length / 4; i++) {
-        //         const question = [];
-
-        //         const trueCountry = countriesWithIsCountry[i];
-        //         const falseCountries = [countriesWithIsCountry[wrongIndex],
-        //         countriesWithIsCountry[wrongIndex + 1],
-        //         countriesWithIsCountry[wrongIndex + 2]];
-        //         question.push(trueCountry, ...falseCountries)
-
-        //         transformedCountries.push(question)
-        //         wrongIndex += 3;
-        //     }
-        //     state.countries = transformedCountries;
-        //     state.questionsQuantity = transformedCountries.length;
-        // }
         manipulateCountries(state, { payload }) {
 
-            const { countriesFromAPI, questionsQuantity } = payload;
+            const { countriesFromAPI: countriesFromAPII, questionsQuantity } = payload;
+            const countriesFromAPI = { ...countriesFromAPII };
 
-
-            const potentialTrueCountries = [...countriesFromAPI.potentialTrueCountries];
-            const potentialFalseCountries = [...countriesFromAPI.potentialFalseCountries];
-
-            const { trueArray: chosenTrueCountries, falseArray: chosenFalseCountries } = getMeRandomElements(potentialTrueCountries, questionsQuantity);
+            const { trueArray: chosenTrueCountries, falseArray: chosenFalseCountries } = getMeRandomElements(countriesFromAPI.potentialTrueCountries, questionsQuantity);
             const trueCountries = chosenTrueCountries.map(country => {
                 return {
                     ...country,
                     isCountry: true
                 }
             })
-            const preFalseCountries = potentialFalseCountries.push(...chosenFalseCountries)
-            console.log(preFalseCountries);
+
+            const preFalseCountries = countriesFromAPI.potentialFalseCountries.concat(...chosenFalseCountries)
             const falseCountries = preFalseCountries.map(country => {
                 return {
                     ...country,
@@ -67,21 +33,19 @@ const countriesSlice = createSlice({
             })
 
             const transformedCountries = [];
-            let wrongIndex; // wrongIndex = 0;
             for (let i = 0; i < trueCountries.length; i++) {
-                const question = [];
-
-                const trueCountry = trueCountries[i];
-                const questionFalseCountries = [falseCountries[wrongIndex],
-                falseCountries[wrongIndex + 1],
-                falseCountries[wrongIndex + 2]];
-                question.push(trueCountry, ...questionFalseCountries)
-
-                transformedCountries.push(question)
-                wrongIndex += 3;
+                const { trueArray: questionFalseCountries, trueIndexes: falseCountriesIndexes } = getMeRandomElements(falseCountries, 3)
+                // optional - splicing - causes false options are always different
+                falseCountries.splice(falseCountriesIndexes[0], 1)
+                falseCountries.splice(falseCountriesIndexes[1], 1)
+                falseCountries.splice(falseCountriesIndexes[2], 1)
+                transformedCountries.push([trueCountries[i], ...questionFalseCountries])
             }
-            state.countries = transformedCountries;
-            state.questionsQuantity = questionsQuantity;
+            state = {
+                ...state,
+                countries: transformedCountries,
+                questionsQuantity: questionsQuantity
+            }
         }
     }
 })

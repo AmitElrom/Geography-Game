@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { shallowEqual, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../UI/Card/Card';
 
@@ -11,8 +11,11 @@ const Question = () => {
     const navigate = useNavigate();
 
     const { countryNumber } = useParams();
-    let countryIndex = countryNumber - 1;
-    const question = useSelector(state => state.countries[countryIndex]);
+    let countryIndex = +countryNumber - 1;
+    const state = useSelector(state => state);
+    console.log(state);
+    const { countries } = state;
+    const question = countries[countryIndex];
     const { questionsQuantity } = useSelector(state => state);
     const answer = question[0];
 
