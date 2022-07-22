@@ -9,7 +9,7 @@ const countriesInitialState = {
 
 const countriesSlice = createSlice({
     name: 'countries',
-    initialState: countriesInitialState,
+    initialState: { ...countriesInitialState },
     reducers: {
         manipulateCountries(state, { payload }) {
 
@@ -34,18 +34,18 @@ const countriesSlice = createSlice({
 
             const transformedCountries = [];
             for (let i = 0; i < trueCountries.length; i++) {
-                const { trueArray: questionFalseCountries, trueIndexes: falseCountriesIndexes } = getMeRandomElements(falseCountries, 3)
+                const {
+                    trueArray: questionFalseCountries,
+                    trueIndexes: falseCountriesIndexes
+                } = getMeRandomElements(falseCountries, 3)
                 // optional - splicing - causes false options are always different
-                falseCountries.splice(falseCountriesIndexes[0], 1)
-                falseCountries.splice(falseCountriesIndexes[1], 1)
-                falseCountries.splice(falseCountriesIndexes[2], 1)
+                for (let i = 0; i < 3; i++) {
+                    falseCountries.splice(falseCountriesIndexes[i], 1)
+                }
                 transformedCountries.push([trueCountries[i], ...questionFalseCountries])
             }
-            state = {
-                ...state,
-                countries: transformedCountries,
-                questionsQuantity: questionsQuantity
-            }
+            state.countries = transformedCountries;
+            state.questionsQuantity = questionsQuantity;
         }
     }
 })
