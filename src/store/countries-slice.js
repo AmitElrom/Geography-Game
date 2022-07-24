@@ -12,6 +12,8 @@ const countriesSlice = createSlice({
     initialState: { ...countriesInitialState },
     reducers: {
         manipulateCountries(state, { payload }) {
+            state.countries = [];
+            state.questionsQuantity = 0;
 
             const { countriesFromAPI: countriesFromAPII, questionsQuantity } = payload;
             const countriesFromAPI = { ...countriesFromAPII };

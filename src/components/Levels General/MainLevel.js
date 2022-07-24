@@ -28,7 +28,7 @@ const MainLevel = () => {
             }))
         })
 
-        if (state.countries.length > 0) {
+        if (state.countries.length) {
             navigate('/countries/1');
         }
     }
