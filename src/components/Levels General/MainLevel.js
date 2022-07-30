@@ -5,7 +5,6 @@ import Level from '../UI/Difficulty Level/DifficultyLevel';
 
 import { countriesActions } from '../../store/countries-slice';
 import useHttpAxios from '../../hooks/use-http-axios';
-import { useEffect } from 'react';
 
 const MainLevel = () => {
 
@@ -14,7 +13,6 @@ const MainLevel = () => {
 
     const { isLoading, error, sendRequest: getCountries } = useHttpAxios();
 
-    const state = useSelector(state => state)
 
     const startPlayingHandler = () => {
 
@@ -26,11 +24,8 @@ const MainLevel = () => {
                 countriesFromAPI: data,
                 questionsQuantity: 10
             }))
-        })
-
-        if (state.countries.length) {
             navigate('/countries/1');
-        }
+        })
     }
 
     return (

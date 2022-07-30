@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import bcrypt from 'bcrypt';
 
 import { getMeRandomElements } from '../utils/utils-general';
 
@@ -48,6 +49,7 @@ const countriesSlice = createSlice({
             }
             state.countries = transformedCountries;
             state.questionsQuantity = questionsQuantity;
+            console.log(state.countries);
         }
     }
 })

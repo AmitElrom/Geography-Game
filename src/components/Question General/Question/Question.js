@@ -9,7 +9,6 @@ import Options from '../Options General/Options/Options';
 
 const Question = () => {
 
-    const [realCountries, setRealCountries] = useState([]);
     const navigate = useNavigate();
 
     const { countryNumber } = useParams();
