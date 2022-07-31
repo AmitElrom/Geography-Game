@@ -13,8 +13,8 @@ const Question = () => {
 
     const { countryNumber } = useParams();
     let countryIndex = +countryNumber - 1;
-    const { countries } = useSelector(state => state);
-    const question = countries[countryIndex];
+    const { questions } = useSelector(state => state);
+    const question = questions[countryIndex];
     const { questionsQuantity } = useSelector(state => state);
     const answer = question[0];
 

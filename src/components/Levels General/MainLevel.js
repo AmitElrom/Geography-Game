@@ -6,6 +6,8 @@ import Level from '../UI/Difficulty Level/DifficultyLevel';
 import { countriesActions } from '../../store/countries-slice';
 import useHttpAxios from '../../hooks/use-http-axios';
 
+let questionsQuantity = 10;
+
 const MainLevel = () => {
 
     const dispatch = useDispatch();
@@ -16,13 +18,24 @@ const MainLevel = () => {
 
     const startPlayingHandler = () => {
 
+        // getCountries({
+        //     method: 'GET',
+        //     url: 'http://localhost:8000/countries-elrom'
+        // }, (data) => {
+        //     dispatch(countriesActions.manipulateCountries({
+        //         countriesFromAPI: data,
+        //         questionsQuantity: 10
+        //     }))
+        //     navigate('/countries/1');
+        // })
+
         getCountries({
             method: 'GET',
-            url: 'http://localhost:8000/countries-elrom'
+            url: `http://localhost:8000/countries-elrom?questions-quantity=${questionsQuantity}`
         }, (data) => {
             dispatch(countriesActions.manipulateCountries({
-                countriesFromAPI: data,
-                questionsQuantity: 10
+                questions: data,
+                questionsQuantity
             }))
             navigate('/countries/1');
         })
