@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getMeRandomElements } from '../utils/utils-general';
 
 const countriesInitialState = {
     questions: [],
@@ -19,8 +18,11 @@ const countriesSlice = createSlice({
             state.questions = questions;
             state.questionsQuantity = questionsQuantity;
         },
-        incrementScore({ score }) {
-            score += 1;
+        incrementScore(state) {
+            state.score++;
+        },
+        nullifyScore(state) {
+            state.score = 0;
         }
     }
 })

@@ -19,7 +19,7 @@ const Options = ({ questionData, onNext }) => {
         return <Option
             key={option.id}
             optionData={option}
-            onNext={option.isCountry ? onNext : undefined}
+            onNext={onNext}
         />
     })
 

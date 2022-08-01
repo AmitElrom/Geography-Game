@@ -37,7 +37,8 @@ const MainLevel = () => {
                 questions: data,
                 questionsQuantity
             }))
-            navigate('/countries/1');
+            // navigate('/countries/1');
+            navigate('/question');
         })
     }
 
