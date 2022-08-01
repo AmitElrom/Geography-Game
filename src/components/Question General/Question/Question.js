@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../UI/Card/Card';
@@ -13,9 +12,8 @@ const Question = () => {
 
     const { countryNumber } = useParams();
     let countryIndex = +countryNumber - 1;
-    const { questions } = useSelector(state => state);
+    const { questions, questionsQuantity } = useSelector(state => state);
     const question = questions[countryIndex];
-    const { questionsQuantity } = useSelector(state => state);
     const answer = question[0];
 
     const nextCountryHandler = () => {

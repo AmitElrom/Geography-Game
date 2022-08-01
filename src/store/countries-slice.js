@@ -4,7 +4,8 @@ import { getMeRandomElements } from '../utils/utils-general';
 
 const countriesInitialState = {
     questions: [],
-    questionsQuantity: 0
+    questionsQuantity: 0,
+    score: 0
 };
 
 const countriesSlice = createSlice({
@@ -17,6 +18,9 @@ const countriesSlice = createSlice({
 
             state.questions = questions;
             state.questionsQuantity = questionsQuantity;
+        },
+        incrementScore({ score }) {
+            score += 1;
         }
     }
 })
