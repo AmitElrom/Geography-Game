@@ -12,7 +12,6 @@ function App() {
         <Route path='/' element={<Navigate to='/welcome' />} />
         <Route path='/welcome' element={<Main />} />
         <Route path='/about' element={<About />} />
-        {/* <Route path='/countries/:countryNumber' element={<Question />} /> */}
         <Route path='/question' element={<Question />} />
       </Routes>
     </Layout>

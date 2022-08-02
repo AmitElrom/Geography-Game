@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 
 import Card from '../../UI/Card/Card';
@@ -7,13 +7,11 @@ import Card from '../../UI/Card/Card';
 import Flag from '../Flag/Flag';
 import Options from '../Options General/Options/Options';
 
-import { countriesActions } from '../../../store/countries-slice';
-
 import './Question.css';
+
 
 const Question = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { questions, questionsQuantity, score } = useSelector(state => state);
 
@@ -27,7 +25,6 @@ const Question = () => {
         if (questionIndex !== questionsQuantity - 1) {
             setQuestionIndex(questionIndex => questionIndex + 1)
         } else {
-            dispatch(countriesActions.nullifyScore())
             navigate('/welcome')
         }
     }
@@ -35,7 +32,7 @@ const Question = () => {
     return (
         <Card className='centered-horizontally' style={{ width: '40%' }} >
             <div className='numbers' >
-                <p>Number {questionIndex + 1}</p>
+                <p>No. {questionIndex + 1}</p>
                 <p>Score {score}</p>
             </div>
             <Flag flag={answer.flag} />

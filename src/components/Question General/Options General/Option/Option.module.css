@@ -1,3 +1,18 @@
 .option {
   cursor: pointer;
 }
+
+.true {
+  color: white;
+  background-color: rgb(0, 121, 74);
+}
+
+.false {
+  color: white;
+  background-color: rgb(255, 57, 57);
+}
+
+.true-when-false {
+  border: 0.1rem solid rgb(0, 121, 74);
+  color: white;
+}
