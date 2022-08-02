@@ -30,7 +30,7 @@ const Question = () => {
     }
 
     return (
-        <Card className='centered-horizontally' style={{ width: '40%' }} >
+        <Card className='centered-horizontally' style={{ width: '60%' }} >
             <div className='numbers' >
                 <p>No. {questionIndex + 1}</p>
                 <p>Score {score}</p>
