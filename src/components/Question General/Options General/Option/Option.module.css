@@ -3,6 +3,12 @@
   flex: 0 0 43%;
 }
 
+@media (min-width: 500px) and (max-width: 950px) {
+  .option {
+    flex: 0 0 80%;
+  }
+}
+
 .true {
   color: white;
   background-color: rgb(0, 121, 74);
@@ -14,7 +20,7 @@
 }
 
 .true-when-false {
-  box-sizing: border-box;
   border: 0.3rem solid rgb(0, 121, 74);
   color: rgb(0, 121, 74);
+  padding: 12px;
 }

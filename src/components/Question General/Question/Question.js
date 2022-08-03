@@ -7,7 +7,7 @@ import Card from '../../UI/Card/Card';
 import Flag from '../Flag/Flag';
 import Options from '../Options General/Options/Options';
 
-import './Question.css';
+import classes from './Question.module.css';
 
 
 const Question = () => {
@@ -29,9 +29,11 @@ const Question = () => {
         }
     }
 
+    let cardClasses = `centered-horizontally ${classes.question}`
+
     return (
-        <Card className='centered-horizontally' style={{ width: '60%' }} >
-            <div className='numbers' >
+        <Card className={cardClasses} >
+            <div className={classes.numbers} >
                 <p>No. {questionIndex + 1}</p>
                 <p>Score {score}</p>
             </div>

@@ -32,14 +32,14 @@ const Option = ({ optionData, onNext, onDisplayTrueCountryWhenFalseAnswer, isTru
             setTimeout(() => {
                 dispatch(countriesActions.incrementScore())
                 onNext()
-            }, 700);
+            }, 800);
         } else {
             setOptionClasses(`${classes.option} ${classes.false}`)
             displayTrueCountry()
             setTimeout(() => {
                 notDisplayTrueCountry()
                 onNext()
-            }, 500);
+            }, 800);
         }
     }
 

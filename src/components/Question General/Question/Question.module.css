@@ -1,0 +1,32 @@
+.question {
+  width: 68%;
+}
+
+@media (min-width: 601px) and (max-width: 700px) {
+  .question {
+    width: 75%;
+  }
+}
+
+@media (min-width: 551px) and (max-width: 600px) {
+  .question {
+    width: 80%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 550px) {
+  .question {
+    width: 85%;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .question {
+    width: 90%;
+  }
+}
+
+.numbers {
+  display: flex;
+  justify-content: space-between;
+}
