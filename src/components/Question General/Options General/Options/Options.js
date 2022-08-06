@@ -8,7 +8,7 @@ import { shuffleArray } from '../../../../utils/utils-general';
 
 import classes from './Options.module.css';
 
-const Options = ({ questionData, onNext }) => {
+const Options = ({ questionData }) => {
 
     const [options, setOptions] = useState([]);
     const [isTrueCountryDisplayed, setIsTrueCountryDisplayed] = useState(false);
@@ -26,7 +26,6 @@ const Options = ({ questionData, onNext }) => {
         return <Option
             key={option.id}
             optionData={option}
-            onNext={onNext}
             isTrueCountryDisplayed={isTrueCountryDisplayed && option.isCountry}
             onDisplayTrueCountryWhenFalseAnswer={displayTrueCountryWhenFalseAnswer}
         />

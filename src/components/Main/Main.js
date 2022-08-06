@@ -11,7 +11,7 @@ const Main = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(countriesActions.nullifyScore())
+        dispatch(countriesActions.nullify())
     }, [dispatch])
 
     return (

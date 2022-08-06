@@ -6,7 +6,7 @@ import classes from './Option.module.css';
 
 import { countriesActions } from '../../../../store/countries-slice';
 
-const Option = ({ optionData, onNext, onDisplayTrueCountryWhenFalseAnswer, isTrueCountryDisplayed }) => {
+const Option = ({ optionData, onDisplayTrueCountryWhenFalseAnswer, isTrueCountryDisplayed }) => {
 
     const dispatch = useDispatch();
 
@@ -31,14 +31,14 @@ const Option = ({ optionData, onNext, onDisplayTrueCountryWhenFalseAnswer, isTru
             setOptionClasses(`${classes.option} ${classes.true}`)
             setTimeout(() => {
                 dispatch(countriesActions.incrementScore())
-                onNext()
+                dispatch(countriesActions.showFunFact())
             }, 800);
         } else {
             setOptionClasses(`${classes.option} ${classes.false}`)
             displayTrueCountry()
             setTimeout(() => {
                 notDisplayTrueCountry()
-                onNext()
+                dispatch(countriesActions.showFunFact())
             }, 800);
         }
     }

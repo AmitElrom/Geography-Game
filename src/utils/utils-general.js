@@ -10,6 +10,11 @@ const getMeRandomElements = (sourceArray, neededElements) => {
     return result;
 }
 
+const getMeRandomElement = (sourceArray) => {
+    const item = sourceArray[Math.floor(Math.random() * sourceArray.length)];
+    return item;
+}
+
 const getMeRandomCountriesNoNumber = (countriesArr, number) => {
     const randomCountries = getMeRandomElements(countriesArr, number * 4);
     return randomCountries;
@@ -20,4 +25,4 @@ const shuffleArray = (array) => {
     return shuffledArray;
 }
 
-export { getMeRandomElements, getMeRandomCountriesNoNumber, shuffleArray };
+export { getMeRandomElements, getMeRandomCountriesNoNumber, shuffleArray, getMeRandomElement };
