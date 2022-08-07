@@ -23,7 +23,6 @@ const FunFactModal = () => {
     useEffect(() => {
         setAnswer(questions[questionIndex][0])
         let chosenFunFact = getMeRandomElement(questions[questionIndex][0].funFact.data)
-        console.log(chosenFunFact);
         setFunFact(chosenFunFact)
     }, [questionIndex, questions])
 
