@@ -6,7 +6,8 @@ const countriesInitialState = {
     questionsQuantity: 0,
     score: 0,
     isFunFactShown: false,
-    questionIndex: 0
+    questionIndex: 0,
+    isStartPlaying: false
 };
 
 const countriesSlice = createSlice({
@@ -38,6 +39,9 @@ const countriesSlice = createSlice({
         },
         nextCountryHandler(state) {
             state.questionIndex = state.questionIndex + 1
+        },
+        startPlaying(state) {
+            state.isStartPlaying = true;
         }
     }
 })

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Level from '../UI/Difficulty Level/DifficultyLevel';
@@ -13,11 +13,13 @@ const MainLevel = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const { isStartPlaying } = useSelector(state => state);
+
     const { isLoading, error, sendRequest: getCountries } = useHttpAxios();
 
 
     const startPlayingHandler = () => {
-
+        console.log('hello');
         getCountries({
             method: 'GET',
             url: `http://localhost:8000/countries-elrom?questions-quantity=${questionsQuantity}`
