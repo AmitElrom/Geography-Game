@@ -25,10 +25,11 @@ const Levels = () => {
                 dispatch(countriesActions.startPlaying(selctedLevel))
             })();
         }
-    }, [selctedLevel])
+    }, [selctedLevel, dispatch])
 
     const levelsList = LEVELS_DATA.map(level => {
         return <Level
+            className={classes.level}
             key={level}
             size={'70'}
             onClick={() => setSelectedLevel(level)}>
