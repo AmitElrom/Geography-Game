@@ -7,7 +7,8 @@ const countriesInitialState = {
     score: 0,
     isFunFactShown: false,
     questionIndex: 0,
-    isStartPlaying: false
+    isStartPlaying: false,
+    difficultyLevel: null
 };
 
 const countriesSlice = createSlice({
@@ -30,6 +31,8 @@ const countriesSlice = createSlice({
             state.isFunFactShown = false;
             state.questions = [];
             state.questionIndex = 0;
+            state.isStartPlaying = false;
+            state.difficultyLevel = null;
         },
         showFunFact(state) {
             state.isFunFactShown = true;
@@ -40,8 +43,9 @@ const countriesSlice = createSlice({
         nextCountryHandler(state) {
             state.questionIndex = state.questionIndex + 1
         },
-        startPlaying(state) {
+        startPlaying(state, { payload: difficultyLevel }) {
             state.isStartPlaying = true;
+            state.difficultyLevel = difficultyLevel;
         }
     }
 })
