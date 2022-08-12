@@ -5,6 +5,9 @@ import Layout from './components/Main Header/Layout/Layout';
 import Main from './components/Main/Main';
 import About from './components/About/About';
 import Question from './components/Question General/Question/Question';
+import SignUp from './components/Authentication/SignUp/SignUp';
+import SignIn from './components/Authentication/SignIn/SignIn';
+
 import FunFactModal from './components/Modals/FunFactModal';
 
 function App() {
@@ -19,6 +22,8 @@ function App() {
         <Route path='/welcome' element={<Main />} />
         <Route path='/about' element={<About />} />
         <Route path='/question' element={<Question />} />
+        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/sign-up' element={<SignUp />} />
       </Routes>
     </Layout>
   );
