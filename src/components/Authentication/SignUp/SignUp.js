@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import {
   isEmail,
@@ -6,24 +6,37 @@ import {
   isValidPassword,
 } from "../../../utils/utils-validity";
 
+import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
+
 const SignUp = () => {
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
   const emailRef = useRef();
   const password1Ref = useRef();
   const password2Ref = useRef();
 
+  const [name, setName] = useState({
+    firstName: "",
+    lastName: "",
+  });
+
+  const changeInputHandler = (e) => {
+    const { name, value } = e.target;
+    setName((prevName) => {
+      return {
+        ...prevName,
+        [name]: capitlizeFirstLetter(value),
+      };
+    });
+  };
+
   const submitSignUpFormHandler = (e) => {
     e.preventDefault();
 
-    let enteredfirstName = firstNameRef.current.value;
-    let enteredLastName = lastNameRef.current.value;
     let enteredEmail = emailRef.current.value;
     let enteredPassword1 = password1Ref.current.value;
     let enteredPassword2 = password2Ref.current.value;
 
-    let firstNameIsValid = isNotEmpty(enteredfirstName);
-    let lastNameIsValid = isNotEmpty(enteredLastName);
+    let firstNameIsValid = isNotEmpty(name.firstName);
+    let lastNameIsValid = isNotEmpty(name.lastName);
     let emailIsValid = isEmail(enteredEmail);
     let password1IsValid = isValidPassword(enteredPassword1);
     let password2IsValid =
@@ -31,8 +44,8 @@ const SignUp = () => {
       enteredPassword1 === enteredPassword2;
 
     console.log(
-      enteredfirstName,
-      enteredLastName,
+      name.firstName,
+      name.lastName,
       enteredEmail,
       enteredPassword1,
       enteredPassword2
@@ -51,11 +64,23 @@ const SignUp = () => {
     <form onSubmit={submitSignUpFormHandler}>
       <div>
         <label htmlFor=""></label>
-        <input type="text" id="first_name" ref={firstNameRef} />
+        <input
+          type="text"
+          id="first_name"
+          name="firstName"
+          value={name.firstName}
+          onChange={changeInputHandler}
+        />
       </div>
       <div>
         <label htmlFor=""></label>
-        <input type="text" id="last_name" ref={lastNameRef} />
+        <input
+          type="text"
+          id="last_name"
+          name="lastName"
+          value={name.lastName}
+          onChange={changeInputHandler}
+        />
       </div>
       <div>
         <label htmlFor=""></label>
