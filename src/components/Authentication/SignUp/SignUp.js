@@ -1,100 +1,90 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-import {
-  isEmail,
-  isNotEmpty,
-  isValidPassword,
-} from "../../../utils/utils-validity";
+import FormInput from "../FormInput/FormInput";
 
-import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
+import classes from "./SignUp.module.css";
 
 const SignUp = () => {
-  const emailRef = useRef();
-  const password1Ref = useRef();
-  const password2Ref = useRef();
-
-  const [name, setName] = useState({
+  const [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
+    email: "",
+    password1: "",
+    password2: "",
   });
+
+  const formInputs = [
+    {
+      id: 1,
+      name: "firstName",
+      placeholder: "First Name",
+      label: "First Name",
+      type: "text",
+    },
+    {
+      id: 2,
+      name: "lastName",
+      placeholder: "Last Name",
+      label: "Last Name",
+      type: "text",
+    },
+    {
+      id: 3,
+      name: "email",
+      placeholder: "Email",
+      label: "Email",
+      type: "email",
+      error: "Email",
+    },
+    {
+      id: 4,
+      name: "password1",
+      placeholder: "Password",
+      label: "Password",
+      type: "password",
+      error: "",
+    },
+    {
+      id: 5,
+      name: "password2",
+      placeholder: "Enter password again",
+      label: "Password",
+      type: "password",
+      error: "",
+    },
+  ];
 
   const changeInputHandler = (e) => {
     const { name, value } = e.target;
-    setName((prevName) => {
+    setInputs((prevInputs) => {
       return {
-        ...prevName,
-        [name]: capitlizeFirstLetter(value),
+        ...prevInputs,
+        [name]: value,
       };
     });
   };
 
   const submitSignUpFormHandler = (e) => {
     e.preventDefault();
-
-    let enteredEmail = emailRef.current.value;
-    let enteredPassword1 = password1Ref.current.value;
-    let enteredPassword2 = password2Ref.current.value;
-
-    let firstNameIsValid = isNotEmpty(name.firstName);
-    let lastNameIsValid = isNotEmpty(name.lastName);
-    let emailIsValid = isEmail(enteredEmail);
-    let password1IsValid = isValidPassword(enteredPassword1);
-    let password2IsValid =
-      isValidPassword(enteredPassword2) &&
-      enteredPassword1 === enteredPassword2;
-
-    console.log(
-      name.firstName,
-      name.lastName,
-      enteredEmail,
-      enteredPassword1,
-      enteredPassword2
-    );
-
-    console.log(
-      firstNameIsValid,
-      lastNameIsValid,
-      emailIsValid,
-      password1IsValid,
-      password2IsValid
-    );
+    console.log(inputs);
   };
 
+  const formInputList = (
+    <div>
+      {formInputs.map((input) => {
+        return (
+          <FormInput key={input.id} {...input} onChange={changeInputHandler} />
+        );
+      })}
+    </div>
+  );
+
   return (
-    <form onSubmit={submitSignUpFormHandler}>
+    <form className={classes.form} onSubmit={submitSignUpFormHandler}>
+      {formInputList}
       <div>
-        <label htmlFor=""></label>
-        <input
-          type="text"
-          id="first_name"
-          name="firstName"
-          value={name.firstName}
-          onChange={changeInputHandler}
-        />
+        <button type="submit">Sign Up</button>
       </div>
-      <div>
-        <label htmlFor=""></label>
-        <input
-          type="text"
-          id="last_name"
-          name="lastName"
-          value={name.lastName}
-          onChange={changeInputHandler}
-        />
-      </div>
-      <div>
-        <label htmlFor=""></label>
-        <input type="text" id="email" ref={emailRef} />
-      </div>
-      <div>
-        <label htmlFor=""></label>
-        <input type="text" id="password1" ref={password1Ref} />
-      </div>
-      <div>
-        <label htmlFor=""></label>
-        <input type="text" id="password2" ref={password2Ref} />
-      </div>
-      <button type="submit">Sign Up</button>
     </form>
   );
 };
