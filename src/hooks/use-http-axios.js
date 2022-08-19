@@ -10,12 +10,14 @@ const useHttpAxios = () => {
         setIsLoading(true)
         setError(null)
         try {
+            const { url, method, body } = requestData;
             const { data } = await axios({
-                url: requestData.url,
-                method: requestData.method,
-                body: requestData.body ? JSON.stringify(requestData.body) : null,
+                url,
+                method,
+                data: body ? body : null,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json;charset=UTF-8'
                 }
             })
             const d = await data;

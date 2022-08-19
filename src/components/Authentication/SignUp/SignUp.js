@@ -1,17 +1,69 @@
-import { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import useHttpAxios from "../../../hooks/use-http-axios";
+import axios from "axios";
 
 import FormInput from "../FormInput/FormInput";
 
 import classes from "./SignUp.module.css";
 
+import { nameRegex, passwordRegex } from "../../../utils/utils-regex";
+import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
+
 const SignUp = () => {
-  const [inputs, setInputs] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password1: "",
-    password2: "",
+  const { isLoading, error, sendRequest: signUpRequest } = useHttpAxios();
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password1: "",
+      password2: "",
+    },
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .matches(nameRegex, "Only English letters")
+        .required("Required"),
+      lastName: Yup.string()
+        .matches(nameRegex, "Only English letters")
+        .required("Required"),
+      email: Yup.string().email("Invalid email address").required("Required"),
+      password1: Yup.string()
+        .matches(
+          passwordRegex,
+          "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+        )
+        .required("Required"),
+      password2: Yup.string()
+        .oneOf([Yup.ref("password1"), null], "Passwords must match")
+        .required("Required"),
+    }),
+    onSubmit: async (values) => {
+      console.log(values);
+      // const { data } = await axios.post(
+      //   "http://localhost:8000/auth-elrom/sign-up",
+      //   values
+      // );
+      // console.log(data);
+      signUpRequest(
+        {
+          method: "POST",
+          url: "http://localhost:8000/auth-elrom/sign-up",
+          body: values,
+        },
+        (data) => {
+          console.log({ "new user": data });
+        }
+      );
+    },
   });
+
+  const changeInputNameHandler = (e) => {
+    const { name, value } = e.target;
+    let upperCaseName = capitlizeFirstLetter(value);
+    formik.setFieldValue(name, upperCaseName);
+  };
 
   const formInputs = [
     {
@@ -34,7 +86,6 @@ const SignUp = () => {
       placeholder: "Email",
       label: "Email",
       type: "email",
-      error: "Email",
     },
     {
       id: 4,
@@ -42,7 +93,6 @@ const SignUp = () => {
       placeholder: "Password",
       label: "Password",
       type: "password",
-      error: "",
     },
     {
       id: 5,
@@ -50,37 +100,36 @@ const SignUp = () => {
       placeholder: "Enter password again",
       label: "Password",
       type: "password",
-      error: "",
     },
   ];
-
-  const changeInputHandler = (e) => {
-    const { name, value } = e.target;
-    setInputs((prevInputs) => {
-      return {
-        ...prevInputs,
-        [name]: value,
-      };
-    });
-  };
-
-  const submitSignUpFormHandler = (e) => {
-    e.preventDefault();
-    console.log(inputs);
-  };
 
   const formInputList = (
     <div>
       {formInputs.map((input) => {
         return (
-          <FormInput key={input.id} {...input} onChange={changeInputHandler} />
+          <FormInput
+            key={input.id}
+            {...input}
+            value={formik.values[input.name]}
+            onChange={
+              input.name === "firstName" || input.name === "lastName"
+                ? changeInputNameHandler
+                : formik.handleChange
+            }
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched[input.name] && formik.errors[input.name]
+                ? formik.errors[input.name]
+                : null
+            }
+          />
         );
       })}
     </div>
   );
 
   return (
-    <form className={classes.form} onSubmit={submitSignUpFormHandler}>
+    <form className={classes.form} onSubmit={formik.handleSubmit}>
       {formInputList}
       <div>
         <button type="submit">Sign Up</button>

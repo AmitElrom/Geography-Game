@@ -10,3 +10,7 @@
   display: block;
   margin-bottom: 0.2rem;
 }
+
+.input p {
+  color: red;
+}
