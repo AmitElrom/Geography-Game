@@ -10,20 +10,24 @@ const useHttpAxios = () => {
         setIsLoading(true)
         setError(null)
         try {
-            const { url, method, body } = requestData;
+            const { url, method, body, headers } = requestData;
             const { data } = await axios({
                 url,
-                method,
+                method: !method ? 'GET' : method,
                 data: body ? body : null,
-                headers: {
+                headers: !headers ? {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json;charset=UTF-8'
+                    'Content-Type': 'application/json;charset=UTF-8',
+                } : {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    ...headers
                 }
             })
             const d = await data;
             applyDataFunc(d)
         } catch (err) {
-            setError(err.message)
+            setError(err)
         }
         setIsLoading(false)
     }, [])

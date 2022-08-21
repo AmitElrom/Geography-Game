@@ -1,5 +1,7 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import useHttpAxios from './hooks/use-http-axios';
 
 import Layout from './components/Main Header/Layout/Layout';
 import Main from './components/Main/Main';
@@ -12,13 +14,36 @@ import FunFactModal from './components/Modals/FunFactModal';
 
 function App() {
 
+  const navigate = useNavigate();
+
+  const [defaultNavigation, setDefaultNavigation] = useState('');
+
+  const { error, isLoading, sendRequest: checkIfLoginRequest } = useHttpAxios();
+
+  let token = sessionStorage.getItem('token');
+  useEffect(() => {
+    checkIfLoginRequest({
+      method: 'POST',
+      url: 'http://localhost:8000/auth-elrom/check-sign-in',
+      headers: { 'Authorization': `Bearer ${token}` }
+    }, (data) => {
+      if (data.status === '403') {
+        console.log(data.status);
+        setDefaultNavigation('/sign-in')
+      } else {
+        setDefaultNavigation('/welcome')
+      }
+
+    })
+  }, [token])
+
   const { isFunFactShown } = useSelector(state => state)
 
   return (
     <Layout>
       {isFunFactShown && <FunFactModal />}
       <Routes>
-        <Route path='/' element={<Navigate to='/welcome' />} />
+        <Route path='/' element={<Navigate to={defaultNavigation} />} />
         <Route path='/welcome' element={<Main />} />
         <Route path='/about' element={<About />} />
         <Route path='/question' element={<Question />} />

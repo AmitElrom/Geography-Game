@@ -1,7 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useHttpAxios from "../../../hooks/use-http-axios";
-import axios from "axios";
 
 import FormInput from "../FormInput/FormInput";
 
@@ -11,6 +11,8 @@ import { nameRegex, passwordRegex } from "../../../utils/utils-regex";
 import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const { isLoading, error, sendRequest: signUpRequest } = useHttpAxios();
 
   const formik = useFormik({
@@ -40,12 +42,6 @@ const SignUp = () => {
         .required("Required"),
     }),
     onSubmit: async (values) => {
-      console.log(values);
-      // const { data } = await axios.post(
-      //   "http://localhost:8000/auth-elrom/sign-up",
-      //   values
-      // );
-      // console.log(data);
       signUpRequest(
         {
           method: "POST",
@@ -54,6 +50,7 @@ const SignUp = () => {
         },
         (data) => {
           console.log({ "new user": data });
+          navigate("/welcome", { replace: true });
         }
       );
     },
@@ -133,6 +130,10 @@ const SignUp = () => {
       {formInputList}
       <div>
         <button type="submit">Sign Up</button>
+      </div>
+      <div className={classes["sign-in"]}>
+        <p>Already have an account? &nbsp;</p>
+        <Link to="/sign-in">Sign In</Link>
       </div>
     </form>
   );
