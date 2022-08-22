@@ -34,6 +34,9 @@ const Navigation = () => {
           <li>
             <NavLink to="/welcome">Username</NavLink>
           </li>
+          <li>
+            <NavLink to="/sign-in" replace>Log Out</NavLink>
+          </li>
         </ul>
       </nav>
     </header>

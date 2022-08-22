@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const useHttpAxios = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -26,8 +26,9 @@ const useHttpAxios = () => {
             })
             const d = await data;
             applyDataFunc(d)
-        } catch (err) {
-            setError(err)
+        } catch (error) {
+            const err = new AxiosError(error);
+            setError(err.message)
         }
         setIsLoading(false)
     }, [])

@@ -27,15 +27,23 @@ function App() {
       url: 'http://localhost:8000/auth-elrom/check-sign-in',
       headers: { 'Authorization': `Bearer ${token}` }
     }, (data) => {
-      if (data.status === '403') {
-        console.log(data.status);
-        setDefaultNavigation('/sign-in')
-      } else {
-        setDefaultNavigation('/welcome')
+      if (data) {
+        console.log(data);
       }
-
+      // if (data.status === '403') {
+      //   setDefaultNavigation('/sign-in')
+      // } else {
+      //   setDefaultNavigation('/welcome')
+      // }
     })
   }, [token])
+
+  useEffect(() => {
+    // if (error) {
+    //   console.log(error);
+    //   navigate('/sign-in', { replace: true })
+    // }
+  }, [error])
 
   const { isFunFactShown } = useSelector(state => state)
 
@@ -43,7 +51,7 @@ function App() {
     <Layout>
       {isFunFactShown && <FunFactModal />}
       <Routes>
-        <Route path='/' element={<Navigate to={defaultNavigation} />} />
+        <Route path='/' element={<Navigate to={'/welcome'} />} />
         <Route path='/welcome' element={<Main />} />
         <Route path='/about' element={<About />} />
         <Route path='/question' element={<Question />} />

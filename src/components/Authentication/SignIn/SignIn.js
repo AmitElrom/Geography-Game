@@ -22,7 +22,7 @@ const SignIn = () => {
       email: Yup.string().email("Invalid email address").required("Required"),
       password: Yup.string().required("Required"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       signInRequest(
         {
           method: "POST",
@@ -30,11 +30,8 @@ const SignIn = () => {
           body: values,
         },
         (data) => {
-          if (data.token) {
-            sessionStorage.setItem("token", data.token);
-            navigate("/welcome", { replace: true });
-          }
-          console.log(error);
+          sessionStorage.setItem("token", data.token);
+          navigate("/welcome", { replace: true });
         }
       );
     },

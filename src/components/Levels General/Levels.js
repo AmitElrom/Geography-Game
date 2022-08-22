@@ -1,51 +1,73 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import Level from '../UI/Difficulty Level/DifficultyLevel';
+import Level from "../UI/Difficulty Level/DifficultyLevel";
 
-import classes from './Levels.module.css';
+import classes from "./Levels.module.css";
 
-import { countriesActions } from '../../store/countries-slice';
+import { countriesActions } from "../../store/countries-slice";
 
-const LEVELS_DATA = ['Beginner', 'Amateur', 'Medium', 'Hard', 'Expert'];
+const LEVELS_DATA = ["Beginner", "Amateur", "Medium", "Hard", "Expert"];
 
 let isInitial = true;
 
 const Levels = () => {
+  const [levelsData, setLevelsData] = useState([
+    { id: 1, name: "Beginner", isClicked: false },
+    { id: 2, name: "Amateur", isClicked: false },
+    { id: 3, name: "Medium", isClicked: false },
+    { id: 4, name: "Hard", isClicked: false },
+    { id: 5, name: "Expert", isClicked: false },
+  ]);
 
-    const [selctedLevel, setSelectedLevel] = useState('');
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const clickLevelHandler = (levelName) => {
+    // const nonClickedLevels = levelsData
+    //   .map((level, index) => {
+    //     return { ...level, index };
+    //   })
+    //   .filter((level) => level.name !== levelName);
 
-    useEffect(() => {
-        if (isInitial) {
-            isInitial = false;
+    // levelsData.forEach((level, index) => {
+    //   if (level.name === levelName) {
+    //     nonClickedLevels[index] = { ...level, isClicked: true };
+    //   }
+    // });
+    // setLevelsData(nonClickedLevels);
+
+    setLevelsData((prevLevels) => {
+      const mappedLevels = prevLevels.map((level) => {
+        if (level.name === levelName) {
+          return { ...level, isClicked: true };
         } else {
-            (() => {
-                dispatch(countriesActions.startPlaying(selctedLevel))
-            })();
+          return { ...level, isClicked: false };
         }
-    }, [selctedLevel, dispatch])
+      });
+      return mappedLevels;
+    });
 
-    const levelsList = LEVELS_DATA.map(level => {
-        return <Level
-            className={classes.level}
-            key={level}
-            size={'70'}
-            onClick={() => setSelectedLevel(level)}>
-            {level}
-        </Level>
-    })
+    dispatch(countriesActions.startPlaying(levelName));
+  };
 
-    const clickHnadler = e => {
-        console.log(e.target.value);
-    }
-
+  const levelsList = levelsData.map((level) => {
     return (
-        <div className={`centered-horizontally ${classes.levels}`} >
-            {levelsList}
-        </div>
-    )
-}
+      <Level
+        className={level.isClicked ? classes["level-clicked"] : undefined}
+        key={level.id}
+        size={"70"}
+        onClick={() => clickLevelHandler(level.name)}
+      >
+        {level.name}
+      </Level>
+    );
+  });
 
-export default Levels
+  return (
+    <div className={`centered-horizontally ${classes.levels}`}>
+      {levelsList}
+    </div>
+  );
+};
+
+export default Levels;

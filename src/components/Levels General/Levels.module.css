@@ -3,6 +3,6 @@
   margin-bottom: 1rem;
 }
 
-.level:active {
-  background-color: khaki;
+.level-clicked {
+  background-color: orange;
 }
