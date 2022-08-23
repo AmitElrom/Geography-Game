@@ -42,7 +42,7 @@ const MainLevel = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { isStartPlaying, difficultyLevel } = useSelector(state => state);
+    const { isStartPlaying, difficultyLevel } = useSelector(state => state.countries);
 
     const [urlState, urlDisptch] = useReducer(urlReducer);
 

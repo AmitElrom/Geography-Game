@@ -1,11 +1,14 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
+
 import Navigation from '../Navigation/Navigation'
+
+import classes from './Layout.module.css';
 
 const Layout = ({ children }) => {
     return (
         <Fragment>
             <Navigation />
-            <main>{children}</main>
+            <main className={classes.main} >{children}</main>
         </Fragment>
     )
 }

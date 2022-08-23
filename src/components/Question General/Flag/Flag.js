@@ -3,16 +3,14 @@ import Card from '../../UI/Card/Card'
 const Flag = ({ flag }) => {
     return (
         <Card
-            className='centered-horizontally'
-            style={{
-                width: '30%'
-            }} >
+            className='centered-horizontally'>
             <img
                 src={flag}
                 alt='flag'
                 style={{
                     boxSizing: 'content-box',
-                    width: '100%'
+                    width: '100%',
+                    height: '150px'
                 }} />
         </Card>
     )

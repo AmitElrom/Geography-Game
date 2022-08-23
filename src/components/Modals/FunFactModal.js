@@ -16,7 +16,7 @@ const FunFactModal = () => {
   const navigate = useNavigate();
 
   const { questionIndex, questionsQuantity, questions } = useSelector(
-    (state) => state
+    (state) => state.countries
   );
 
   const [answer, setAnswer] = useState({});

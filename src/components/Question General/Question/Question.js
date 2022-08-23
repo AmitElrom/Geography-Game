@@ -14,7 +14,7 @@ const Question = () => {
 
     const navigate = useNavigate();
 
-    const { questions, score, questionIndex } = useSelector(state => state);
+    const { questions, score, questionIndex } = useSelector(state => state.countries);
 
     const [question, setQuestion] = useState([]);
     const [answer, setAnswer] = useState({});

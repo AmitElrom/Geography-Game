@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Level from "../UI/Difficulty Level/DifficultyLevel";
@@ -7,9 +7,6 @@ import classes from "./Levels.module.css";
 
 import { countriesActions } from "../../store/countries-slice";
 
-const LEVELS_DATA = ["Beginner", "Amateur", "Medium", "Hard", "Expert"];
-
-let isInitial = true;
 
 const Levels = () => {
   const [levelsData, setLevelsData] = useState([
@@ -23,19 +20,6 @@ const Levels = () => {
   const dispatch = useDispatch();
 
   const clickLevelHandler = (levelName) => {
-    // const nonClickedLevels = levelsData
-    //   .map((level, index) => {
-    //     return { ...level, index };
-    //   })
-    //   .filter((level) => level.name !== levelName);
-
-    // levelsData.forEach((level, index) => {
-    //   if (level.name === levelName) {
-    //     nonClickedLevels[index] = { ...level, isClicked: true };
-    //   }
-    // });
-    // setLevelsData(nonClickedLevels);
-
     setLevelsData((prevLevels) => {
       const mappedLevels = prevLevels.map((level) => {
         if (level.name === levelName) {
