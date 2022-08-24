@@ -12,8 +12,10 @@ import SignIn from './components/Authentication/SignIn/SignIn';
 
 import FunFactModal from './components/Modals/FunFactModal';
 
-import { authenticationActions } from './store/authentication-slice';
 import ProtectedRoute from './components/Authentication/ProtectedRoute/ProtectedRoute';
+
+import './App.css';
+import NonProtectedRoute from './components/Authentication/NonProtectedRoute/NonProtectedRoute';
 
 function App() {
 
@@ -27,36 +29,10 @@ function App() {
 
   const { error, isLoading, sendRequest: checkIfLoginRequest } = useHttpAxios();
 
-  // let token = sessionStorage.getItem('token');
-  // let username = JSON.parse(sessionStorage.getItem('userData'))
-  // console.log(username);
-  // useEffect(() => {
-  //   if (token) {
-  //     checkIfLoginRequest({
-  //       method: 'POST',
-  //       url: 'http://localhost:8000/auth-elrom/check-sign-in',
-  //       headers: { 'Authorization': `Bearer ${token}` }
-  //     }, (data) => {
-  //       console.log(data);
-  //       if (data) {
-  //         dispatch(authenticationActions.loginHandler({ token, userData: { ...username } }))
-  //       }
-  //     })
-  //   }
-  // }, [token])
-
-
-  // useEffect(() => {
-  //   if (error) {
-  //     console.log(error);
-  //     navigate('/sign-in', { replace: true })
-  //   }
-  // }, [error])
-
   const { isFunFactShown } = useSelector(state => state.countries)
 
   return (
-    <Layout>
+    <Layout className={!isFunFactShown ? 'App' : 'App-fun-fact-shown'} >
       {isFunFactShown && <FunFactModal />}
       <Routes>
         <Route path='/' element={<Navigate to={isLoggedIn ? '/welcome' : '/sign-in'} />} />
@@ -65,8 +41,11 @@ function App() {
           <Route path='/question' element={<Question />} />
         </Route>
         <Route path='/about' element={<About />} />
+        {/* <Route element={<NonProtectedRoute />} > */}
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
+        {/* </Route> */}
+        <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </Layout>
   );

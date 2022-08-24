@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.App-fun-fact-shown {
+  overflow-y: hidden;
+}
+
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +40,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

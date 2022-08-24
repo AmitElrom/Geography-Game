@@ -3,6 +3,7 @@
   margin-bottom: 1rem;
 }
 
-.level-clicked {
+.level-clicked,
+.level:hover {
   background-color: orange;
 }

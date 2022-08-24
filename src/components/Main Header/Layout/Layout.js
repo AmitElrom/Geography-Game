@@ -4,11 +4,11 @@ import Navigation from '../Navigation/Navigation'
 
 import classes from './Layout.module.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, className }) => {
     return (
         <Fragment>
             <Navigation />
-            <main className={classes.main} >{children}</main>
+            <main className={`${className} ${classes.main}`} >{children}</main>
         </Fragment>
     )
 }

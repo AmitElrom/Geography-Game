@@ -1,5 +1,6 @@
+import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useHttpAxios from "../../../hooks/use-http-axios";
@@ -8,8 +9,7 @@ import FormInput from "../FormInput/FormInput";
 
 import classes from "../SignUp/SignUp.module.css";
 
-import { authenticationActions } from '../../../store/authentication-slice';
-import { useEffect } from "react";
+import authContext from "../../../store/auth-context";
 
 const SignIn = () => {
 
@@ -17,15 +17,9 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const { isLoggedIn, userData } = useSelector(state => state.auth)
+  const { loginHandler } = useContext(authContext);
 
   const { error, isLoading, sendRequest: signInRequest } = useHttpAxios();
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/welcome', { replace: true })
-    }
-  }, [isLoggedIn])
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +40,7 @@ const SignIn = () => {
         (data) => {
           if (data.token) {
             console.log(data);
-            dispatch(authenticationActions.loginHandler({ token: data.token, userData: { ...data.userData } }))
+            loginHandler(data.token)
             navigate("/welcome", { replace: true });
           }
         }
