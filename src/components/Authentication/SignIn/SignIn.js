@@ -17,7 +17,7 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useSelector(state => state.auth)
+  const { isLoggedIn, userData } = useSelector(state => state.auth)
 
   const { error, isLoading, sendRequest: signInRequest } = useHttpAxios();
 

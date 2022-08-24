@@ -15,10 +15,10 @@ const authenticationSlice = createSlice({
     initialState: authenticationInitialState,
     reducers: {
         loginHandler(state, { payload }) {
-            state.userData = payload.userData ? { ...payload.userData } : { ...state.userData };
+            state.userData = { ...payload.userData };
             state.isLoggedIn = !!payload.token;
-            sessionStorage.setItem('user', JSON.stringify(payload.userData))
             sessionStorage.setItem('token', payload.token)
+            sessionStorage.setItem('user', JSON.stringify(payload.userData))
         },
         logoutHandler(state) {
             state.isLoggedIn = false;
