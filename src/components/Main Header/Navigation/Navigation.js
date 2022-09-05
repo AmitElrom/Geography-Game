@@ -12,11 +12,11 @@ const Navigation = () => {
 
   const [user, setUser] = useState({});
 
-  const { isLoggedIn, logoutHandler } = useContext(authContext);
+  const { isLoggedIn, logoutHandler, userData } = useContext(authContext);
 
   useEffect(() => {
-    setUser(JSON.parse(sessionStorage.getItem("user")));
-  }, []);
+    setUser(userData);
+  }, [userData]);
 
   const toAboutPageHandler = () => {
     dispatch(countriesActions.nullify());
@@ -46,7 +46,7 @@ const Navigation = () => {
           </li>
           {isLoggedIn && (
             <li>
-              <NavLink to="/welcome">{user && user?.fullName}</NavLink>
+              <NavLink to="/user-info">{user && user?.fullName}</NavLink>
             </li>
           )}
           {isLoggedIn && (

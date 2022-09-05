@@ -9,9 +9,13 @@ import classes from "./SignUp.module.css";
 
 import { nameRegex, passwordRegex } from "../../../utils/utils-regex";
 import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
+import { useContext } from "react";
+import authContext from "../../../store/auth-context";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const { loginHandler } = useContext(authContext);
 
   const { isLoading, error, sendRequest: signUpRequest } = useHttpAxios();
 
@@ -49,7 +53,8 @@ const SignUp = () => {
           body: values,
         },
         (data) => {
-          console.log({ "new user": data });
+          console.log(data);
+          loginHandler(data.token, { ...data.userData })
           navigate("/welcome", { replace: true });
         }
       );

@@ -40,7 +40,7 @@ const SignIn = () => {
         (data) => {
           if (data.token) {
             console.log(data);
-            loginHandler(data.token)
+            loginHandler(data.token, { ...data.userData })
             navigate("/welcome", { replace: true });
           }
         }

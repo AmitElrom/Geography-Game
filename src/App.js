@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import useHttpAxios from './hooks/use-http-axios';
 
 import Layout from './components/Main Header/Layout/Layout';
@@ -9,6 +8,7 @@ import About from './components/About/About';
 import Question from './components/Question General/Question/Question';
 import SignUp from './components/Authentication/SignUp/SignUp';
 import SignIn from './components/Authentication/SignIn/SignIn';
+import UserPage from './components/User/UserPage';
 
 import FunFactModal from './components/Modals/FunFactModal';
 
@@ -19,13 +19,7 @@ import NonProtectedRoute from './components/Authentication/NonProtectedRoute/Non
 
 function App() {
 
-  const dispatch = useDispatch();
-
   const { isLoggedIn } = useSelector(state => state);
-
-  const navigate = useNavigate();
-
-  const [defaultNavigation, setDefaultNavigation] = useState('');
 
   const { error, isLoading, sendRequest: checkIfLoginRequest } = useHttpAxios();
 
@@ -39,6 +33,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path='/welcome' element={<Main />} />
           <Route path='/question' element={<Question />} />
+          <Route path='/user-info' element={<UserPage />} />
         </Route>
         <Route path='/about' element={<About />} />
         {/* <Route element={<NonProtectedRoute />} > */}
