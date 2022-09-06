@@ -14,7 +14,7 @@ const Navigation = () => {
   const [user, setUser] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { isLoggedIn, logoutHandler, userData } = useContext(authContext);
+  const { isLoggedIn, userData } = useContext(authContext);
 
   useEffect(() => {
     setUser(userData);
@@ -30,8 +30,8 @@ const Navigation = () => {
     });
   };
 
-  const logoutAppHandler = () => {
-    logoutHandler();
+  const logoutHandler = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -57,16 +57,16 @@ const Navigation = () => {
               <NavLink to="/user-info" onClick={toggleMenu}>
                 {user && user?.fullName}
               </NavLink>
-              {isMenuOpen && <DropDownMenu />}
+              {isMenuOpen && <DropDownMenu onLogout={logoutHandler} />}
             </li>
           )}
-          {isLoggedIn && (
+          {/* {isLoggedIn && (
             <li>
               <NavLink to="/sign-in" onClick={logoutAppHandler}>
                 Log Out
               </NavLink>
             </li>
-          )}
+          )} */}
         </ul>
       </nav>
     </header>

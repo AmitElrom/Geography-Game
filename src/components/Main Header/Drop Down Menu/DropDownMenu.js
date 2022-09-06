@@ -4,23 +4,18 @@ import MenuItem from "../Menu Item/MenuItem";
 
 import classes from "./DropDownMenu.module.css";
 
-const menuItems = [
-  { name: "Scores", path: "scores" },
-  { name: "Profile", path: "profile" },
-  { name: "Badges", path: "badges" },
-  { name: "Log Out", path: "sign-in" },
-];
+const menuItems = ["Scores", "Profile", "Badges", "Log Out"];
 
-const DropDownMenu = () => {
+const DropDownMenu = ({ onLogout }) => {
   const menuItemsList = menuItems.map((item) => {
     return (
-      <MenuItem key={item.name} menuItem={{ ...item }}>
-        {item.name}
+      <MenuItem key={item} onLogout={onLogout}>
+        {item}
       </MenuItem>
     );
   });
 
-  return <ul className={classes.dropdown}>{menuItemsList}</ul>;
+  return <div className={classes.dropdown}>{menuItemsList}</div>;
 };
 
 export default DropDownMenu;

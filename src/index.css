@@ -33,4 +33,6 @@ code {
 
 :root {
   --grey: rgb(53, 51, 51);
+  --color-nav: #88dfdf;
+  --border-radius1: 14px;
 }
