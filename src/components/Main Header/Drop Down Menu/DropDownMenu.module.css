@@ -1,0 +1,7 @@
+.dropdown {
+  box-sizing: border-box;
+  border: 0.2rem solid rgb(203, 195, 195);
+  position: absolute;
+  background-color: black;
+  top: 80px;
+}

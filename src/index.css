@@ -30,3 +30,7 @@ code {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+:root {
+  --grey: rgb(53, 51, 51);
+}

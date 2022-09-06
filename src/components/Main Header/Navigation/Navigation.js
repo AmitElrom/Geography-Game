@@ -6,11 +6,13 @@ import classes from "./Navigation.module.css";
 import authContext from "../../../store/auth-context";
 import { countriesActions } from "../../../store/countries-slice";
 import { useDispatch } from "react-redux";
+import DropDownMenu from "../Drop Down Menu/DropDownMenu";
 
 const Navigation = () => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { isLoggedIn, logoutHandler, userData } = useContext(authContext);
 
@@ -20,6 +22,12 @@ const Navigation = () => {
 
   const toAboutPageHandler = () => {
     dispatch(countriesActions.nullify());
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prevVal) => {
+      return !prevVal;
+    });
   };
 
   const logoutAppHandler = () => {
@@ -46,7 +54,10 @@ const Navigation = () => {
           </li>
           {isLoggedIn && (
             <li>
-              <NavLink to="/user-info">{user && user?.fullName}</NavLink>
+              <NavLink to="/user-info" onClick={toggleMenu}>
+                {user && user?.fullName}
+              </NavLink>
+              {isMenuOpen && <DropDownMenu />}
             </li>
           )}
           {isLoggedIn && (
