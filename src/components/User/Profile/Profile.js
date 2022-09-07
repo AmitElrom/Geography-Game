@@ -16,13 +16,18 @@ const Profile = () => {
 
   useEffect(() => {
     setUserInfo([
-      { title: "First Name", info: { firstName } },
-      { title: "Last Name", info: { lastName } },
-      { title: "Email", info: { email } },
+      { title: "First Name", info: firstName },
+      { title: "Last Name", info: lastName },
+      { title: "Email", info: email },
     ]);
   }, [firstName, lastName, email]);
 
+  const updatePersonalInfo = () => {
+    setToUpdateInfo((prevVal) => !prevVal);
+  };
+
   const PersonalInfoItems = userInfo.map((info) => {
+    console.log(info);
     return (
       <PersonalInfoItem
         key={info.title}
@@ -36,7 +41,8 @@ const Profile = () => {
   return (
     <div>
       <h1>{fullName}</h1>
-      {/* <div>{PersonalInfoItems}</div> */}
+      <h4 onClick={updatePersonalInfo}>Update Personal Information</h4>
+      <div>{PersonalInfoItems}</div>
     </div>
   );
 };
