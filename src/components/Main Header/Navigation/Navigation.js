@@ -53,20 +53,11 @@ const Navigation = () => {
             </NavLink>
           </li>
           {isLoggedIn && (
-            <li>
-              <NavLink to="/user-info" onClick={toggleMenu}>
-                {user && user?.fullName}
-              </NavLink>
+            <li onClick={toggleMenu}>
+              {user && user?.fullName}
               {isMenuOpen && <DropDownMenu onLogout={logoutHandler} />}
             </li>
           )}
-          {/* {isLoggedIn && (
-            <li>
-              <NavLink to="/sign-in" onClick={logoutAppHandler}>
-                Log Out
-              </NavLink>
-            </li>
-          )} */}
         </ul>
       </nav>
     </header>

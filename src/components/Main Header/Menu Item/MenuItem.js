@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import authContext from '../../../store/auth-context';
 
@@ -6,18 +7,21 @@ import classes from './MenuItem.module.css';
 
 const MenuItem = ({ children, onLogout }) => {
 
+    const navigate = useNavigate();
+
     const { logoutHandler } = useContext(authContext);
 
     const clickMenuItemHandler = () => {
         switch (children) {
             case 'Scores':
-                console.log('scores');
+                navigate('/scores')
                 break
             case 'Profile':
-                console.log('Profile');;
+                navigate('/profile')
                 break
             case "Badges":
-                console.log("Badges");
+                console.log('badges');
+                // navigate('/badges')
                 break
             case "Log Out":
                 onLogout()

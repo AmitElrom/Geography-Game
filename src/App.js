@@ -8,7 +8,8 @@ import About from './components/About/About';
 import Question from './components/Question General/Question/Question';
 import SignUp from './components/Authentication/SignUp/SignUp';
 import SignIn from './components/Authentication/SignIn/SignIn';
-import UserPage from './components/User/UserPage';
+import Scores from './components/User/Scores/Scores';
+import Profile from './components/User/Profile/Profile';
 
 import FunFactModal from './components/Modals/FunFactModal';
 
@@ -33,7 +34,8 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path='/welcome' element={<Main />} />
           <Route path='/question' element={<Question />} />
-          <Route path='/user-info' element={<UserPage />} />
+          <Route path='/scores' element={<Scores />} />
+          <Route path='/profile' element={<Profile />} />
         </Route>
         <Route path='/about' element={<About />} />
         {/* <Route element={<NonProtectedRoute />} > */}
