@@ -3,8 +3,11 @@ import authContext from "../../../store/auth-context";
 
 import PersonalInfoItem from "./Personal Info Item/PersonalInfoItem";
 
+import classes from "./Profile.module.css";
+
 const Profile = () => {
   const [toUpdateInfo, setToUpdateInfo] = useState(false);
+  const [toUpdatePassword, setToUpdatePassword] = useState(false);
   const [userInfo, setUserInfo] = useState([
     { title: "First Name", info: "" },
     { title: "Last Name", info: "" },
@@ -23,7 +26,13 @@ const Profile = () => {
   }, [firstName, lastName, email]);
 
   const updatePersonalInfo = () => {
+    setToUpdatePassword(false);
     setToUpdateInfo((prevVal) => !prevVal);
+  };
+
+  const updatePassword = () => {
+    setToUpdateInfo(false);
+    setToUpdatePassword((prevVal) => !prevVal);
   };
 
   const PersonalInfoItems = userInfo.map((info) => {
@@ -39,9 +48,14 @@ const Profile = () => {
   });
 
   return (
-    <div>
+    <div className={classes.profile}>
       <h1>{fullName}</h1>
-      <h4 onClick={updatePersonalInfo}>Update Personal Information</h4>
+      <h4 className={classes.update} onClick={updatePersonalInfo}>
+        Update Personal Information
+      </h4>
+      <h4 className={classes.update} onClick={updatePassword}>
+        Change Password
+      </h4>
       <div>{PersonalInfoItems}</div>
     </div>
   );

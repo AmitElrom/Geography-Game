@@ -1,0 +1,7 @@
+.profile .update {
+  cursor: pointer;
+}
+
+.profile .update:hover {
+  text-decoration: underline;
+}

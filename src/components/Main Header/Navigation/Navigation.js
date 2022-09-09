@@ -24,10 +24,12 @@ const Navigation = () => {
     dispatch(countriesActions.nullify());
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prevVal) => {
-      return !prevVal;
-    });
+  const openMenu = () => {
+    setIsMenuOpen(true);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   const logoutHandler = () => {
@@ -36,12 +38,17 @@ const Navigation = () => {
 
   return (
     <header className={classes.header}>
-      <div>
+      <div className={classes["game-name"]}>
         <Link to={isLoggedIn ? "/welcome" : "/sign-in"}>Flags Game</Link>
       </div>
       <nav className={classes.nav}>
         <ul>
-          <li>
+          <li
+            style={{
+              paddingBottom: "2rem",
+              marginTop: "2rem",
+            }}
+          >
             <NavLink
               to="/about"
               onClick={toAboutPageHandler}
@@ -53,8 +60,15 @@ const Navigation = () => {
             </NavLink>
           </li>
           {isLoggedIn && (
-            <li onClick={toggleMenu}>
-              {user && user?.fullName}
+            <li
+              style={{
+                paddingBottom: "2rem",
+                marginTop: "2rem",
+              }}
+              onMouseEnter={openMenu}
+              onMouseLeave={closeMenu}
+            >
+              <span className={classes.username}>{user && user?.fullName}</span>
               {isMenuOpen && <DropDownMenu onLogout={logoutHandler} />}
             </li>
           )}

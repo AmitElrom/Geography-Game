@@ -9,7 +9,7 @@
   color: aliceblue;
 }
 
-.header div {
+.header .game-name {
   cursor: pointer;
 }
 
@@ -39,4 +39,8 @@
 .nav a.active {
   color: #e6fcfc;
   text-decoration: underline;
+}
+
+.nav .username {
+  cursor: pointer;
 }

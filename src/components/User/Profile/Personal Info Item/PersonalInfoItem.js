@@ -10,7 +10,7 @@ const PersonalInfoItem = ({ title, info, toUpdate, type }) => {
         </div>
       ) : (
         <div>
-          <input type={!type ? "text" : type} />
+          <input type={!type ? "text" : type} placeholder={title} />
         </div>
       )}
     </div>
