@@ -4,6 +4,7 @@ import authContext from "../../../store/auth-context";
 import PersonalInfoItem from "./Personal Info Item/PersonalInfoItem";
 
 import classes from "./Profile.module.css";
+import UpdatePersonalInfo from "./Update Personal Info/UpdatePersonalInfo";
 
 const Profile = () => {
   const [toUpdateInfo, setToUpdateInfo] = useState(false);
@@ -36,7 +37,6 @@ const Profile = () => {
   };
 
   const PersonalInfoItems = userInfo.map((info) => {
-    console.log(info);
     return (
       <PersonalInfoItem
         key={info.title}
@@ -50,13 +50,13 @@ const Profile = () => {
   return (
     <div className={classes.profile}>
       <h1>{fullName}</h1>
-      <h4 className={classes.update} onClick={updatePersonalInfo}>
+      {!(toUpdatePassword && !toUpdateInfo) && <h4 className={classes.update} onClick={updatePersonalInfo}>
         Update Personal Information
-      </h4>
-      <h4 className={classes.update} onClick={updatePassword}>
+      </h4>}
+      {!(toUpdateInfo && !toUpdatePassword) && <h4 className={classes.update} onClick={updatePassword}>
         Change Password
-      </h4>
-      <div>{PersonalInfoItems}</div>
+      </h4>}
+      <UpdatePersonalInfo userInfo={userInfo} toUpdateInfo={toUpdateInfo} />
     </div>
   );
 };

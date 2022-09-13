@@ -1,5 +1,7 @@
 import React from "react";
 
+import classes from "../../../Authentication/FormInput/FormInput.module.css";
+
 const PersonalInfoItem = ({ title, info, toUpdate, type }) => {
   return (
     <div>
@@ -9,8 +11,9 @@ const PersonalInfoItem = ({ title, info, toUpdate, type }) => {
           <span>{info}</span>
         </div>
       ) : (
-        <div>
-          <input type={!type ? "text" : type} placeholder={title} />
+        <div className={classes.input}>
+          <label htmlFor={title}>{title}</label>
+          <input id={title} type={!type ? "text" : type} placeholder={title} />
         </div>
       )}
     </div>
