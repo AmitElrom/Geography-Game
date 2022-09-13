@@ -9,16 +9,15 @@ import { nameRegex } from "../../../../utils/utils-regex";
 import { capitlizeFirstLetter } from "../../../../utils/utils-manipulate-strings";
 
 const UpdatePersonalInfo = ({ userInfo, toUpdateInfo }) => {
-  const PersonalInfoItems = userInfo.map((info) => {
-    return (
-      <PersonalInfoItem
-        key={info.title}
-        title={info.title}
-        info={info.info}
-        toUpdate={toUpdateInfo}
-      />
-    );
-  });
+  const changeInputHandler = (e) => {
+    const { name, value } = e.target;
+    let upperCaseName = capitlizeFirstLetter(value);
+    if (name === "First Name" || name === "Last Name") {
+      formik.setFieldValue(name, upperCaseName);
+    } else {
+      formik.setFieldValue(name, value);
+    }
+  };
 
   const {
     isLoading,
@@ -28,9 +27,9 @@ const UpdatePersonalInfo = ({ userInfo, toUpdateInfo }) => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
+      firstName: userInfo[0].info,
+      lastName: userInfo[1].info,
+      email: userInfo[2].info,
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -44,8 +43,8 @@ const UpdatePersonalInfo = ({ userInfo, toUpdateInfo }) => {
     onSubmit: async (values) => {
       //   signUpRequest(
       //     {
-      //       method: "POST",
-      //       url: "http://localhost:8000/auth-elrom/sign-up",
+      //       method: "PUT",
+      //       url: "http://localhost:8000/auth-elrom",
       //       body: values,
       //     },
       //     (data) => {
@@ -54,14 +53,22 @@ const UpdatePersonalInfo = ({ userInfo, toUpdateInfo }) => {
       //       navigate("/welcome", { replace: true });
       //     }
       //   );
+      alert("hello");
     },
   });
 
-  //   const changeInputNameHandler = (e) => {
-  //     const { name, value } = e.target;
-  //     let upperCaseName = capitlizeFirstLetter(value);
-  //     formik.setFieldValue(name, upperCaseName);
-  //   };
+  const PersonalInfoItems = userInfo.map((info) => {
+    return (
+      <PersonalInfoItem
+        value={formik.values[info.info]}
+        key={info.title}
+        title={info.title}
+        info={info.info}
+        toUpdate={toUpdateInfo}
+        onChange={changeInputHandler}
+      />
+    );
+  });
 
   return (
     <Fragment>
@@ -72,7 +79,9 @@ const UpdatePersonalInfo = ({ userInfo, toUpdateInfo }) => {
       ) : (
         <form onSubmit={formik.handleSubmit}>
           <div>{PersonalInfoItems}</div>
-          <button type="submit">Update Profile</button>
+          <div>
+            <button type="submit">Update Profile</button>
+          </div>
         </form>
       )}
     </Fragment>

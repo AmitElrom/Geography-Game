@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "../../../Authentication/FormInput/FormInput.module.css";
 
-const PersonalInfoItem = ({ title, info, toUpdate, type }) => {
+const PersonalInfoItem = ({ title, info, value, toUpdate, type, onChange }) => {
   return (
     <div>
       {!toUpdate ? (
@@ -13,7 +13,13 @@ const PersonalInfoItem = ({ title, info, toUpdate, type }) => {
       ) : (
         <div className={classes.input}>
           <label htmlFor={title}>{title}</label>
-          <input id={title} type={!type ? "text" : type} placeholder={title} />
+          <input
+            id={title}
+            type={!type ? "text" : type}
+            name={title}
+            value={value}
+            onChange={onChange}
+          />
         </div>
       )}
     </div>

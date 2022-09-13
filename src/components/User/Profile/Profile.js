@@ -36,16 +36,6 @@ const Profile = () => {
     setToUpdatePassword((prevVal) => !prevVal);
   };
 
-  const PersonalInfoItems = userInfo.map((info) => {
-    return (
-      <PersonalInfoItem
-        key={info.title}
-        title={info.title}
-        info={info.info}
-        toUpdate={toUpdateInfo}
-      />
-    );
-  });
 
   return (
     <div className={classes.profile}>
