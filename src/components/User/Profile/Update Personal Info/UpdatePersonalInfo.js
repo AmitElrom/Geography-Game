@@ -1,91 +1,108 @@
-import React, { Fragment } from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
-import PersonalInfoItem from "../Personal Info Item/PersonalInfoItem";
+import UpdatePersonalInfoItem from "../Update Personal Info Item/UpdatePersonalInfoItem";
 
 import { nameRegex } from "../../../../utils/utils-regex";
 import { capitlizeFirstLetter } from "../../../../utils/utils-manipulate-strings";
+import authContext from "../../../../store/auth-context";
 
-const UpdatePersonalInfo = ({ userInfo, toUpdateInfo }) => {
-  const changeInputHandler = (e) => {
-    const { name, value } = e.target;
-    let upperCaseName = capitlizeFirstLetter(value);
-    if (name === "First Name" || name === "Last Name") {
-      formik.setFieldValue(name, upperCaseName);
-    } else {
-      formik.setFieldValue(name, value);
-    }
-  };
+const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
+    const {
+        isLoading,
+        error,
+        sendRequest: updateUserInfoRequest,
+    } = useHttpAxios();
 
-  const {
-    isLoading,
-    error,
-    sendRequest: updateUserInfoRequest,
-  } = useHttpAxios();
+    const { token, updateUserInfo } = useContext(authContext);
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: userInfo[0].info,
-      lastName: userInfo[1].info,
-      email: userInfo[2].info,
-    },
-    validationSchema: Yup.object({
-      firstName: Yup.string()
-        .matches(nameRegex, "Only English letters")
-        .required("Required"),
-      lastName: Yup.string()
-        .matches(nameRegex, "Only English letters")
-        .required("Required"),
-      email: Yup.string().email("Invalid email address").required("Required"),
-    }),
-    onSubmit: async (values) => {
-      //   signUpRequest(
-      //     {
-      //       method: "PUT",
-      //       url: "http://localhost:8000/auth-elrom",
-      //       body: values,
-      //     },
-      //     (data) => {
-      //       console.log(data);
-      //       loginHandler(data.token, { ...data.userData });
-      //       navigate("/welcome", { replace: true });
-      //     }
-      //   );
-      alert("hello");
-    },
-  });
+    const formik = useFormik({
+        initialValues: {
+            firstName: userInfo[0].info,
+            lastName: userInfo[1].info,
+            email: userInfo[2].info,
+        },
+        validationSchema: Yup.object({
+            firstName: Yup.string()
+                .matches(nameRegex, "Only English letters")
+                .required("Required"),
+            lastName: Yup.string()
+                .matches(nameRegex, "Only English letters")
+                .required("Required"),
+            email: Yup.string().email("Invalid email address").required("Required"),
+        }),
+        onSubmit: async (values) => {
+            if (
+                values.firstName === userInfo[0].info &&
+                values.lastName === userInfo[1].info &&
+                values.email === userInfo[2].info
+            ) {
+                alert("no change has been done");
+            } else {
+                // let userData = JSON.parse(sessionStorage.getItem('user-data'));
+                // const updatedUserData = { ...userData, ...values, fullName: `${values.firstName} ${values.lastName}` };
+                // sessionStorage.setItem('user-data', JSON.stringify(updatedUserData))
+                updateUserInfo(values);
+                updateUserInfoRequest(
+                    {
+                        method: "PUT",
+                        url: "http://localhost:8000/auth-elrom",
+                        body: values,
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        },
+                    },
+                    (data) => {
+                        console.log(data);
+                        alert("user info updated");
+                        setToUpdateInfo(false);
+                    }
+                );
+            }
+        },
+    });
 
-  const PersonalInfoItems = userInfo.map((info) => {
+    const changeInputHandler = (e) => {
+        const { name, value } = e.target;
+        let upperCaseName = capitlizeFirstLetter(value);
+        if (name === "firstName" || name === "lastName") {
+            formik.setFieldValue(name, upperCaseName);
+        } else {
+            formik.setFieldValue(name, value);
+        }
+    };
+
+    const updateInfoInuptsList = userInfo.map((info) => {
+        return (
+            <UpdatePersonalInfoItem
+                key={info.name}
+                title={info.title}
+                name={info.name}
+                value={formik.values[info.name]}
+                onChange={
+                    info.name === "firstName" || info.name === "lastName"
+                        ? changeInputHandler
+                        : formik.handleChange
+                }
+                error={
+                    formik.touched[info.name] && formik.errors[info.name]
+                        ? formik.errors[info.name]
+                        : null
+                }
+            />
+        );
+    });
+
     return (
-      <PersonalInfoItem
-        value={formik.values[info.info]}
-        key={info.title}
-        title={info.title}
-        info={info.info}
-        toUpdate={toUpdateInfo}
-        onChange={changeInputHandler}
-      />
-    );
-  });
-
-  return (
-    <Fragment>
-      {!toUpdateInfo ? (
-        <div>
-          <div>{PersonalInfoItems}</div>
-        </div>
-      ) : (
         <form onSubmit={formik.handleSubmit}>
-          <div>{PersonalInfoItems}</div>
-          <div>
-            <button type="submit">Update Profile</button>
-          </div>
+            <div>{updateInfoInuptsList}</div>
+            <div>
+                <button type="submit">Update Profile</button>
+            </div>
         </form>
-      )}
-    </Fragment>
-  );
+    );
 };
 
 export default UpdatePersonalInfo;

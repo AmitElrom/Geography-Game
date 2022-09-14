@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import authContext from "../../../store/auth-context";
 
-import PersonalInfoItem from "./Personal Info Item/PersonalInfoItem";
-
 import classes from "./Profile.module.css";
+import PersonalInfo from "./Personal Info/PersonalInfo";
 import UpdatePersonalInfo from "./Update Personal Info/UpdatePersonalInfo";
 
 const Profile = () => {
@@ -20,9 +19,9 @@ const Profile = () => {
 
   useEffect(() => {
     setUserInfo([
-      { title: "First Name", info: firstName },
-      { title: "Last Name", info: lastName },
-      { title: "Email", info: email },
+      { name: "firstName", title: "First Name", info: firstName },
+      { name: "lastName", title: "Last Name", info: lastName },
+      { name: "email", title: "Email", info: email },
     ]);
   }, [firstName, lastName, email]);
 
@@ -36,7 +35,6 @@ const Profile = () => {
     setToUpdatePassword((prevVal) => !prevVal);
   };
 
-
   return (
     <div className={classes.profile}>
       <h1>{fullName}</h1>
@@ -46,7 +44,8 @@ const Profile = () => {
       {!(toUpdateInfo && !toUpdatePassword) && <h4 className={classes.update} onClick={updatePassword}>
         Change Password
       </h4>}
-      <UpdatePersonalInfo userInfo={userInfo} toUpdateInfo={toUpdateInfo} />
+      {!toUpdateInfo && !toUpdatePassword && <PersonalInfo userInfo={userInfo} />}
+      {toUpdateInfo && <UpdatePersonalInfo userInfo={userInfo} setToUpdateInfo={setToUpdateInfo} />}
     </div>
   );
 };
