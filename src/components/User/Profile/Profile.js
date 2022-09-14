@@ -38,12 +38,16 @@ const Profile = () => {
   return (
     <div className={classes.profile}>
       <h1>{fullName}</h1>
-      {!(toUpdatePassword && !toUpdateInfo) && <h4 className={classes.update} onClick={updatePersonalInfo}>
-        Update Personal Information
-      </h4>}
-      {!(toUpdateInfo && !toUpdatePassword) && <h4 className={classes.update} onClick={updatePassword}>
-        Change Password
-      </h4>}
+      <div>
+        {!(toUpdatePassword && !toUpdateInfo) && <h4 className={classes.update} onClick={updatePersonalInfo}>
+          Update Personal Information
+        </h4>}
+      </div>
+      <div>
+        {!(toUpdateInfo && !toUpdatePassword) && <h4 className={classes.update} onClick={updatePassword}>
+          Change Password
+        </h4>}
+      </div>
       {!toUpdateInfo && !toUpdatePassword && <PersonalInfo userInfo={userInfo} />}
       {toUpdateInfo && <UpdatePersonalInfo userInfo={userInfo} setToUpdateInfo={setToUpdateInfo} />}
     </div>

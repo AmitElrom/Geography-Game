@@ -1,5 +1,9 @@
 .profile .update {
   cursor: pointer;
+  width: fit-content;
+  margin: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .profile .update:hover {
