@@ -41,9 +41,6 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
             ) {
                 alert("no change has been done");
             } else {
-                // let userData = JSON.parse(sessionStorage.getItem('user-data'));
-                // const updatedUserData = { ...userData, ...values, fullName: `${values.firstName} ${values.lastName}` };
-                // sessionStorage.setItem('user-data', JSON.stringify(updatedUserData))
                 updateUserInfo(values);
                 updateUserInfoRequest(
                     {

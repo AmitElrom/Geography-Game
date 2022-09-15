@@ -2,8 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import authContext from "../../../store/auth-context";
 
 import classes from "./Profile.module.css";
+
 import PersonalInfo from "./Personal Info/PersonalInfo";
 import UpdatePersonalInfo from "./Update Personal Info/UpdatePersonalInfo";
+import ChangePassword from "./Change Password/ChangePassword";
+
 
 const Profile = () => {
   const [toUpdateInfo, setToUpdateInfo] = useState(false);
@@ -50,6 +53,7 @@ const Profile = () => {
       </div>
       {!toUpdateInfo && !toUpdatePassword && <PersonalInfo userInfo={userInfo} />}
       {toUpdateInfo && <UpdatePersonalInfo userInfo={userInfo} setToUpdateInfo={setToUpdateInfo} />}
+      {toUpdatePassword && <ChangePassword setToUpdatePassword={setToUpdatePassword} />}
     </div>
   );
 };

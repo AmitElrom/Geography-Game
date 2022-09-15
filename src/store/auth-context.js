@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
   let initialToken = sessionStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
   const userDataFromSS = JSON.parse(sessionStorage.getItem("user-data"));
-  const [user, setUser] = useState({ email: '', firstName: '', lastName: '', fullName: '', ...userDataFromSS });
+  const [user, setUser] = useState(userDataFromSS);
 
   let isLoggedIn = !!token;
 
