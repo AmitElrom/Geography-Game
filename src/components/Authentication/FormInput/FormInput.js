@@ -7,7 +7,7 @@ const FormInput = ({ label, placeholder, name, onChange, onBlur, type, error, va
     <div className={classes.input}>
       <label htmlFor="">{label}</label>
       <input
-        type={type}
+        type={!type ? 'text' : type}
         name={name}
         placeholder={placeholder}
         value={value}

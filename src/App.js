@@ -10,6 +10,9 @@ import SignUp from './components/Authentication/SignUp/SignUp';
 import SignIn from './components/Authentication/SignIn/SignIn';
 import Scores from './components/User/Scores/Scores';
 import Profile from './components/User/Profile/Profile';
+import ForgotPassword from './components/Authentication/Forgot Password/ForgotPassword';
+import VerifyEmailCode from './components/Authentication/Verify Email Code/VerifyEmailCode';
+import ChangePassword from './components/Authentication/Change Password/ChangePassword';
 
 import FunFactModal from './components/Modals/FunFactModal';
 
@@ -41,6 +44,9 @@ function App() {
         {/* <Route element={<NonProtectedRoute />} > */}
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/verify-email-code' element={<VerifyEmailCode />} />
+        <Route path='/change-password' element={<ChangePassword />} />
         {/* </Route> */}
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>

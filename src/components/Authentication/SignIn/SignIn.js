@@ -93,6 +93,9 @@ const SignIn = () => {
         <button type="submit">Sign In</button>
       </div>
       <div className={classes["sign-up"]}>
+        <Link to="/forgot-password">Forgot password?</Link>
+      </div>
+      <div className={classes["sign-up"]}>
         <p>Don't have an account? &nbsp;</p>
         <Link to="/sign-up">Sign Up</Link>
       </div>
