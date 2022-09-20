@@ -35,6 +35,8 @@ const FunFactModal = () => {
     if (questionIndex !== questionsQuantity - 1) {
       dispatch(countriesActions.nextCountryHandler());
     } else {
+      console.log('that was the final question');
+      dispatch(countriesActions.caseFinalQuestion())
       navigate("/welcome", { replace: true });
     }
   };

@@ -15,7 +15,7 @@ const Options = ({ questionData }) => {
 
     useEffect(() => {
         const shuffledOptions = shuffleArray(questionData);
-        setOptions(shuffledOptions)
+        setOptions(shuffledOptions);
     }, [questionData])
 
     const displayTrueCountryWhenFalseAnswer = (boolean) => {
@@ -25,6 +25,7 @@ const Options = ({ questionData }) => {
     const optionsList = options.map(option => {
         return <Option
             key={option.id}
+            answer={questionData[0].id}
             optionData={option}
             isTrueCountryDisplayed={isTrueCountryDisplayed && option.isCountry}
             onDisplayTrueCountryWhenFalseAnswer={displayTrueCountryWhenFalseAnswer}

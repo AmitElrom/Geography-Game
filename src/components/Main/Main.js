@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import useHttpAxios from '../../hooks/use-http-axios';
 
@@ -10,9 +10,13 @@ import { countriesActions } from '../../store/countries-slice';
 
 const Main = () => {
 
-    const navigate = useNavigate();
+    const state = useSelector(state => state.countries)
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(state);
+    }, [state])
 
     useEffect(() => {
         dispatch(countriesActions.nullify())

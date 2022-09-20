@@ -8,7 +8,10 @@ const countriesInitialState = {
     isFunFactShown: false,
     questionIndex: 0,
     isStartPlaying: false,
-    difficultyLevel: null
+    difficultyLevel: null,
+    startTime: 0,
+    endTime: 0,
+    questionsToServer: []
 };
 
 const countriesSlice = createSlice({
@@ -46,6 +49,30 @@ const countriesSlice = createSlice({
         startPlaying(state, { payload: difficultyLevel }) {
             state.isStartPlaying = true;
             state.difficultyLevel = difficultyLevel;
+            state.startTime = new Date().getTime();
+        },
+        caseTrueAnswer(state, { payload: trueCountry }) {
+            state.score++;
+            const questionObj = { isCorrect: true, trueCountry: '' };
+            questionObj.trueCountry = trueCountry;
+            state.questionsToServer = [...state.questionsToServer, questionObj];
+        },
+        caseFalseAnswer(state, { payload }) {
+            const questionObj = { isCorrect: false, trueCountry: '' };
+            questionObj.trueCountry = payload.trueCountry;
+            questionObj.falseCountry = payload.falseCountry;
+            state.questionsToServer = [...state.questionsToServer, questionObj];
+        },
+        caseFinalQuestion(state) {
+            state.endTime = new Date().getTime();
+            state.difficultyLevel = state.difficultyLevel.toLowerCase();
+            const dataToServer = {
+                questions: state.questionsToServer,
+                score: state.score,
+                level: state.difficultyLevel,
+                startTime: state.startTime,
+                endTime: state.endTime
+            };
         }
     }
 })
