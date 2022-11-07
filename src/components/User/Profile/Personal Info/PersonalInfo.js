@@ -7,12 +7,9 @@ const PersonalInfo = ({ userInfo }) => {
         return (
             <PersonalInfoItem
                 key={info.title}
-                // value={formik.values[info.name]}
                 title={info.title}
                 info={info.info}
                 name={info.name}
-            // toUpdate={toUpdateInfo}
-            // onChange={changeInputHandler}
             />
         );
     });

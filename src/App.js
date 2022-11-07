@@ -20,12 +20,12 @@ import ProtectedRoute from './components/Authentication/ProtectedRoute/Protected
 
 import './App.css';
 import NonProtectedRoute from './components/Authentication/NonProtectedRoute/NonProtectedRoute';
+import { useContext, useEffect } from 'react';
+import authContext from './store/auth-context';
 
 function App() {
 
-  const { isLoggedIn } = useSelector(state => state);
-
-  const { error, isLoading, sendRequest: checkIfLoginRequest } = useHttpAxios();
+  const { isLoggedIn } = useContext(authContext);
 
   const { isFunFactShown } = useSelector(state => state.countries)
 

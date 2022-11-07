@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
 
   let isLoggedIn = !!token;
 
-  const loginHandler = (token, userData) => {
+  const loginHandler = (token, userData, userAdditional) => {
     setToken(token);
     sessionStorage.setItem("token", token);
     sessionStorage.setItem("user-data", JSON.stringify(userData));

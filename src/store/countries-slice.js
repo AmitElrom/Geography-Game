@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const countriesInitialState = {
     questions: [],
     questionsQuantity: 0,
+    isQuestionnaireOver: false,
     score: 0,
     isFunFactShown: false,
     questionIndex: 0,
@@ -36,6 +37,7 @@ const countriesSlice = createSlice({
             state.questionIndex = 0;
             state.isStartPlaying = false;
             state.difficultyLevel = null;
+            state.isQuestionnaireOver = false;
         },
         showFunFact(state) {
             state.isFunFactShown = true;
@@ -65,14 +67,7 @@ const countriesSlice = createSlice({
         },
         caseFinalQuestion(state) {
             state.endTime = new Date().getTime();
-            state.difficultyLevel = state.difficultyLevel.toLowerCase();
-            const dataToServer = {
-                questions: state.questionsToServer,
-                score: state.score,
-                level: state.difficultyLevel,
-                startTime: state.startTime,
-                endTime: state.endTime
-            };
+            state.isQuestionnaireOver = true;
         }
     }
 })
