@@ -38,6 +38,7 @@ const countriesSlice = createSlice({
             state.isStartPlaying = false;
             state.difficultyLevel = null;
             state.isQuestionnaireOver = false;
+            state.questionsToServer = [];
         },
         showFunFact(state) {
             state.isFunFactShown = true;
