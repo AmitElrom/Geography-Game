@@ -1,0 +1,16 @@
+.tr-user {
+  background-color: blue;
+}
+
+.tr:hover,
+.tr-user:hover {
+  scale: 1.01;
+}
+
+.tr:hover {
+  background-color: rgb(215, 215, 215);
+}
+
+.rank-cell {
+  font-weight: 700;
+}

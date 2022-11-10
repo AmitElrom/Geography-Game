@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import './TableDataCell.css';
 
-const TableDataCell = () => {
+const TableDataCell = ({ cellData, isTableHead, className }) => {
     return (
-        <td>TableDataCell</td>
+        <Fragment>
+            {isTableHead ? <th >{cellData}</th> : <td className={className} >{cellData}</td>}
+        </Fragment>
     )
 }
 
