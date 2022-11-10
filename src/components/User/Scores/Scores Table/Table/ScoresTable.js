@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useHttpAxios from "../../../../../hooks/use-http-axios";
+import TableHead from "../Table Header/TableHead";
 import TableRow from "../Table Row/TableRow";
 
 import classes from "./ScoresTable.module.css";
@@ -28,26 +29,9 @@ const ScoresTable = () => {
     return <TableRow key={user.userDetails.userId} {...user} />;
   });
 
-  const tableHead = {
-    rank: "Rank",
-    userDetails: {
-      firstName: "First Name",
-      lastName: "Last Name",
-    },
-    userScore: {
-      beginner: "Beginner",
-      amateur: "Amateur",
-      medium: "Medium",
-      hard: "Hard",
-      expert: "Expert",
-    },
-  };
-
   return (
     <table border={0} cellSpacing={0} className={classes.table}>
-      <thead>
-        <TableRow isTableHead={true} {...tableHead} />
-      </thead>
+      <TableHead />
       <tbody>{usersWithScoresList}</tbody>
     </table>
   );

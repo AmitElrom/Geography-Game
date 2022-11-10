@@ -1,12 +1,8 @@
-import React, { Fragment } from 'react'
-import './TableDataCell.css';
+import React from "react";
+import "./TableDataCell.css";
 
-const TableDataCell = ({ cellData, isTableHead, className }) => {
-    return (
-        <Fragment>
-            {isTableHead ? <th >{cellData}</th> : <td className={className} >{cellData}</td>}
-        </Fragment>
-    )
-}
+const TableDataCell = ({ cellData, className }) => {
+  return <td className={className}>{cellData}</td>;
+};
 
-export default TableDataCell
+export default TableDataCell;
