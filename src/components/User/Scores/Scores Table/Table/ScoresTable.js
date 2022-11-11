@@ -5,27 +5,9 @@ import TableRow from "../Table Row/TableRow";
 
 import classes from "./ScoresTable.module.css";
 
-const ScoresTable = () => {
-  const [usersWithScores, setUsersWithScores] = useState([]);
+const ScoresTable = ({ scoresTable }) => {
 
-  const { error, isLoading, sendRequest: getUsersScores } = useHttpAxios();
-
-  useEffect(() => {
-    let token = sessionStorage.getItem("token");
-    getUsersScores(
-      {
-        url: "http://localhost:8000/score-elrom",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-      (data) => {
-        setUsersWithScores(data);
-      }
-    );
-  }, [getUsersScores]);
-
-  const usersWithScoresList = usersWithScores.map((user) => {
+  const usersWithScoresList = scoresTable.map((user) => {
     return <TableRow key={user.userDetails.userId} {...user} />;
   });
 
