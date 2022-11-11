@@ -1,8 +1,15 @@
 import React from 'react'
+import UserLevel from './UserLevel';
 
-const UserLevels = () => {
+const UserLevels = ({ userLevelsData }) => {
+    console.log(userLevelsData);
+
+    const userLevelsDataList = Object.values(userLevelsData).map(level => {
+        return <UserLevel key={level} {...level} />
+    });
+
     return (
-        <div>UserLevels</div>
+        <div style={{ display: 'flex', justifyContent: 'space-around' }} >{userLevelsDataList}</div>
     )
 }
 
