@@ -1,8 +1,9 @@
 import React from 'react'
+import classes from './UserLevelTitle.module.css';
 
 const UserLevelTitle = ({ titleLevel, onClick }) => {
     return (
-        <div onClick={onClick} >{titleLevel}</div>
+        <div className={classes.title} onClick={onClick} >{titleLevel}</div>
     )
 }
 
