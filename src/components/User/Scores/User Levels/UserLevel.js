@@ -3,8 +3,8 @@ import UserLevelTitle from "./UserLevelTitle";
 import UserLevelData from "./UserLevelData";
 
 const UserLevel = (props) => {
+  console.log(props);
   const [isUserLevelDataVisible, setIsUserLevelDataVisible] = useState(false);
-
   const toggleUserLevelData = () => {
     setIsUserLevelDataVisible((prevValue) => {
       return !prevValue;

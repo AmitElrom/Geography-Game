@@ -1,7 +1,8 @@
 import React from "react";
 import BestScoreOrTime from "./BestScoreOrTime";
+import LevelFailsPieChart from "./LevelFailsPieChart";
 
-const UserLevelData = ({ averageScore, totalScore, totalGames, bestScore, bestTime }) => {
+const UserLevelData = ({ title, averageScore, totalScore, totalGames, bestScore, bestTime, fails }) => {
   return (
     <div>
       <p>
@@ -15,6 +16,7 @@ const UserLevelData = ({ averageScore, totalScore, totalGames, bestScore, bestTi
       </p>
       <BestScoreOrTime bestScore={bestScore} />
       <BestScoreOrTime bestTime={bestTime} />
+      {fails.length > 0 && <LevelFailsPieChart fails={fails} title={title} />}
     </div>
   );
 };

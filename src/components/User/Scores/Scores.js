@@ -7,6 +7,7 @@ const Scores = () => {
 
     const [usersWithScores, setUsersWithScores] = useState([]);
     const [userLevelsData, setUserLevelsData] = useState({});
+    // const [userLevelsData, setUserLevelsData] = useState({});
 
     const { error, isLoading, sendRequest: getUsersScores } = useHttpAxios();
 
@@ -22,7 +23,8 @@ const Scores = () => {
             (data) => {
                 setUsersWithScores(data);
                 const theUser = data.find(user => user.theUser);
-                setUserLevelsData(theUser.userLevelsData);
+                // setUserLevelsData(theUser.userLevelsData);
+                setUserLevelsData(theUser.userLevelsData)
             }
         );
     }, [getUsersScores]);
