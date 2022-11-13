@@ -1,6 +1,7 @@
 import React from "react";
+import BestScoreOrTime from "./BestScoreOrTime";
 
-const UserLevelData = ({ averageScore, totalScore, totalGames }) => {
+const UserLevelData = ({ averageScore, totalScore, totalGames, bestScore, bestTime }) => {
   return (
     <div>
       <p>
@@ -12,6 +13,8 @@ const UserLevelData = ({ averageScore, totalScore, totalGames }) => {
       <p>
         Total Games <span>{totalGames}</span>
       </p>
+      <BestScoreOrTime bestScore={bestScore} />
+      <BestScoreOrTime bestTime={bestTime} />
     </div>
   );
 };

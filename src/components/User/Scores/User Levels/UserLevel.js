@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import UserLevelTitle from "./UserLevelTitle";
 import UserLevelData from "./UserLevelData";
-import { useState } from "react";
 
-const UserLevel = ({ title, averageScore, totalScore, totalGames }) => {
+const UserLevel = (props) => {
   const [isUserLevelDataVisible, setIsUserLevelDataVisible] = useState(false);
 
   const toggleUserLevelData = () => {
@@ -12,15 +11,14 @@ const UserLevel = ({ title, averageScore, totalScore, totalGames }) => {
     });
   };
   return (
-    <div onClick={toggleUserLevelData}>
-      <UserLevelTitle titleLevel={title} />
-      {/* {isUserLevelDataVisible && ( */}
-      <UserLevelData
-        averageScore={averageScore}
-        totalScore={totalScore}
-        totalGames={totalGames}
-      />
-      {/* )} */}
+    <div style={{ width: '20%' }} onClick={toggleUserLevelData}>
+      <UserLevelTitle titleLevel={props.title} />
+      {isUserLevelDataVisible && (
+        <UserLevelData
+          {...props}
+
+        />
+      )}
     </div>
   );
 };
