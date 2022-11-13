@@ -1,8 +1,8 @@
 import React from 'react'
 
-const UserLevelTitle = ({ titleLevel }) => {
+const UserLevelTitle = ({ titleLevel, onClick }) => {
     return (
-        <div>{titleLevel}</div>
+        <div onClick={onClick} >{titleLevel}</div>
     )
 }
 

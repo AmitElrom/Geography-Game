@@ -11,8 +11,8 @@ const UserLevel = (props) => {
     });
   };
   return (
-    <div style={{ width: '20%' }} onClick={toggleUserLevelData}>
-      <UserLevelTitle titleLevel={props.title} />
+    <div style={{ width: '20%' }}>
+      <UserLevelTitle onClick={toggleUserLevelData} titleLevel={props.title} />
       {isUserLevelDataVisible && (
         <UserLevelData
           {...props}
