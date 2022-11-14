@@ -28,4 +28,8 @@ const isValidPassword = value => {
     return !hasWhiteSpace(value) && value.length >= 8 && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
 };
 
-export { isEmail, isNotEmpty, isValidPassword };
+const areAllFieldsEqual = (obj) => {
+    return [new Set(Object.values(obj)).size === 1];
+}
+
+export { isEmail, isNotEmpty, isValidPassword, areAllFieldsEqual };

@@ -3,16 +3,24 @@ import UserLevelTitle from "./UserLevelTitle";
 import UserLevelData from "./UserLevelData";
 
 const UserLevel = (props) => {
-  const { checkAll } = props;
+  const { checkAll, setCheckLevels } = props;
   const [isUserLevelDataVisible, setIsUserLevelDataVisible] = useState(false);
 
   useEffect(() => {
-    setIsUserLevelDataVisible(checkAll);
+    if (checkAll) {
+      setIsUserLevelDataVisible(true);
+    }
   }, [checkAll]);
 
   const toggleUserLevelData = () => {
     setIsUserLevelDataVisible((prevValue) => {
       return !prevValue;
+    });
+    setCheckLevels((prevValue) => {
+      return {
+        ...prevValue,
+        [props.title]: !prevValue[props.title],
+      };
     });
   };
   return (
