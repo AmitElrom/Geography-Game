@@ -1,15 +1,26 @@
-import React from 'react'
-import UserLevel from './UserLevel';
+import React, { useState } from "react";
+import UserLevel from "./UserLevel";
 
 const UserLevels = ({ userLevelsData }) => {
+  const [checkAll, setCheckAll] = useState(false);
 
-    const userLevelsDataList = Object.values(userLevelsData).map(level => {
-        return <UserLevel key={level.id} {...level} />
-    });
+  const toggleCheckAll = (e) => {
+    setCheckAll(e.target.checked);
+  };
 
-    return (
-        <div style={{ display: 'flex', justifyContent: 'space-around' }} >{userLevelsDataList}</div>
-    )
-}
+  const userLevelsDataList = Object.values(userLevelsData).map((level) => {
+    return <UserLevel key={level.id} {...level} checkAll={checkAll} />;
+  });
 
-export default UserLevels
+  return (
+    <div style={{ display: "flex", justifyContent: "space-around" }}>
+      <div>
+        <input type="checkbox" id="check-all" onChange={toggleCheckAll} />
+        <label htmlFor="check-all">Show All</label>
+      </div>
+      {userLevelsDataList}
+    </div>
+  );
+};
+
+export default UserLevels;
