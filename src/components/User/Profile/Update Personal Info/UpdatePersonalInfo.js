@@ -8,6 +8,7 @@ import UpdatePersonalInfoItem from "../Update Personal Info Item/UpdatePersonalI
 import { nameRegex } from "../../../../utils/utils-regex";
 import { capitlizeFirstLetter } from "../../../../utils/utils-manipulate-strings";
 import authContext from "../../../../store/auth-context";
+import FormInput from "../../../Authentication/FormInput/FormInput";
 
 const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
     const {
@@ -73,7 +74,7 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
 
     const updateInfoInuptsList = userInfo.map((info) => {
         return (
-            <UpdatePersonalInfoItem
+            <FormInput
                 key={info.name}
                 title={info.title}
                 name={info.name}

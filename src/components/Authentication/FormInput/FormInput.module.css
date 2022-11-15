@@ -1,12 +1,71 @@
-.input {
-  margin-bottom: 0.3rem;
-  width: 100%;
+.title {
+  font-size: large;
+  font-weight: 600;
 }
 
-.input input {
+.input-element-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-field {
+  padding: 0.6rem 1rem;
+  font-size: 1.2rem;
+  padding-right: 2.8rem;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.input-field-noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+.input-field[data-autocompleted] {
+  background-color: transparent !important;
+}
+
+.input-field-error {
+  border-color: red;
+  background-color: salmon;
+}
+.input-field-error:focus {
+  outline: none !important;
+  border: 2px solid red;
+  background-color: salmon;
+}
+
+.span {
   padding: 0.4rem;
+  padding-bottom: -1rem;
+  margin-top: 0.1rem;
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+  margin-left: -2.76rem;
+  background-color: transparent;
 }
 
-.input p {
+.password-icon {
+  cursor: pointer;
+}
+
+.error {
+  display: block;
+}
+
+.error-true {
+  margin: 0.3rem;
   color: red;
+  font-weight: 600;
 }

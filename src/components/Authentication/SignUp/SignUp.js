@@ -12,6 +12,34 @@ import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
 import { useContext } from "react";
 import authContext from "../../../store/auth-context";
 
+const formInputs = [
+  {
+    id: 1,
+    name: "firstName",
+    placeholder: "First Name",
+  },
+  {
+    id: 2,
+    name: "lastName",
+    placeholder: "Last Name",
+  },
+  {
+    id: 3,
+    name: "email",
+    placeholder: "Email",
+  },
+  {
+    id: 4,
+    name: "password1",
+    placeholder: "Password",
+  },
+  {
+    id: 5,
+    name: "password2",
+    placeholder: "Enter password again",
+  },
+];
+
 const SignUp = () => {
   const navigate = useNavigate();
 
@@ -54,7 +82,7 @@ const SignUp = () => {
         },
         (data) => {
           console.log(data);
-          loginHandler(data.token, { ...data.userData })
+          loginHandler(data.token, { ...data.userData });
           navigate("/welcome", { replace: true });
         }
       );
@@ -67,46 +95,8 @@ const SignUp = () => {
     formik.setFieldValue(name, upperCaseName);
   };
 
-  const formInputs = [
-    {
-      id: 1,
-      name: "firstName",
-      placeholder: "First Name",
-      label: "First Name",
-      type: "text",
-    },
-    {
-      id: 2,
-      name: "lastName",
-      placeholder: "Last Name",
-      label: "Last Name",
-      type: "text",
-    },
-    {
-      id: 3,
-      name: "email",
-      placeholder: "Email",
-      label: "Email",
-      type: "email",
-    },
-    {
-      id: 4,
-      name: "password1",
-      placeholder: "Password",
-      label: "Password",
-      type: "password",
-    },
-    {
-      id: 5,
-      name: "password2",
-      placeholder: "Enter password again",
-      label: "Password",
-      type: "password",
-    },
-  ];
-
   const formInputList = (
-    <div>
+    <div >
       {formInputs.map((input) => {
         return (
           <FormInput
@@ -132,9 +122,10 @@ const SignUp = () => {
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
+      <h1>Sign Up</h1>
       {formInputList}
       <div>
-        <button type="submit">Sign Up</button>
+        <button className={classes["button-28"]} type="submit">Sign Up</button>
       </div>
       <div className={classes["sign-in"]}>
         <p>Already have an account? &nbsp;</p>

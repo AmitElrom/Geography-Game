@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useHttpAxios from "../../../hooks/use-http-axios";
@@ -10,24 +9,21 @@ import FormInput from "../FormInput/FormInput";
 import classes from "../SignUp/SignUp.module.css";
 
 import authContext from "../../../store/auth-context";
-import PasswordFormInput from "../FormInput/PasswordFormInput";
 
-const EMAIL_INPUT = {
-  name: "email",
-  placeholder: "Email",
-  label: "Email",
-  type: "text",
-};
-
-const PASSWORD_INPUT = {
-  name: "password",
-  placeholder: "Password",
-  label: "Password",
-  type: "password",
-};
+const formInputs = [
+  {
+    id: 1,
+    name: "email",
+    placeholder: "Email",
+  },
+  {
+    id: 2,
+    name: "password",
+    placeholder: "Password",
+  },
+];
 
 const SignIn = () => {
-
   const navigate = useNavigate();
 
   const { loginHandler } = useContext(authContext);
@@ -53,7 +49,7 @@ const SignIn = () => {
         (data) => {
           if (data.token) {
             console.log(data);
-            loginHandler(data.token, { ...data.userData })
+            loginHandler(data.token, { ...data.userData });
             navigate("/welcome", { replace: true });
           }
         }
@@ -61,25 +57,8 @@ const SignIn = () => {
     },
   });
 
-  const formInputs = [
-    {
-      id: 1,
-      name: "email",
-      placeholder: "Email",
-      label: "Email",
-      type: "text",
-    },
-    {
-      id: 2,
-      name: "password",
-      placeholder: "Password",
-      label: "Password",
-      type: "password",
-    },
-  ];
-
   const formInputList = (
-    <div style={{ width: "100%" }} >
+    <div>
       {formInputs.map((input) => {
         return (
           <FormInput
@@ -101,34 +80,12 @@ const SignIn = () => {
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
-      {/* {formInputList} */}
+      <h1>Sign In</h1>
+      {formInputList}
       <div>
-        <FormInput
-          {...EMAIL_INPUT}
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.email && formik.errors.email
-              ? formik.errors.email
-              : null
-          }
-        />
-        <PasswordFormInput
-          {...PASSWORD_INPUT}
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.password && formik.errors.password
-              ? formik.errors.password
-              : null
-          } />
+        <button className={classes["button-28"]} type="submit">Sign In</button>
       </div>
-      <div>
-        <button type="submit">Sign In</button>
-      </div>
-      <div className={classes["sign-up"]}>
+      <div className={classes["forgot-password"]}>
         <Link to="/forgot-password">Forgot password?</Link>
       </div>
       <div className={classes["sign-up"]}>

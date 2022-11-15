@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { FiMail, FiUser } from "react-icons/fi";
 
 import classes from "./FormInput.module.css";
 
@@ -7,21 +9,92 @@ const FormInput = ({
   name,
   onChange,
   onBlur,
-  type,
   error,
   value,
+  title,
 }) => {
+  const [typeState, setTypeState] = useState("");
+  const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
+
+  useEffect(() => {
+    console.log(name, isPasswordVisibile);
+    if (
+      name === "email" ||
+      name === "firstName" ||
+      name === "lastName" ||
+      (name === "password" && isPasswordVisibile) ||
+      (name === "password1" && isPasswordVisibile) ||
+      (name === "password2" && isPasswordVisibile) ||
+      (name === "newPassword" && isPasswordVisibile) ||
+      (name === "confirmedPassword" && isPasswordVisibile)
+    ) {
+      setTypeState("text");
+    }
+    if (
+      (name === "password" && !isPasswordVisibile) ||
+      (name === "password1" && !isPasswordVisibile) ||
+      (name === "password2" && !isPasswordVisibile) ||
+      (name === "newPassword" && !isPasswordVisibile) ||
+      (name === "confirmedPassword" && !isPasswordVisibile)
+    ) {
+      setTypeState("password");
+    }
+  }, [name, isPasswordVisibile]);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisibile((prevValue) => !prevValue);
+  };
+
   return (
-    <div className={classes.input}>
-      <input
-        type={!type ? "text" : type}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
-      <p>{error}</p>
+    <div className="outer-div">
+      {title && <p className={classes.title}>{title}</p>}
+      <div className={classes["input-element-wrapper"]}>
+        <input
+          className={`${classes["input-field"]} ${
+            error && classes["input-field-error"]
+          } ${
+            (name === "password" ||
+              name === "password1" ||
+              name === "password2" ||
+              name === "newPassword" ||
+              name === "confirmedPassword") &&
+            classes["input-field-noselect"]
+          }`}
+          type={typeState}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+        <span
+          onClick={togglePasswordVisibility}
+          className={`${classes.span} ${
+            (name === "password" ||
+              name === "password1" ||
+              name === "password2") &&
+            classes["password-icon"]
+          }`}
+        >
+          {isPasswordVisibile &&
+            (name === "password" ||
+              name === "password1" ||
+              name === "password2" ||
+              name === "newPassword" ||
+              name === "confirmedPassword") && <BsEye />}
+          {!isPasswordVisibile &&
+            (name === "password" ||
+              name === "password1" ||
+              name === "password2" ||
+              name === "newPassword" ||
+              name === "confirmedPassword") && <BsEyeSlash />}
+          {name === "email" && <FiMail />}
+          {(name === "firstName" || name === "lastName") && <FiUser />}
+        </span>
+      </div>
+      <p className={`${classes.error} ${error && classes["error-true"]}`}>
+        {error}
+      </p>
     </div>
   );
 };

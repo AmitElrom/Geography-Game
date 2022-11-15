@@ -5,13 +5,14 @@ import * as Yup from "yup";
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
 import ChangePasswordItem from "../Change Password Item/ChangePaswordItem";
+import FormInput from '../../../Authentication/FormInput/FormInput';
 
 import { passwordRegex } from "../../../../utils/utils-regex";
 import authContext from "../../../../store/auth-context";
 
 const changePasswordItems = [
-  { name: "newPassword", title: "Enter New Password", info: "" },
-  { name: "confirmedPassword", title: "Confirm Password", info: "" },
+  { name: "newPassword", placeholder: "Enter New Password", info: "" },
+  { name: "confirmedPassword", placeholder: "Confirm Password", info: "" },
 ];
 
 const ChangePassword = ({ setToUpdatePassword }) => {
@@ -58,11 +59,11 @@ const ChangePassword = ({ setToUpdatePassword }) => {
     },
   });
 
+
   const changePasswordItemList = changePasswordItems.map((item) => {
     return (
-      <ChangePasswordItem
+      <FormInput
         key={item.name}
-        title={item.title}
         name={item.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
