@@ -29,7 +29,7 @@ const isValidPassword = value => {
 };
 
 const areAllFieldsEqual = (obj) => {
-    return [new Set(Object.values(obj)).size === 1];
+    return [new Set(Object.values(obj)).size === 1, Object.values(obj)[0]];
 }
 
 export { isEmail, isNotEmpty, isValidPassword, areAllFieldsEqual };

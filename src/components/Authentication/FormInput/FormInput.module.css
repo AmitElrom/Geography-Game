@@ -1,14 +1,10 @@
 .input {
   margin-bottom: 0.3rem;
+  width: 100%;
 }
 
 .input input {
   padding: 0.4rem;
-}
-
-.input label {
-  display: block;
-  margin-bottom: 0.2rem;
 }
 
 .input p {

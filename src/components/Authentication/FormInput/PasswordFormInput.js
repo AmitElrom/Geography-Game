@@ -2,19 +2,18 @@ import React from "react";
 
 import classes from "./FormInput.module.css";
 
-const FormInput = ({
+const PasswordFormInput = ({
   placeholder,
   name,
   onChange,
   onBlur,
-  type,
   error,
   value,
 }) => {
   return (
     <div className={classes.input}>
       <input
-        type={!type ? "text" : type}
+        type="password"
         name={name}
         placeholder={placeholder}
         value={value}
@@ -26,4 +25,4 @@ const FormInput = ({
   );
 };
 
-export default FormInput;
+export default PasswordFormInput;

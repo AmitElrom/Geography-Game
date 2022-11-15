@@ -10,10 +10,23 @@ import FormInput from "../FormInput/FormInput";
 import classes from "../SignUp/SignUp.module.css";
 
 import authContext from "../../../store/auth-context";
+import PasswordFormInput from "../FormInput/PasswordFormInput";
+
+const EMAIL_INPUT = {
+  name: "email",
+  placeholder: "Email",
+  label: "Email",
+  type: "text",
+};
+
+const PASSWORD_INPUT = {
+  name: "password",
+  placeholder: "Password",
+  label: "Password",
+  type: "password",
+};
 
 const SignIn = () => {
-
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -66,7 +79,7 @@ const SignIn = () => {
   ];
 
   const formInputList = (
-    <div>
+    <div style={{ width: "100%" }} >
       {formInputs.map((input) => {
         return (
           <FormInput
@@ -88,7 +101,30 @@ const SignIn = () => {
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
-      {formInputList}
+      {/* {formInputList} */}
+      <div>
+        <FormInput
+          {...EMAIL_INPUT}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.email && formik.errors.email
+              ? formik.errors.email
+              : null
+          }
+        />
+        <PasswordFormInput
+          {...PASSWORD_INPUT}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.password && formik.errors.password
+              ? formik.errors.password
+              : null
+          } />
+      </div>
       <div>
         <button type="submit">Sign In</button>
       </div>
