@@ -47,7 +47,7 @@ const FunFactModal = () => {
         <header className={classes.header}>{answer.name}</header>
         <div className={classes.content}>{funFact}</div>
         <footer className={classes.content}>
-          <button onClick={nextQuestionHandler}>Next</button>
+          <button onClick={nextQuestionHandler}>{questionIndex !== questionsQuantity - 1 ? "Next" : "To game summary page"}</button>
         </footer>
       </Card>
     );
