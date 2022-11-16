@@ -50,16 +50,12 @@ const FormInput = ({
       {title && <p className={classes.title}>{title}</p>}
       <div className={classes["input-element-wrapper"]}>
         <input
-          className={`${classes["input-field"]} ${
-            error && classes["input-field-error"]
-          } ${
-            (name === "password" ||
-              name === "password1" ||
-              name === "password2" ||
-              name === "newPassword" ||
-              name === "confirmedPassword") &&
-            classes["input-field-noselect"]
-          }`}
+          className={`${classes["input-field"]} ${error && classes["input-field-error"]}`}
+          autoComplete={(name === "password" ||
+            name === "password1" ||
+            name === "password2" ||
+            name === "newPassword" ||
+            name === "confirmedPassword") && "off"}
           type={typeState}
           name={name}
           placeholder={placeholder}
@@ -69,12 +65,11 @@ const FormInput = ({
         />
         <span
           onClick={togglePasswordVisibility}
-          className={`${classes.span} ${
-            (name === "password" ||
-              name === "password1" ||
-              name === "password2") &&
+          className={`${classes.span} ${(name === "password" ||
+            name === "password1" ||
+            name === "password2") &&
             classes["password-icon"]
-          }`}
+            }`}
         >
           {isPasswordVisibile &&
             (name === "password" ||
