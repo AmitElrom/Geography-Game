@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../../../UI/Card/Card";
 
 import classes from "./Option.module.css";
@@ -13,6 +13,8 @@ const Option = ({
   isTrueCountryDisplayed,
 }) => {
   const dispatch = useDispatch();
+
+  const { questionIndex, questionsQuantity } = useSelector(state => state);
 
   const [optionClasses, setOptionClasses] = useState(classes.option);
 
@@ -31,11 +33,13 @@ const Option = ({
   };
 
   const clickOptionHandler = () => {
+    // let isFinalQuestion = questionIndex === (questionsQuantity - 1)
     if (optionData.isCountry) {
       setOptionClasses(`${classes.option} ${classes.true}`);
       setTimeout(() => {
         // dispatch(countriesActions.incrementScore());
         dispatch(countriesActions.caseTrueAnswer(optionData.id));
+        // dispatch(countriesActions.caseAnswer({ isCorrect: true, trueCountry: optionData.id, isFinalQuestion }));
         dispatch(countriesActions.showFunFact());
       }, 800);
     } else {
@@ -48,6 +52,7 @@ const Option = ({
             trueCountry: answer,
           })
         );
+        // dispatch(countriesActions.caseAnswer({ isCorrect: false, trueCountry: answer, falseCountry: optionData.id, isFinalQuestion }));
         notDisplayTrueCountry();
         dispatch(countriesActions.showFunFact());
       }, 800);

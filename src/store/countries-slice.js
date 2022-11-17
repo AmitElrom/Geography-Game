@@ -69,7 +69,20 @@ const countriesSlice = createSlice({
         caseFinalQuestion(state) {
             state.endTime = new Date().getTime();
             state.isQuestionnaireOver = true;
-        }
+        },
+        // caseAnswer(state, { payload }) {
+        //     console.log(payload);
+        //     const { isCorrect, trueCountry, falseCountry, isFinalQuestion } = payload;
+        //     const questionObj = { isCorrect, trueCountry };
+        //     if (falseCountry) {
+        //         questionObj.falseCountry = falseCountry;
+        //     }
+        //     state.questionsToServer = [...state.questionsToServer, questionObj];
+        //     if (isFinalQuestion) {
+        //         state.endTime = new Date().getTime();
+        //         state.isQuestionnaireOver = true;
+        //     }
+        // }
     }
 })
 

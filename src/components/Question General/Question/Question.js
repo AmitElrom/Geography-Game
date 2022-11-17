@@ -21,7 +21,6 @@ const Question = () => {
 
     useEffect(() => {
         if (questions.length === 0) {
-            console.log(questions, 'questions.length === 0');
             navigate('/welcome', { replace: true })
             return
         } else {
