@@ -8,6 +8,7 @@ import Card from "../UI/Card/Card";
 import classes from "./Modal.module.css";
 
 import { countriesActions } from "../../store/countries-slice";
+import { sendScoreRequest } from '../../store/countries-slice';
 
 import { getMeRandomElement } from "../../utils/utils-general";
 
@@ -37,6 +38,7 @@ const FunFactModal = () => {
     } else {
       console.log('that was the final question');
       dispatch(countriesActions.caseFinalQuestion())
+      // dispatch(sendScoreRequest())
       navigate("/welcome", { replace: true });
     }
   };

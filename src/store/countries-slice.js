@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 
 const countriesInitialState = {
@@ -70,21 +71,52 @@ const countriesSlice = createSlice({
             state.endTime = new Date().getTime();
             state.isQuestionnaireOver = true;
         },
-        // caseAnswer(state, { payload }) {
-        //     console.log(payload);
-        //     const { isCorrect, trueCountry, falseCountry, isFinalQuestion } = payload;
-        //     const questionObj = { isCorrect, trueCountry };
-        //     if (falseCountry) {
-        //         questionObj.falseCountry = falseCountry;
-        //     }
-        //     state.questionsToServer = [...state.questionsToServer, questionObj];
-        //     if (isFinalQuestion) {
-        //         state.endTime = new Date().getTime();
-        //         state.isQuestionnaireOver = true;
-        //     }
-        // }
+        caseAnswer(state, { payload }) {
+            console.log(payload);
+            const { isCorrect, trueCountry, falseCountry, isFinalQuestion } = payload;
+            const questionObj = { isCorrect, trueCountry };
+            if (falseCountry) {
+                questionObj.falseCountry = falseCountry;
+            }
+            state.questionsToServer = [...state.questionsToServer, questionObj];
+            if (isFinalQuestion) {
+                state.endTime = new Date().getTime();
+                state.isQuestionnaireOver = true;
+            }
+        }
     }
 })
+
+export const sendScoreRequest = () => {
+    return async (dispatch) => {
+        // const reqData = { isLoading: false };
+        try {
+            let token = sessionStorage.getItem('token');
+            // reqData.isLoading = true;
+            const { data: sendScoreRequestData } = await axios.patch("http://localhost:8000/score-elrom", {
+                level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
+                startTime: countriesSlice.getInitialState().startTime,
+                endTime: countriesSlice.getInitialState().endTime,
+                score: countriesSlice.getInitialState().score,
+                questions: countriesSlice.getInitialState().questionsToServer
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json;charset=UTF-8',
+                }
+            })
+            // reqData.isLoading = false;
+            // reqData.sendScoreRequestData = sendScoreRequestData;
+            dispatch(countriesActions.nullify())
+            console.log(sendScoreRequestData);
+        } catch (error) {
+            dispatch(countriesActions.nullify())
+            // reqData.error = error;
+            // return reqData;
+        }
+    };
+};
 
 export const countriesActions = countriesSlice.actions;
 
