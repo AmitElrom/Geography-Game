@@ -16,6 +16,7 @@ let questionsQuantity = 10;
 
 const urlReducer = (state, action) => {
     let url;
+    console.log(action.type);
     switch (action.type) {
         case 'Beginner':
             url = buildUrl(10, 10);
@@ -31,6 +32,7 @@ const urlReducer = (state, action) => {
             return url;
         case 'Expert':
             url = buildUrl(20, 197, 130, 2);
+            console.log('url', url);
             return url;
         default:
             return state;
@@ -49,13 +51,15 @@ const MainLevel = () => {
     const { isLoading, error, sendRequest: getCountries } = useHttpAxios();
 
     useEffect(() => {
+        console.log(urlState);
         getCountries({
             method: 'GET',
             url: urlState
         }, (data) => {
+            console.log(data);
             dispatch(countriesActions.manipulateCountries({
                 questions: data,
-                questionsQuantity
+                questionsQuantity: data.length
             }))
             navigate('/question');
         })
@@ -63,7 +67,6 @@ const MainLevel = () => {
 
 
     const startPlayingHandler = () => {
-
         urlDisptch({
             type: difficultyLevel
         })
