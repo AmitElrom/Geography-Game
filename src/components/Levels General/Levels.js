@@ -34,6 +34,14 @@ const Levels = () => {
     dispatch(countriesActions.startPlaying(levelName));
   };
 
+  const mouseEnteredLevelHandler = () => {
+
+  };
+
+  const mouseLeftLevelHandler = () => {
+
+  };
+
   const levelsList = levelsData.map((level) => {
     return (
       <Level
@@ -41,6 +49,8 @@ const Levels = () => {
         key={level.id}
         size={"70"}
         onClick={() => clickLevelHandler(level.name)}
+        onMouseEnter={() => console.log('entered')}
+        onMouseLeave={() => console.log('left')}
       >
         {level.name}
       </Level>
