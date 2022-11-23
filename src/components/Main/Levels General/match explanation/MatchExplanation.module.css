@@ -1,0 +1,15 @@
+.match-explanation {
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  background-color: rgba(220, 220, 220, 0.4);
+}
+
+.h-explanation {
+  margin: 0;
+}
+
+.p-explanation {
+  font-weight: 500;
+}

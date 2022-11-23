@@ -17,6 +17,10 @@ const RulesText = () => {
         page after clicking on the Score option in the Menu that opens after you
         click your name.
       </p>
+      <p>
+        Be ready! Fun facts are going to pop up after answering every question.
+        Match time is being counted all the time.
+      </p>
     </div>
   );
 };

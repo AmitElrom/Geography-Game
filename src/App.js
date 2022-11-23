@@ -22,6 +22,7 @@ import './App.css';
 import NonProtectedRoute from './components/Authentication/NonProtectedRoute/NonProtectedRoute';
 import { useContext, useEffect } from 'react';
 import authContext from './store/auth-context';
+import Badges from './components/User/Badges/Badges/Badges';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route path='/question' element={<Question />} />
           <Route path='/scores' element={<Scores />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/badges' element={<Badges />} />
         </Route>
         <Route path='/about' element={<About />} />
         {/* <Route element={<NonProtectedRoute />} > */}

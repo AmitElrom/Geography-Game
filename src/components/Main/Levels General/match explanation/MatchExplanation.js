@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import classes from '../MainLevel.module.css';
+import classes2 from '../../rules/rules text/RulesText.module.css';
+import classesMatchExplanation from './MatchExplanation.module.css';
+
 
 const LEVELS_EXPLANATIONS = [
   {
@@ -41,11 +44,13 @@ const MatchExplanation = ({ level }) => {
     setLevelExplanation(tempLevelExp);
   }, [level]);
 
+  let classesDiv = `${classesMatchExplanation["match-explanation"]} ${classes["match-explanation"]} ${classes2["all-text"]}`
+
   return (
-    <div className={classes["match-explanation"]} >
-      <h3>{levelExplanation.level}</h3>
-      <p>{levelExplanation.explanation}</p>
-    </div>
+    <div className={classesDiv} >
+      <h3 className={classesMatchExplanation["h-explanation"]} >{levelExplanation.level}</h3>
+      <p className={classesMatchExplanation["p-explanation"]} >{levelExplanation.explanation}</p>
+    </div >
   );
 };
 

@@ -20,8 +20,7 @@ const MenuItem = ({ children, onLogout }) => {
                 navigate('/profile')
                 break
             case "Badges":
-                console.log('badges');
-                // navigate('/badges')
+                navigate('/badges')
                 break
             case "Log Out":
                 onLogout()

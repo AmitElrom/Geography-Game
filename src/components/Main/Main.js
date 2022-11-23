@@ -1,27 +1,26 @@
-import React, { Fragment, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { Fragment, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import Levels from './Levels General/Levels';
-import MainLevel from './Levels General/MainLevel';
+import GameRules from "./rules/rules/GameRules";
+import Levels from "./Levels General/Levels";
+import MainLevel from "./Levels General/MainLevel";
 
-import { countriesActions } from '../../store/countries-slice';
-import GameRules from './rules/rules/GameRules';
+import { countriesActions } from "../../store/countries-slice";
 
 const Main = () => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(countriesActions.nullify());
+  }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(countriesActions.nullify());
-    }, [dispatch])
+  return (
+    <Fragment>
+      <GameRules />
+      <Levels />
+      <MainLevel />
+    </Fragment>
+  );
+};
 
-    return (
-        <Fragment>
-            <GameRules />
-            <Levels />
-            <MainLevel />
-        </Fragment>
-    )
-}
-
-export default Main
+export default Main;
