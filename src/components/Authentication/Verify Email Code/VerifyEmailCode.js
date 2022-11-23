@@ -9,6 +9,7 @@ import FormInput from "../FormInput/FormInput";
 
 import { sixChars } from "../../../utils/utils-regex";
 
+
 const VerifyEmailCode = () => {
 
     const navigate = useNavigate();
@@ -49,9 +50,10 @@ const VerifyEmailCode = () => {
     return (
         <form onSubmit={formik.handleSubmit}>
             <FormInput
+                style={{ width: `calc(${"Enter the code you got in your email".length * 8}px + 1.2rem)` }}
                 label="Email Code"
                 placeholder="Enter the code you got in your email"
-                name="code"
+                name="password"
                 value={formik.values.code}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}

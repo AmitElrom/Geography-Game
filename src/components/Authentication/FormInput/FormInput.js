@@ -12,6 +12,8 @@ const FormInput = ({
   error,
   value,
   title,
+  className,
+  style
 }) => {
   const [typeState, setTypeState] = useState("");
   const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
@@ -50,13 +52,14 @@ const FormInput = ({
       {title && <p className={classes.title}>{title}</p>}
       <div className={classes["input-element-wrapper"]}>
         <input
-          className={`${classes["input-field"]} ${error && classes["input-field-error"]}`}
+          className={`${classes["input-field"]} ${className} ${error && classes["input-field-error"]}`}
           autoComplete={(name === "password" ||
             name === "password1" ||
             name === "password2" ||
             name === "newPassword" ||
             name === "confirmedPassword") && "off"}
           type={typeState}
+          style={style}
           name={name}
           placeholder={placeholder}
           value={value}

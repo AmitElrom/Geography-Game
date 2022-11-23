@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserLevel from "./UserLevel";
 
 import classes from "./UserLevels.module.css";
