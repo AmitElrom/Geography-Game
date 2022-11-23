@@ -37,7 +37,6 @@ const Option = ({
     if (optionData.isCountry) {
       setOptionClasses(`${classes.option} ${classes.true}`);
       setTimeout(() => {
-        // dispatch(countriesActions.incrementScore());
         dispatch(countriesActions.caseTrueAnswer(optionData.id));
         // dispatch(countriesActions.caseAnswer({ isCorrect: true, trueCountry: optionData.id, isFinalQuestion }));
         dispatch(countriesActions.showFunFact());

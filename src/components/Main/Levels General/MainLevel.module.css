@@ -1,0 +1,18 @@
+.main-level {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.match-explanation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}

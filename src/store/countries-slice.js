@@ -11,6 +11,7 @@ const countriesInitialState = {
     questionIndex: 0,
     isStartPlaying: false,
     difficultyLevel: null,
+    levelForMatchExplanation: null,
     startTime: 0,
     endTime: 0,
     questionsToServer: []
@@ -27,8 +28,8 @@ const countriesSlice = createSlice({
             state.questions = questions;
             state.questionsQuantity = questionsQuantity;
         },
-        incrementScore(state) {
-            state.score++;
+        setMatchExplanation(state, { payload: level }) {
+            state.levelForMatchExplanation = level;
         },
         nullify(state) {
             state.score = 0;

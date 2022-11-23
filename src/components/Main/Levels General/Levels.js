@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import Level from "../UI/Difficulty Level/DifficultyLevel";
+import Level from "../../UI/Difficulty Level/DifficultyLevel";
 
 import classes from "./Levels.module.css";
 
-import { countriesActions } from "../../store/countries-slice";
-
+import { countriesActions } from "../../../store/countries-slice";
 
 const Levels = () => {
   const [levelsData, setLevelsData] = useState([
@@ -34,12 +33,12 @@ const Levels = () => {
     dispatch(countriesActions.startPlaying(levelName));
   };
 
-  const mouseEnteredLevelHandler = () => {
-
+  const mouseEnteredLevelHandler = (levelName) => {
+    dispatch(countriesActions.setMatchExplanation(levelName));
   };
 
   const mouseLeftLevelHandler = () => {
-
+    dispatch(countriesActions.setMatchExplanation(null));
   };
 
   const levelsList = levelsData.map((level) => {
@@ -49,8 +48,8 @@ const Levels = () => {
         key={level.id}
         size={"70"}
         onClick={() => clickLevelHandler(level.name)}
-        onMouseEnter={() => console.log('entered')}
-        onMouseLeave={() => console.log('left')}
+        onMouseEnter={() => mouseEnteredLevelHandler(level.name)}
+        onMouseLeave={mouseLeftLevelHandler}
       >
         {level.name}
       </Level>
