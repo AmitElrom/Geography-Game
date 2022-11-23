@@ -6,8 +6,7 @@ import UserLevels from './User Levels/UserLevels';
 const Scores = () => {
 
     const [usersWithScores, setUsersWithScores] = useState([]);
-    const [userLevelsData, setUserLevelsData] = useState({});
-    // const [userLevelsData, setUserLevelsData] = useState({});
+    const [userLevelsData, setUserLevelsData] = useState([]);
 
     const { error, isLoading, sendRequest: getUsersScores } = useHttpAxios();
 
@@ -23,15 +22,14 @@ const Scores = () => {
             (data) => {
                 setUsersWithScores(data);
                 const theUser = data.find(user => user.theUser);
-                // setUserLevelsData(theUser.userLevelsData);
-                setUserLevelsData(theUser.userLevelsData)
+                setUserLevelsData(Object.values(theUser.userLevelsData))
             }
         );
     }, [getUsersScores]);
 
     return (
         <div>
-            <UserLevels userLevelsData={userLevelsData} />
+            <UserLevels userLevelsData={userLevelsData} setUserLevelsData={setUserLevelsData} />
             <ScoresTable scoresTable={usersWithScores} />
         </div>
     )

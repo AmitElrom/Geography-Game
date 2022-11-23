@@ -1,10 +1,20 @@
 import React from "react";
 import classes from "./UserLevelTitle.module.css";
 
-const UserLevelTitle = ({ titleLevel, onClick }) => {
+const UserLevelTitle = ({ titleLevel, onClick, checked }) => {
   return (
-    <div className={classes.title} onClick={onClick}>
-      {titleLevel}
+    <div>
+      <input
+        className={classes.checkbox}
+        type="checkbox"
+        name={titleLevel}
+        checked={checked}
+        id={titleLevel}
+        onChange={onClick}
+      />
+      <label className={classes.label} htmlFor={titleLevel}>
+        {titleLevel}
+      </label>
     </div>
   );
 };
