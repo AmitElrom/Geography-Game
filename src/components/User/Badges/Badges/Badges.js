@@ -98,7 +98,7 @@ const BADGES = [
     name: "beginner_and_timer_badge",
     headline: "Beginner and Time Badge",
     paragraph:
-      "At Beginner Level - Answered correctly all questions and did it in less than 1 minute",
+      "At Beginner Level - Answered correctly all questions and did it in less than 45 seconds",
     imgHaveBadge: beginner_and_timer_badge_img,
     imgDontHaveBadge: beginner_and_timer__disabled_badge_img,
   },

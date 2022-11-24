@@ -1,16 +1,21 @@
 import React from "react";
-import { PieChart, Pie, Tooltip } from "recharts";
+import { PieChart, Pie, Tooltip, Label } from "recharts";
+import CustomToolTip from "./CustomToolTip";
 
 const LevelFailsPieChart = ({ fails, title }) => {
   const transformedFails = fails.map((fail) => {
     return {
-      countryName: fail.countryName,
+      ...fail,
       numFalseCountries: fail.falseCountries.length,
     };
   });
 
+  const renderLabel = function (entry) {
+    return entry.name;
+  }
+
   return (
-    <PieChart width={250} height={250}>
+    <PieChart width={400} height={350}>
       <Pie
         dataKey="numFalseCountries"
         nameKey="countryName"
@@ -20,9 +25,9 @@ const LevelFailsPieChart = ({ fails, title }) => {
         cy="50%"
         outerRadius={80}
         fill="#8884d8"
-        label
+        label={renderLabel}
       />
-      <Tooltip />
+      <Tooltip content={<CustomToolTip />} />
     </PieChart>
   );
 };
