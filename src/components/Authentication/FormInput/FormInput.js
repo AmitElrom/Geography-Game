@@ -28,7 +28,8 @@ const FormInput = ({
       (name === "password1" && isPasswordVisibile) ||
       (name === "password2" && isPasswordVisibile) ||
       (name === "newPassword" && isPasswordVisibile) ||
-      (name === "confirmedPassword" && isPasswordVisibile)
+      (name === "confirmedPassword" && isPasswordVisibile) ||
+      (name === "code" && isPasswordVisibile)
     ) {
       setTypeState("text");
     }
@@ -37,7 +38,8 @@ const FormInput = ({
       (name === "password1" && !isPasswordVisibile) ||
       (name === "password2" && !isPasswordVisibile) ||
       (name === "newPassword" && !isPasswordVisibile) ||
-      (name === "confirmedPassword" && !isPasswordVisibile)
+      (name === "confirmedPassword" && !isPasswordVisibile) ||
+      (name === "code" && !isPasswordVisibile)
     ) {
       setTypeState("password");
     }
@@ -57,7 +59,8 @@ const FormInput = ({
             name === "password1" ||
             name === "password2" ||
             name === "newPassword" ||
-            name === "confirmedPassword") && "off"}
+            name === "confirmedPassword" ||
+            name === "code") && "off"}
           type={typeState}
           style={style}
           name={name}
@@ -70,7 +73,10 @@ const FormInput = ({
           onClick={togglePasswordVisibility}
           className={`${classes.span} ${(name === "password" ||
             name === "password1" ||
-            name === "password2") &&
+            name === "password2" ||
+            name === "newPassword" ||
+            name === "confirmedPassword" ||
+            name === "code") &&
             classes["password-icon"]
             }`}
         >
@@ -79,13 +85,15 @@ const FormInput = ({
               name === "password1" ||
               name === "password2" ||
               name === "newPassword" ||
-              name === "confirmedPassword") && <BsEye />}
+              name === "confirmedPassword" ||
+              name === "code") && <BsEye />}
           {!isPasswordVisibile &&
             (name === "password" ||
               name === "password1" ||
               name === "password2" ||
               name === "newPassword" ||
-              name === "confirmedPassword") && <BsEyeSlash />}
+              name === "confirmedPassword" ||
+              name === "code") && <BsEyeSlash />}
           {name === "email" && <FiMail />}
           {(name === "firstName" || name === "lastName") && <FiUser />}
         </span>

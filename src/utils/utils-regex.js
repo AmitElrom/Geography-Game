@@ -5,6 +5,6 @@ const nameRegex = /^[A-Za-z]+$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
 // exactly 6 characters
-const sixChars = /(^|\D)\d{6}($|\D)/
+const sixNumbers = /^[0-9]{6}/
 
-export { nameRegex, passwordRegex, sixChars };
+export { nameRegex, passwordRegex, sixNumbers };

@@ -7,7 +7,7 @@ import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
 
-import { sixChars } from "../../../utils/utils-regex";
+import { sixNumbers } from "../../../utils/utils-regex";
 
 
 const VerifyEmailCode = () => {
@@ -25,7 +25,7 @@ const VerifyEmailCode = () => {
             code: "",
         },
         validationSchema: Yup.object({
-            code: Yup.string().matches(sixChars, "Email code must be exactly 6 characters."),
+            code: Yup.string().matches(sixNumbers, "Email code must be exactly and only 6 characters.").required("Required"),
         }),
         onSubmit: (values) => {
             let email = sessionStorage.getItem('email');
@@ -53,7 +53,7 @@ const VerifyEmailCode = () => {
                 style={{ width: `calc(${"Enter the code you got in your email".length * 8}px + 1.2rem)` }}
                 label="Email Code"
                 placeholder="Enter the code you got in your email"
-                name="password"
+                name="code"
                 value={formik.values.code}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
