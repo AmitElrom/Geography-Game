@@ -45,7 +45,9 @@ const FormInput = ({
     }
   }, [name, isPasswordVisibile]);
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (e) => {
+    e.preventDefault()
+    e.target.blur()
     setIsPasswordVisibile((prevValue) => !prevValue);
   };
 

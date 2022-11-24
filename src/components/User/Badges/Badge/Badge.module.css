@@ -1,0 +1,8 @@
+.badge {
+  width: 20%;
+  box-sizing: border-box;
+}
+
+.badge-img:hover {
+  scale: 1.1;
+}
