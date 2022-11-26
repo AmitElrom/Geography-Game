@@ -3,27 +3,21 @@ import { PieChart, Pie, Tooltip, Label } from "recharts";
 import CustomToolTip from "./CustomToolTip";
 
 const LevelFailsPieChart = ({ fails, title }) => {
-  const transformedFails = fails.map((fail) => {
-    return {
-      ...fail,
-      numFalseCountries: fail.falseCountries.length,
-    };
-  });
 
-  const renderLabel = function (entry) {
+  const renderLabel = (entry) => {
     return entry.name;
   }
 
   return (
     <PieChart width={400} height={350}>
       <Pie
-        dataKey="numFalseCountries"
+        dataKey="numOfFails"
         nameKey="countryName"
         isAnimationActive={false}
-        data={transformedFails}
+        data={fails}
         cx="50%"
         cy="50%"
-        outerRadius={80}
+        outerRadius={50}
         fill="#8884d8"
         label={renderLabel}
       />

@@ -1,0 +1,16 @@
+.tooltip {
+  background: rgba(0, 0, 0, 0.8);
+  border: 3px solid black;
+  border-radius: 8px;
+  color: white;
+}
+
+.country-img {
+  position: absolute;
+  line-height: 100%;
+  margin-left: 0.7rem;
+}
+
+.flag-img {
+  border-radius: 3px;
+}
