@@ -20,30 +20,29 @@ const Layout = ({ children, className }) => {
     const { errorSendScore, isLoadingSendScore, sendRequest: sendScoreRequest } = useHttpAxios();
     // const { errorGetGameSummary, isLoadingGetGameSummary, sendRequest: getGameSummaryRequest } = useHttpAxios();
 
-    useEffect(() => {
-        console.log('isQuestionnaireOver', isQuestionnaireOver);
-        if (isQuestionnaireOver) {
-            let token = sessionStorage.getItem('token');
-            sendScoreRequest({
-                method: "PATCH",
-                url: "http://localhost:8000/score-elrom",
-                body: {
-                    level: difficultyLevel.toLowerCase(),
-                    startTime,
-                    endTime,
-                    score,
-                    questions: questionsToServer
-                },
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }, (data) => {
-                console.log('score updating', data);
-                // setIsScoreSent(data?.acknowledged);
-            })
-            dispatch(countriesActions.nullify())
-        }
-    }, [isQuestionnaireOver, dispatch, sendScoreRequest, difficultyLevel, startTime, endTime, score, questionsToServer])
+    // useEffect(() => {
+    //     if (isQuestionnaireOver) {
+    //         let token = sessionStorage.getItem('token');
+    //         sendScoreRequest({
+    //             method: "PATCH",
+    //             url: "http://localhost:8000/score-elrom",
+    //             body: {
+    //                 level: difficultyLevel.toLowerCase(),
+    //                 startTime,
+    //                 endTime,
+    //                 score,
+    //                 questions: questionsToServer
+    //             },
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //         }, (data) => {
+    //             console.log('score updating', data);
+    //             // setIsScoreSent(data?.acknowledged);
+    //         })
+    //         dispatch(countriesActions.nullify())
+    //     }
+    // }, [isQuestionnaireOver, dispatch, sendScoreRequest, difficultyLevel, startTime, endTime, score, questionsToServer])
 
     // useEffect(() => {
     //     if (isScoreSent) {

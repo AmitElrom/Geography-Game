@@ -89,20 +89,28 @@ const countriesSlice = createSlice({
 })
 
 export const sendScoreRequest = () => {
+    console.log('hello');
     return async (dispatch) => {
         // const reqData = { isLoading: false };
         try {
             let token = sessionStorage.getItem('token');
             // reqData.isLoading = true;
+            console.log({
+                level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
+                startTime: countriesSlice.getInitialState().startTime,
+                endTime: new Date().getTime(),
+                score: countriesSlice.getInitialState().score,
+                questions: countriesSlice.getInitialState().questionsToServer
+            });
             const { data: sendScoreRequestData } = await axios.patch("http://localhost:8000/score-elrom", {
                 level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
                 startTime: countriesSlice.getInitialState().startTime,
-                endTime: countriesSlice.getInitialState().endTime,
+                endTime: new Date().getTime(),
                 score: countriesSlice.getInitialState().score,
                 questions: countriesSlice.getInitialState().questionsToServer
             }, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json;charset=UTF-8',
                 }

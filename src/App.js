@@ -23,6 +23,7 @@ import NonProtectedRoute from './components/Authentication/NonProtectedRoute/Non
 import { useContext, useEffect } from 'react';
 import authContext from './store/auth-context';
 import Badges from './components/User/Badges/Badges/Badges';
+import MatchSummary from './components/Match Summary/MatchSummary';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path='/welcome' element={<Main />} />
           <Route path='/question' element={<Question />} />
+          <Route path='/match-summary' element={<MatchSummary />} />
           <Route path='/scores' element={<Scores />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/badges' element={<Badges />} />

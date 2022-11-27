@@ -11,12 +11,15 @@ import { countriesActions } from "../../store/countries-slice";
 import { sendScoreRequest } from '../../store/countries-slice';
 
 import { getMeRandomElement } from "../../utils/utils-general";
+import useHttpAxios from "../../hooks/use-http-axios";
 
 const FunFactModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { questionIndex, questionsQuantity, questions } = useSelector(
+  const { error, isLoading, sendRequest: sendScoreRequest } = useHttpAxios();
+
+  const { questionIndex, questionsQuantity, questions, difficultyLevel, startTime, score, questionsToServer } = useSelector(
     (state) => state.countries
   );
 
@@ -37,9 +40,27 @@ const FunFactModal = () => {
       dispatch(countriesActions.nextCountryHandler());
     } else {
       console.log('that was the final question');
-      dispatch(countriesActions.caseFinalQuestion())
+      // dispatch(countriesActions.caseFinalQuestion())
       // dispatch(sendScoreRequest())
-      navigate("/welcome", { replace: true });
+      sessionStorage.setItem("last-match-level", difficultyLevel.toLowerCase())
+      let token = sessionStorage.getItem("token");
+      sendScoreRequest({
+        method: "PATCH",
+        url: "http://localhost:8000/score-elrom",
+        body: {
+          level: difficultyLevel.toLowerCase(),
+          startTime,
+          endTime: new Date().getTime(),
+          score,
+          questions: questionsToServer
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }, (data) => {
+        console.log('score sent to server status', data);
+        navigate("/match-summary", { replace: true });
+      })
     }
   };
 
