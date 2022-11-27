@@ -68,10 +68,6 @@ const countriesSlice = createSlice({
             questionObj.falseCountry = payload.falseCountry;
             state.questionsToServer = [...state.questionsToServer, questionObj];
         },
-        caseFinalQuestion(state) {
-            state.endTime = new Date().getTime();
-            state.isQuestionnaireOver = true;
-        },
         caseAnswer(state, { payload }) {
             console.log(payload);
             const { isCorrect, trueCountry, falseCountry, isFinalQuestion } = payload;

@@ -10,6 +10,7 @@ import SignUp from './components/Authentication/SignUp/SignUp';
 import SignIn from './components/Authentication/SignIn/SignIn';
 import Scores from './components/User/Scores/Scores';
 import Profile from './components/User/Profile/Profile';
+import MatchSummary from './components/User/Scores/Match Summary/MatchSummary';
 import ForgotPassword from './components/Authentication/Forgot Password/ForgotPassword';
 import VerifyEmailCode from './components/Authentication/Verify Email Code/VerifyEmailCode';
 import ChangePassword from './components/Authentication/Change Password/ChangePassword';
@@ -23,7 +24,6 @@ import NonProtectedRoute from './components/Authentication/NonProtectedRoute/Non
 import { useContext, useEffect } from 'react';
 import authContext from './store/auth-context';
 import Badges from './components/User/Badges/Badges/Badges';
-import MatchSummary from './components/Match Summary/MatchSummary';
 
 function App() {
 

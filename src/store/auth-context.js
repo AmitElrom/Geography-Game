@@ -21,6 +21,7 @@ export const AuthContextProvider = ({ children }) => {
     setToken(token);
     sessionStorage.setItem("token", token);
     sessionStorage.setItem("user-data", JSON.stringify(userData));
+    userData.lastMatchLevel && sessionStorage.setItem("last-match-level", userData?.lastMatchLevel);
     setUser(userData)
   };
 
@@ -29,6 +30,7 @@ export const AuthContextProvider = ({ children }) => {
     setUser(null);
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user-data");
+    sessionStorage.getItem("last-match-level") && sessionStorage.removeItem("last-match-level");
   };
 
   const updateUserInfo = (updatedUserData) => {
