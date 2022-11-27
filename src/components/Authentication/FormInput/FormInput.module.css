@@ -17,12 +17,11 @@
   border-radius: 4px;
 }
 
-.input-field:-webkit-autofill,
-.input-field:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
-}
-.input-field[data-autocompleted] {
-  background-color: transparent !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px white inset !important;
 }
 
 .input-field-error {
