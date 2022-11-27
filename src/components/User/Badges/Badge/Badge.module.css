@@ -3,6 +3,8 @@
   box-sizing: border-box;
 }
 
-.badge-img:hover {
-  scale: 1.1;
+.badge-img:hover,
+.badge-img-scale {
+  transform: scale(1.1);
+  cursor: pointer;
 }

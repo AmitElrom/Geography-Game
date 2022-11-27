@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import useHttpAxios from '../../../../hooks/use-http-axios';
+
 import Badge from "../Badge/Badge";
 
 import beginner_badge_img from "../../../../imgs/badges/beginner.png";
@@ -120,21 +122,29 @@ const BADGES_API = [
 const Badges = () => {
   const [badges, setBadges] = useState([]);
 
+  const { error, isLoading, sendRequest: getUserBadges } = useHttpAxios();
+
   useEffect(() => {
-    const transformedBadges = BADGES.map((badge) => {
-      let apiBadge = BADGES_API.find(
-        (apiBadge) => apiBadge.name === badge.name
-      );
-      return {
-        name: badge.name,
-        img: apiBadge.hasBadge ? badge.imgHaveBadge : badge.imgDontHaveBadge,
-        headline: badge.headline,
-        paragraph: badge.paragraph,
-        hasBadge: apiBadge.hasBadge,
-      };
-    });
-    setBadges(transformedBadges);
-  }, []);
+    let token = sessionStorage.getItem("token");
+    getUserBadges({
+      method: "GET",
+      url: "http://localhost:8000/badges-elrom",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    }, (data) => {
+      const transformedBadges = BADGES.map((badge) => {
+        let apiBadge = data.find(badgeAPI => badgeAPI.name === badge.name);
+        return {
+          img: apiBadge.hasBadge ? badge.imgHaveBadge : badge.imgDontHaveBadge,
+          headline: badge.headline,
+          paragraph: badge.paragraph,
+          ...apiBadge
+        };
+      });
+      setBadges(transformedBadges);
+    })
+  }, [getUserBadges]);
 
   const badgesList = badges.map((badge) => {
     return <Badge key={badge.name} {...badge} />;

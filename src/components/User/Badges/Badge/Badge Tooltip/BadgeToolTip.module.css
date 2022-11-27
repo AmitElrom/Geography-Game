@@ -1,0 +1,25 @@
+.tooltip {
+  width: 20%;
+  z-index: 10;
+  position: fixed;
+  margin-bottom: 1rem;
+  border: 0.1rem solid black;
+  border-radius: 5px;
+  padding: 0;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+
+.date-p,
+.duration-p {
+  color: white;
+}
+
+.date-p {
+  margin-bottom: 0.7rem;
+}
+
+.duration-p {
+  margin-top: 1.3rem;
+}
