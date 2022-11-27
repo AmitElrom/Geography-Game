@@ -22,7 +22,7 @@ const CustomToolTip = ({ active, payload, label }) => {
         </h4>
         <table border={1}>
           <thead>
-            <tr>
+            <tr  >
               <th>Country name of the flag you failed with</th>
               <th>Number of fails with this flag</th>
               <th>Country flag</th>
@@ -31,7 +31,7 @@ const CustomToolTip = ({ active, payload, label }) => {
           <tbody>
             {falseCountries?.map((falseCountry) => {
               return (
-                <tr key={falseCountry.countryId}>
+                <tr key={falseCountry.countryId} className={classes.tr} >
                   <td>{falseCountry.countryName}</td>
                   <td>{falseCountry.numOfFails}</td>
                   <td>

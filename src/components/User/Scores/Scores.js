@@ -6,6 +6,8 @@ import UserLevels from "./User Levels/UserLevels";
 import MatchSummary from "./Match Summary/MatchSummary";
 
 const Scores = () => {
+  let level = sessionStorage.getItem("last-match-level");
+
   const [usersWithScores, setUsersWithScores] = useState([]);
   const [userLevelsData, setUserLevelsData] = useState([]);
 
@@ -34,7 +36,7 @@ const Scores = () => {
         userLevelsData={userLevelsData}
         setUserLevelsData={setUserLevelsData}
       />
-      <MatchSummary />
+      {level && <MatchSummary />}
       <ScoresTable scoresTable={usersWithScores} />
     </div>
   );

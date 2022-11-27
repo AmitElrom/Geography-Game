@@ -34,9 +34,6 @@ const MatchSummary = () => {
           setMatchSummaryData(data);
         }
       );
-      setIsLevelLastMatch(true);
-    } else {
-      setIsLevelLastMatch(false);
     }
   }, [getMatchSummaryRequest]);
 
