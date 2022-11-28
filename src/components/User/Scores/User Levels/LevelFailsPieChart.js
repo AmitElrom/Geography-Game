@@ -5,8 +5,8 @@ import CustomToolTip from "./CustomToolTip";
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const LevelFailsPieChart = ({ fails, title }) => {
+
   const renderLabel = (entry) => {
-    console.log(entry);
     return (entry.percent * 100) % 10 === 0
       ? `${(entry.percent * 100).toFixed(0)}%`
       : `${(entry.percent * 100).toFixed(2)}%`;

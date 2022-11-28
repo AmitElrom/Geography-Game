@@ -2,9 +2,7 @@ import React from "react";
 
 import classes from "./CustomToolTip.module.css";
 
-const CustomToolTip = ({ active, payload, label }) => {
-  console.log(active, payload, label);
-
+const CustomToolTip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const failData = payload[0].payload;
     const { countryName, countryFlag, falseCountries } = failData;
