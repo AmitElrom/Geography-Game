@@ -30,25 +30,11 @@ import classes from "./Badges.module.css";
 
 const BADGES = [
   {
-    name: "expert_badge",
-    headline: "Expert Badge",
-    paragraph: "At Expert Level - Answered correctly all questions",
-    imgHaveBadge: expert_badge_img,
-    imgDontHaveBadge: expert_disabled_badge_img,
-  },
-  {
-    name: "hard_badge",
-    headline: "Hard Badge",
-    paragraph: "At Hard Level - Answered correctly all questions",
-    imgHaveBadge: hard_badge_img,
-    imgDontHaveBadge: hard_disabled_badge_img,
-  },
-  {
-    name: "medium_badge",
-    headline: "Medium Badge",
-    paragraph: "At Medium Level - Answered correctly all questions",
-    imgHaveBadge: medium_badge_img,
-    imgDontHaveBadge: medium_disabled_badge_img,
+    name: "beginner_badge",
+    headline: "Beginner Badge",
+    paragraph: "At Beginner Level - Answered correctly all questions",
+    imgHaveBadge: beginner_badge_img,
+    imgDontHaveBadge: beginner_disabled_badge_img,
   },
   {
     name: "amateur_badge",
@@ -58,35 +44,33 @@ const BADGES = [
     imgDontHaveBadge: amateur_disabled_badge_img,
   },
   {
-    name: "beginner_badge",
-    headline: "Beginner Badge",
-    paragraph: "At Beginner Level - Answered correctly all questions",
-    imgHaveBadge: beginner_badge_img,
-    imgDontHaveBadge: beginner_disabled_badge_img,
+    name: "medium_badge",
+    headline: "Medium Badge",
+    paragraph: "At Medium Level - Answered correctly all questions",
+    imgHaveBadge: medium_badge_img,
+    imgDontHaveBadge: medium_disabled_badge_img,
   },
   {
-    name: "expert_and_timer_badge",
-    headline: "Expert and Time Badge",
-    paragraph:
-      "At Expert Level - Answered correctly all questions and did it in less than 1 minute and 30 seconds",
-    imgHaveBadge: expert_and_timer_badge_img,
-    imgDontHaveBadge: expert_and_timer__disabled_badge_img,
+    name: "hard_badge",
+    headline: "Hard Badge",
+    paragraph: "At Hard Level - Answered correctly all questions",
+    imgHaveBadge: hard_badge_img,
+    imgDontHaveBadge: hard_disabled_badge_img,
   },
   {
-    name: "hard_and_timer_badge",
-    headline: "Hard and Time Badge",
-    paragraph:
-      "At Hard Level - Answered correctly all questions and did it in less than 1 minute and 20 seconds",
-    imgHaveBadge: hard_and_timer_badge_img,
-    imgDontHaveBadge: hard_and_timer__disabled_badge_img,
+    name: "expert_badge",
+    headline: "Expert Badge",
+    paragraph: "At Expert Level - Answered correctly all questions",
+    imgHaveBadge: expert_badge_img,
+    imgDontHaveBadge: expert_disabled_badge_img,
   },
   {
-    name: "medium_and_timer_badge",
-    headline: "Medium and Time Badge",
+    name: "beginner_and_timer_badge",
+    headline: "Beginner and Time Badge",
     paragraph:
-      "At Medium Level - Answered correctly all questions and did it in less than 1 minute and 10 seconds",
-    imgHaveBadge: medium_and_timer_badge_img,
-    imgDontHaveBadge: medium_and_timer__disabled_badge_img,
+      "At Beginner Level - Answered correctly all questions and did it in less than 45 seconds",
+    imgHaveBadge: beginner_and_timer_badge_img,
+    imgDontHaveBadge: beginner_and_timer__disabled_badge_img,
   },
   {
     name: "amateur_and_timer_badge",
@@ -97,26 +81,29 @@ const BADGES = [
     imgDontHaveBadge: amateur_and_timer__disabled_badge_img,
   },
   {
-    name: "beginner_and_timer_badge",
-    headline: "Beginner and Time Badge",
+    name: "medium_and_timer_badge",
+    headline: "Medium and Time Badge",
     paragraph:
-      "At Beginner Level - Answered correctly all questions and did it in less than 45 seconds",
-    imgHaveBadge: beginner_and_timer_badge_img,
-    imgDontHaveBadge: beginner_and_timer__disabled_badge_img,
+      "At Medium Level - Answered correctly all questions and did it in less than 1 minute and 10 seconds",
+    imgHaveBadge: medium_and_timer_badge_img,
+    imgDontHaveBadge: medium_and_timer__disabled_badge_img,
   },
-];
-
-const BADGES_API = [
-  { name: "expert_badge", hasBadge: true },
-  { name: "hard_badge", hasBadge: true },
-  { name: "medium_badge", hasBadge: true },
-  { name: "amateur_badge", hasBadge: true },
-  { name: "beginner_badge", hasBadge: true },
-  { name: "expert_and_timer_badge", hasBadge: true },
-  { name: "hard_and_timer_badge", hasBadge: true },
-  { name: "medium_and_timer_badge", hasBadge: true },
-  { name: "amateur_and_timer_badge", hasBadge: true },
-  { name: "beginner_and_timer_badge", hasBadge: true },
+  {
+    name: "hard_and_timer_badge",
+    headline: "Hard and Time Badge",
+    paragraph:
+      "At Hard Level - Answered correctly all questions and did it in less than 1 minute and 20 seconds",
+    imgHaveBadge: hard_and_timer_badge_img,
+    imgDontHaveBadge: hard_and_timer__disabled_badge_img,
+  },
+  {
+    name: "expert_and_timer_badge",
+    headline: "Expert and Time Badge",
+    paragraph:
+      "At Expert Level - Answered correctly all questions and did it in less than 1 minute and 30 seconds",
+    imgHaveBadge: expert_and_timer_badge_img,
+    imgDontHaveBadge: expert_and_timer__disabled_badge_img,
+  },
 ];
 
 const Badges = () => {
