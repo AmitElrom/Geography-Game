@@ -43,6 +43,6 @@
   list-style-type: none;
 }
 
-.numbers-list-item {
+.numbers-list li {
   margin-right: 1rem;
 }

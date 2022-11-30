@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import StopWatch from "../../UI/StopWatch/StopWatch";
 
 import Card from "../../UI/Card/Card";
 
@@ -22,6 +23,13 @@ const Question = () => {
 
   const [question, setQuestion] = useState([]);
   const [answer, setAnswer] = useState({});
+  const [isStopWatchActivated, setIsStopWatchActivated] = useState(false);
+
+  useEffect(() => {
+    if (questionIndex === 0) {
+      setIsStopWatchActivated(true);
+    }
+  }, [questionIndex]);
 
   useEffect(() => {
     if (questions.length === 0) {
@@ -38,13 +46,15 @@ const Question = () => {
   return (
     <Card className={cardClasses}>
       <Card className={classes.numbers}>
-        <div>hello</div>
         <div>
           <ul className={classes["numbers-list"]}>
-            <li className={classes["numbers-list-item"]}>
+            <li>
+              <StopWatch isStopWatchActivated={isStopWatchActivated} />
+            </li>
+            <li>
               No. {questionIndex + 1} / {questionsQuantity}
             </li>
-            <li className={classes["numbers-list-item"]}>Score {score}</li>
+            <li>Score {score}</li>
           </ul>
         </div>
         <div>
