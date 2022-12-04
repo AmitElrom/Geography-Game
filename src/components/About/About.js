@@ -1,4 +1,5 @@
 import React from "react";
+import LinkNewTab from "./LinkNewTab";
 
 import classes from "./About.module.css";
 
@@ -6,7 +7,7 @@ import worldPexelsImg from "../../imgs/pexels-andrea-piacquadio-3769138.jpg";
 
 const About = () => {
   return (
-    <div>
+    <div className={classes.page}>
       <img
         src={worldPexelsImg}
         alt={worldPexelsImg}
@@ -34,16 +35,48 @@ const About = () => {
           <h2>This project is built with the MERN stack:</h2>
           <ul className={classes["stack-list"]}>
             <li>
-              <div>Database</div>
-              <div>MongoDB</div>
+              <button className="button-28">
+                <div>Database</div>
+                <LinkNewTab
+                  className={classes.technology}
+                  data="MongoDB"
+                  href="https://university.mongodb.com/"
+                />
+              </button>
             </li>
             <li>
-              <div>Server</div>
-              <div>Node.js, Express.js</div>
+              <button className="button-28">
+                <div>Server</div>
+                <div>
+                  <LinkNewTab
+                    className={classes.technology}
+                    data="Node.js"
+                    href="https://nodejs.org/en/"
+                  />
+                  <span>, </span>
+                  <LinkNewTab
+                    className={classes.technology}
+                    data="Express.js"
+                    href="https://expressjs.com/"
+                  />
+                  <span>, </span>
+                  <LinkNewTab
+                    className={classes.technology}
+                    data="Mongoose.js"
+                    href="https://mongoosejs.com/"
+                  />
+                </div>
+              </button>
             </li>
             <li>
-              <div>Client</div>
-              <div>React</div>
+              <button className="button-28">
+                <div>Client</div>
+                <LinkNewTab
+                  className={classes.technology}
+                  data="React"
+                  href="https://reactjs.org/docs/getting-started.html"
+                />
+              </button>
             </li>
           </ul>
         </div>

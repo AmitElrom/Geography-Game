@@ -125,7 +125,7 @@ const SignUp = () => {
       <h1>Sign Up</h1>
       {formInputList}
       <div>
-        <button className={classes["button-28"]} type="submit">Sign Up</button>
+        <button className="button-28" type="submit">Sign Up</button>
       </div>
       <div className={classes["sign-in"]}>
         <p>Already have an account? &nbsp;</p>

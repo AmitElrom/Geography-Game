@@ -1,3 +1,6 @@
+.page {
+}
+
 .top-img {
   object-fit: cover;
   width: 100%;
@@ -31,4 +34,29 @@
   display: flex;
   justify-content: space-evenly;
   padding: 0;
+}
+
+.stack-list li button {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 5px;
+  border-color: #7e57c2;
+  background-color: #ffffff;
+  color: #7e57c2;
+}
+
+.stack-list li button:hover {
+  background-color: #7e57c2;
+  color: #ffffff;
+}
+
+.technology {
+  text-decoration: none;
+}
+
+.technology:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
 }

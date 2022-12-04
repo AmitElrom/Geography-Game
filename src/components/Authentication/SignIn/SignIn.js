@@ -83,7 +83,7 @@ const SignIn = () => {
       <h1>Sign In</h1>
       {formInputList}
       <div>
-        <button className={classes["button-28"]} type="submit">Sign In</button>
+        <button className="button-28" type="submit">Sign In</button>
       </div>
       <div className={classes["forgot-password"]}>
         <Link to="/forgot-password">Forgot password?</Link>
