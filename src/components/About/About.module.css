@@ -1,0 +1,21 @@
+.page {
+  margin: 1rem 1.5rem;
+}
+
+.section-1 {
+  margin: 3rem 0;
+  border: 1px solid red;
+  padding: 1rem;
+}
+
+.section-2 {
+  margin: 2rem 0;
+  border: 1px solid green;
+  padding: 1rem;
+}
+
+.section-3 {
+  margin: 1rem 0;
+  border: 1px solid blue;
+  padding: 1rem;
+}
