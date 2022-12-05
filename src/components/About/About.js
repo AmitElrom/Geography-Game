@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { BsGithub } from "react-icons/bs";
+
 import LinkNewTab from "./LinkNewTab";
 
 import classes from "./About.module.css";
@@ -41,17 +43,19 @@ const About = () => {
           <ul className={classes["stack-list"]}>
             <li>
               <button className="button-28">
-                <div>Database</div>
-                <LinkNewTab
-                  className={classes.technology}
-                  data="MongoDB"
-                  href="https://university.mongodb.com/"
-                />
+                <div className={classes["tech-side"]}>Database</div>
+                <div>
+                  <LinkNewTab
+                    className={classes.technology}
+                    data="MongoDB"
+                    href="https://university.mongodb.com/"
+                  />
+                </div>
               </button>
             </li>
             <li>
               <button className="button-28">
-                <div>Server</div>
+                <div className={classes["tech-side"]}>Server</div>
                 <div>
                   <LinkNewTab
                     className={classes.technology}
@@ -71,16 +75,32 @@ const About = () => {
                     href="https://mongoosejs.com/"
                   />
                 </div>
+                <div>
+                  <LinkNewTab
+                    className={classes.technology}
+                    data={<BsGithub className={classes.icon} />}
+                    href="https://github.com/AmitElrom/Geography-Game-Backend.git"
+                  />
+                </div>
               </button>
             </li>
             <li>
               <button className="button-28">
-                <div>Client</div>
-                <LinkNewTab
-                  className={classes.technology}
-                  data="React"
-                  href="https://reactjs.org/docs/getting-started.html"
-                />
+                <div className={classes["tech-side"]}>Client</div>
+                <div>
+                  <LinkNewTab
+                    className={classes.technology}
+                    data="React"
+                    href="https://reactjs.org/docs/getting-started.html"
+                  />
+                </div>
+                <div>
+                  <LinkNewTab
+                    className={classes.technology}
+                    data={<BsGithub className={classes.icon} />}
+                    href="https://github.com/AmitElrom/Geography-Game.git"
+                  />
+                </div>
               </button>
             </li>
           </ul>
@@ -183,7 +203,9 @@ const About = () => {
             options.
           </p>
         </div>
-        <div className={classes["section-1"]}>
+        <div
+          className={`${classes["section-1"]} ${classes["to-left-section"]}`}
+        >
           <p>
             When the user logs in, he navigates automatically to "Main"
             component, which renders the game's rules through the "GameRules"
@@ -217,10 +239,9 @@ const About = () => {
             of "minknown" and "maxknown" and returns a filtered array of the
             countries (type of object).
           </p>
-          <ul>
+          <ul className={classes.list}>
             <li>
-              - Used <LinkNewTab data="redux" href="https://redux.js.org/" />{" "}
-              and{" "}
+              Used <LinkNewTab data="redux" href="https://redux.js.org/" /> and{" "}
               <LinkNewTab
                 data="redux-toolkit"
                 href="https://redux-toolkit.js.org/"
@@ -229,13 +250,13 @@ const About = () => {
               questions' quantity.
             </li>
             <li>
-              - The "questions" variable is an array, and its items are arrays,
+              The "questions" variable is an array, and its items are arrays,
               which represent questions. Each question array consists of four
               items, which are objects, and each one of those objects represents
               a country.
             </li>
             <li>
-              - Sending the desirable questions' quantity and then extracting
+              Sending the desirable questions' quantity and then extracting
               countries randomly four times the desirable questions' quantity.
               If I would want 10 questions than the function will extract 40
               countries. That is done using a{" "}
@@ -255,14 +276,14 @@ const About = () => {
               </ul>
             </li>
             <li>
-              - Every question (array) – holds four countries (objects), and
-              every one of these gets a new field, 'isCountry' (boolean) that
+              Every question (array) – holds four countries (objects), and every
+              one of these gets a new field, 'isCountry' (boolean) that
               represents the right country according to the flag. Hence, one
               object includes 'isCountry' with a true value, and the other three
               hold a false value.
             </li>
             <li>
-              - Then, I realized the function in the redux-toolkit slice has a
+              Then, I realized the function in the redux-toolkit slice has a
               problem, I am actually limited in the quantity of the questions
               because every time I execute the function I am extracting the
               desirable questions' quantity times four. That means I can only
@@ -270,11 +291,11 @@ const About = () => {
               quantity divided by four.
             </li>
             <li>
-              - I changed the API in such a way it will return me an object
-              which contains two arrays:
+              I changed the API in such a way it will return me an object which
+              contains two arrays:
               <ul>
                 <li>
-                  o 'potentialTrueCountries' – an array with all the countries
+                  'potentialTrueCountries' – an array with all the countries
                   that are in the{" "}
                   <LinkNewTab
                     data="query parameters"
@@ -283,7 +304,7 @@ const About = () => {
                   range of "minwidth" and "maxwidth".
                 </li>
                 <li>
-                  o 'potentialFalseCountries' – an array with all the countries
+                  'potentialFalseCountries' – an array with all the countries
                   that does not stand in the{" "}
                   <LinkNewTab
                     data="query parameters"
@@ -299,18 +320,18 @@ const About = () => {
                   value.
                 </li>
                 <li>
-                  o All the non-randomly selected countries add up to the
+                  All the non-randomly selected countries add up to the
                   'potentialFalseCountries' array.
                 </li>
                 <li>
                   {" "}
-                  o For each true country object we create an array which
+                  For each true country object we create an array which
                   represents a question. It gets three randomly selected country
                   objects with a field of 'isCountry' with a false value.
                 </li>
                 <li>
-                  o Then the questions array is saved in the redux store. -
-                  Later on, I decided it would be smarter to transmit all the
+                  Then the questions array is saved in the redux store. - Later
+                  on, I decided it would be smarter to transmit all the
                   functionality done in a{" "}
                   <LinkNewTab
                     data="redux-toolkit reducer"
@@ -319,7 +340,7 @@ const About = () => {
                   to a function that will do the same on the server.
                 </li>
                 <li>
-                  o This function does almost the same functionality as in the
+                  This function does almost the same functionality as in the
                   client. It returns an array that represents the questions.
                   Evert question item is an array of four objects, every object
                   item representing an option for the particular question, so
@@ -332,7 +353,7 @@ const About = () => {
         </div>
         <div className={classes["section-1"]}>
           <h2>Similarity</h2>
-          <div>
+          <div className={classes["to-left-section"]}>
             <p>
               I tried to think about how to make the harder difficulty levels
               more complicated for the user.
@@ -341,48 +362,52 @@ const About = () => {
               Many of the countries' flags are very similar, some have small
               similarities and some have more.
             </p>
-            <p>
-              Therefore, I added two fields to each country in the countries
-              array in the "countries.json" file – "similarity1" and
-              "similarity2". Both of them hold an array of strings and every
-              string is actually representing another country's "id" field, its
-              flag is similar to the country mentioned above flag. "similarity1"
-              holds the ids of the countries, which their flag are the most
-              similar, and "similarity2" holds the less similar ones.
-            </p>
-            <p>
-              So, I inserted another optional{" "}
-              <LinkNewTab
-                data="query parameter"
-                href="https://masteringjs.io/tutorials/express/query-parameters"
-              />{" "}
-              to the "GET" function in the "/countries-elrom"{" "}
-              <LinkNewTab
-                data="route"
-                href="https://expressjs.com/en/guide/routing.html"
-              />{" "}
-              , named "similarities", and it accepts the number 1 or 2.
-            </p>
-            <p>
-              If "similarities" accepts the value of 1, a false country flag
-              option is being chosen - one country's id field from both
-              country's object's fields arrays, "similarity1" and "similarity2".
-            </p>
-            <p>
-              If "similarities" accepts the value of 2, a false country option
-              is being chosen - one country's id field from the country's object
-              field array – "similarity1" and another false country option is
-              being chosen from all the ids the both country object's array
-              field of "similarity1" and "similarity2", not including the first
-              chosen false country option.
-            </p>
-            <p>
-              This enables on the harder difficulty levels to get at each
-              question false country names options that their flag is similar to
-              the appearing flag of the true country option, what is making it
-              harder for the player to choose the right country name option for
-              the flag.
-            </p>
+            <div>
+              <p>
+                Therefore, I added two fields to each country in the countries
+                array in the "countries.json" file – "similarity1" and
+                "similarity2". Both of them hold an array of strings and every
+                string is actually representing another country's "id" field,
+                its flag is similar to the country mentioned above flag.
+                "similarity1" holds the ids of the countries, which their flag
+                are the most similar, and "similarity2" holds the less similar
+                ones.
+              </p>
+              <p>
+                So, I inserted another optional{" "}
+                <LinkNewTab
+                  data="query parameter"
+                  href="https://masteringjs.io/tutorials/express/query-parameters"
+                />{" "}
+                to the "GET" function in the "/countries-elrom"{" "}
+                <LinkNewTab
+                  data="route"
+                  href="https://expressjs.com/en/guide/routing.html"
+                />{" "}
+                , named "similarities", and it accepts the number 1 or 2.
+              </p>
+              <p>
+                If "similarities" accepts the value of 1, a false country flag
+                option is being chosen - one country's id field from both
+                country's object's fields arrays, "similarity1" and
+                "similarity2".
+              </p>
+              <p>
+                If "similarities" accepts the value of 2, a false country option
+                is being chosen - one country's id field from the country's
+                object field array – "similarity1" and another false country
+                option is being chosen from all the ids the both country
+                object's array field of "similarity1" and "similarity2", not
+                including the first chosen false country option.
+              </p>
+              <p>
+                This enables on the harder difficulty levels to get at each
+                question false country names options that their flag is similar
+                to the appearing flag of the true country option, what is making
+                it harder for the player to choose the right country name option
+                for the flag.
+              </p>
+            </div>
           </div>
         </div>
         <div className={classes["section-1"]}>

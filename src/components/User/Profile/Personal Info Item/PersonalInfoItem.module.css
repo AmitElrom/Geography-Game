@@ -1,0 +1,8 @@
+.item {
+  font-size: calc(var(--content-font-size) * 1.5);
+  margin: 1.3rem 0;
+}
+
+.item .title {
+  font-weight: 600;
+}

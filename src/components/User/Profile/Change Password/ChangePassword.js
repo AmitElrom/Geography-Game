@@ -65,6 +65,7 @@ const ChangePassword = ({ setToUpdatePassword }) => {
       <FormInput
         key={item.name}
         name={item.name}
+        placeholder={item.placeholder}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         error={

@@ -75,7 +75,7 @@ code {
 .paragraph {
   margin: 1rem 2rem;
   font-size: var(--content-font-size);
-  line-height: 1.8rem;
+  line-height: 2.2rem;
   text-align: justify;
   text-align-last: center;
 }
@@ -85,7 +85,15 @@ code {
   --border-radius: 7px;
   --color-nav: #88dfdf;
   --purple: #7e57c2;
+  --blue: rgb(99, 131, 220);
+  --red: red;
   --border-radius1: 14px;
   --content-font-size: 18px;
   --nav-height: 13vh;
+  --main-margin-top: 1rem;
+  --expert: #fee101;
+  --hard: #d7d7d7;
+  --medium: #d9b033;
+  --amateur: #a77044;
+  --beginner: #824a02;
 }

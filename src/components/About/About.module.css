@@ -1,10 +1,32 @@
 .page {
+  margin-top: calc(0rem - (var(--main-margin-top)));
+  line-height: 200%;
+  margin: 1rem 0;
+  padding-bottom: 1rem;
+}
+
+ul li::marker {
+  color: var(--blue);
+}
+
+ul li ul li::marker {
+  color: var(--red);
 }
 
 .top-img {
   object-fit: cover;
   width: 100%;
   height: 40vh;
+}
+
+.list li {
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.list li ul li {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .section-1 {
@@ -16,14 +38,30 @@
 
 .section-2 {
   margin: 2rem 0;
-  border: 1px solid green;
+  border: 1px solid var(--red);
   padding: 1rem;
+  border-radius: var(--border-radius);
 }
 
 .section-3 {
   margin: 1rem 0;
-  border: 1px solid blue;
+  border: 1px solid var(--blue);
   padding: 1rem;
+  border-radius: var(--border-radius);
+}
+
+.to-right-section {
+  text-align: justify;
+  text-align: right;
+}
+
+.to-left-section {
+  text-align: justify;
+  text-align-last: left;
+}
+
+.justify-section {
+  text-align: justify;
 }
 
 .story-set-img {
@@ -41,16 +79,27 @@
 }
 
 .stack-list li button {
+  width: 10rem;
+  height: 10rem;
   font-weight: 600;
   padding: 1rem;
   border-color: var(--purple);
   background-color: #ffffff;
   color: var(--purple);
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
 
 .stack-list li button:hover {
   background-color: var(--purple);
   color: #ffffff;
+}
+
+.stack-list li button .tech-side {
+  font-size: 1.3rem;
+}
+
+.stack-list li button div {
+  margin: 0.7rem 0;
 }
 
 .technology {
@@ -61,6 +110,11 @@
 .technology:hover {
   text-decoration: underline;
   text-underline-offset: 0.2rem;
+  color: white;
+}
+
+.icon:hover {
+  scale: 1.5;
 }
 
 .link {

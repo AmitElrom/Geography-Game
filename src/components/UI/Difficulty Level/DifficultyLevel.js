@@ -1,22 +1,19 @@
 import classes from './DifficultyLevel.module.css';
 
-const DifficultyLevel = ({ onClick, onMouseEnter, onMouseLeave, className, size, children: level }) => {
+const DifficultyLevel = ({ onClick, onMouseEnter, onMouseLeave, className, children: level }) => {
 
-    const classNames = `${classes.level} ${className}`;
+    const classNames = `${className} ${classes.level} button-28`;
 
     return (
-        <div
+        <input
+            type="button"
+            className={classNames}
+            level={level.toLowerCase()}
             onClick={onClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            className={classNames}
-            style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                lineHeight: `${size}px`,
-            }} >
-            {level}
-        </div>
+            value={level}
+        />
     )
 }
 

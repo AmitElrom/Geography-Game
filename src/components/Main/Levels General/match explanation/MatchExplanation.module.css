@@ -3,9 +3,9 @@
   border-radius: var(--border-radius);
   box-sizing: border-box;
   padding: 1rem;
-  /* background-color: rgba(220, 220, 220, 0.4); */
   background-color: white;
   color: var(--purple);
+  height: 9rem;
 }
 
 .h-explanation {

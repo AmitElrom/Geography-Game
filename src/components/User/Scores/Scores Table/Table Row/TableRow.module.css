@@ -1,5 +1,5 @@
 .tr-user {
-  background-color: blue;
+  background-color: var(--blue);
 }
 
 .tr:hover,

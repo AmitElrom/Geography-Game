@@ -39,7 +39,7 @@ const Navigation = () => {
   return (
     <header className={classes.header}>
       <div className={classes["game-name"]}>
-        <Link to={isLoggedIn ? "/welcome" : "/sign-in"}>Flags Game</Link>
+        <Link className="button-28" to={isLoggedIn ? "/welcome" : "/sign-in"}>Flags Game</Link>
       </div>
       <nav className={classes.nav}>
         <ul>
@@ -74,7 +74,7 @@ const Navigation = () => {
           )}
         </ul>
       </nav>
-    </header>
+    </header >
   );
 };
 
