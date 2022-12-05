@@ -4,6 +4,7 @@ import LinkNewTab from "./LinkNewTab";
 import classes from "./About.module.css";
 
 import worldPexelsImg from "../../imgs/pexels-andrea-piacquadio-3769138.jpg";
+import manOnEarthStorysetImg from "../../imgs/Study abroad-bro.png";
 
 const About = () => {
   return (
@@ -81,11 +82,22 @@ const About = () => {
           </ul>
         </div>
         <div className={classes["section-1"]}>
+          <img
+            className={classes["story-set-img"]}
+            src={manOnEarthStorysetImg}
+            alt="Study abroad bro png"
+          />
           <p>
-            I started this project by finding an external API -{" "}
-            <a href="https://restcountries.com/v3.1/all">
-              https://restcountries.com/v3.1/all
-            </a>
+            I started this project by finding an{" "}
+            <LinkNewTab
+              data="external API"
+              href="https://medium.com/@khallilbailey/internal-vs-external-apis-2e54ef28659a"
+            />{" "}
+            -{" "}
+            <LinkNewTab
+              data="https://restcountries.com/v3.1/all"
+              href="https://restcountries.com/v3.1/all"
+            />
             .
           </p>
           <p>
@@ -97,9 +109,10 @@ const About = () => {
           </p>
           <p>
             I used another external source –{" "}
-            <a href="https://www.sporcle.com/games/RobPro/flags-of-the-world-progressively-harder">
-              https://www.sporcle.com/games/RobPro/flags-of-the-world-progressively-harder
-            </a>
+            <LinkNewTab
+              data="https://www.sporcle.com/games/RobPro/flags-of-the-world-progressively-harder"
+              href="https://www.sporcle.com/games/RobPro/flags-of-the-world-progressively-harder"
+            />
             . A flag quiz that contains all countries' flags and is ordered
             based on how known it is.
           </p>
@@ -121,28 +134,49 @@ const About = () => {
             (string), and 'flagKnown' (number).
           </p>
           <p>
-            First of all, I created a the "/countries-elrom" route with "GET"
-            function. That gets the countries array from the "countries.json"
-            file. Later on, I wanted to create various quizzes with different
-            difficulty levels. Inserted two optional query parameters to the API
-            I build – 'minknown' and 'maxknown' (type of numbers). These queries
-            enable filtering the countries array before it gets to the client,
-            and return only countries (objects) that whose field of 'flagKnown'
-            (number) is in the range created by the queries – 'minknown' and
-            'maxknown'. Later, I added another query parameter named "quantity"
-            (type of number) which randomly chooses the same quantity of
-            countries from the filtered countries' array according to the
-            "minknown" and "maxknown" query parameters.
+            First of all, I created a the "/countries-elrom"{" "}
+            <LinkNewTab
+              data="route"
+              href="https://expressjs.com/en/guide/routing.html"
+            />{" "}
+            with "GET" function. That gets the countries array from the
+            "countries.json" file. Later on, I wanted to create various quizzes
+            with different difficulty levels. Inserted two optional{" "}
+            <LinkNewTab
+              data="query parameters"
+              href="https://masteringjs.io/tutorials/express/query-parameters"
+            />{" "}
+            to the API I build – 'minknown' and 'maxknown' (type of numbers).
+            These queries enable filtering the countries array before it gets to
+            the client, and return only countries (objects) that whose field of
+            'flagKnown' (number) is in the range created by the queries –
+            'minknown' and 'maxknown'. Later, I added another{" "}
+            <LinkNewTab
+              data="query parameter"
+              href="https://masteringjs.io/tutorials/express/query-parameters"
+            />{" "}
+            named "quantity" (type of number) which randomly chooses the same
+            quantity of countries from the filtered countries' array according
+            to the "minknown" and "maxknown"{" "}
+            <LinkNewTab
+              data="query parameters"
+              href="https://masteringjs.io/tutorials/express/query-parameters"
+            />{" "}
+            .
           </p>
           <p>
             I started building the client with React. The app was built with a
             main page - "Layout" component, that renders a navigation bar -
             "Navigation" component, and a "main" HTML element that renders the
-            app's content with its different routes through the react-router-dom
-            version 6. The navigation bar holds three options – the default two
-            are "Geography Game" and "About", and an optional one – the user's
-            name, which toggles a menu with "Score", "Profile", "Badges" and
-            "Log Out" options.
+            app's content with its different routes through the{" "}
+            <LinkNewTab
+              data="react-router version 6"
+              href="https://reactrouter.com/en/main/start/tutorial"
+            />{" "}
+            . The navigation bar holds three options – the default two are
+            "Geography Game" and "About", and an optional one – the user's name,
+            which toggles a menu with "Score", "Profile", "Badges" and "Log Out"
+            options.
           </p>
         </div>
         <div className={classes["section-1"]}>
@@ -156,16 +190,35 @@ const About = () => {
           <p>
             By clicking the upper difficulty level buttons, the user chooses his
             level to play with. By clicking the "start playing" button, a "GET"
-            request in being triggered to the server using a self-built custom
-            hook named "useHttpAxios" for every http request on the app, through
-            the API with the route of "/countries-elrom", with the optional
-            query parameters of "minknown" and "maxknown" and returns a filtered
-            array of the countries (type of object).
+            request in being triggered to the server using a self-built{" "}
+            <LinkNewTab
+              data="custom hook"
+              href="https://reactjs.org/docs/hooks-custom.html"
+            />{" "}
+            named "useHttpAxios" for every http request on the app, through the
+            API with the{" "}
+            <LinkNewTab
+              data="routes"
+              href="https://expressjs.com/en/guide/routing.html"
+            />{" "}
+            of "/countries-elrom", with the optional{" "}
+            <LinkNewTab
+              data="query parameters"
+              href="https://masteringjs.io/tutorials/express/query-parameters"
+            />{" "}
+            of "minknown" and "maxknown" and returns a filtered array of the
+            countries (type of object).
           </p>
           <ul>
             <li>
-              - Used redux and redux-toolkit to build global variables that hold
-              the questions' array and the questions' quantity.
+              - Used <LinkNewTab data="redux" href="https://redux.js.org/" />{" "}
+              and{" "}
+              <LinkNewTab
+                data="redux-toolkit"
+                href="https://redux-toolkit.js.org/"
+              />{" "}
+              to build global variables that hold the questions' array and the
+              questions' quantity.
             </li>
             <li>
               - The "questions" variable is an array, and its items are arrays,
@@ -209,13 +262,21 @@ const About = () => {
               <ul>
                 <li>
                   o 'potentialTrueCountries' – an array with all the countries
-                  that are in the query parameters range of "minwidth" and
-                  "maxwidth".
+                  that are in the{" "}
+                  <LinkNewTab
+                    data="query parameters"
+                    href="https://masteringjs.io/tutorials/express/query-parameters"
+                  />{" "}
+                  range of "minwidth" and "maxwidth".
                 </li>
                 <li>
                   o 'potentialFalseCountries' – an array with all the countries
-                  that does not stand in the query parameters range of
-                  "minwidth" and "maxwidth".
+                  that does not stand in the{" "}
+                  <LinkNewTab
+                    data="query parameters"
+                    href="https://masteringjs.io/tutorials/express/query-parameters"
+                  />{" "}
+                  range of "minwidth" and "maxwidth".
                 </li>
                 <li>
                   Then, I changed the function in the slice. This function will
@@ -273,9 +334,17 @@ const About = () => {
               similar, and "similarity2" holds the less similar ones.
             </p>
             <p>
-              So, I inserted another optional query parameter to the "GET"
-              function in the "/countries-elrom" route, named "similarities",
-              and it accepts the number 1 or 2.
+              So, I inserted another optional{" "}
+              <LinkNewTab
+                data="query parameter"
+                href="https://masteringjs.io/tutorials/express/query-parameters"
+              />{" "}
+              to the "GET" function in the "/countries-elrom"{" "}
+              <LinkNewTab
+                data="route"
+                href="https://expressjs.com/en/guide/routing.html"
+              />{" "}
+              , named "similarities", and it accepts the number 1 or 2.
             </p>
             <p>
               If "similarities" accepts the value of 1, a false country flag
@@ -305,16 +374,32 @@ const About = () => {
             <h3>Server</h3>
             <div>
               <p>
-                On the same time, I built the "/auth-elrom" route, which
-                includes functions for signing in, signing up, updating the user
-                data, changing his or her password, sending a verification code
-                to the user's email, and verifying this code.
+                On the same time, I built the "/auth-elrom"{" "}
+                <LinkNewTab
+                  data="route"
+                  href="https://expressjs.com/en/guide/routing.html"
+                />{" "}
+                , which includes functions for signing in, signing up, updating
+                the user data, changing his or her password, sending a
+                verification code to the user's email, and verifying this code.
               </p>
               <p>
-                I used "jsonwebtoken" for signing a token while signing up and
-                signing in, "bcryptjs" for encoding and decoding the password,
-                and "nodemailer" for sending the code verification to the user's
-                email.
+                I used{" "}
+                <LinkNewTab
+                  data="jsonwebtoken"
+                  href="https://www.npmjs.com/package/jsonwebtoken"
+                />{" "}
+                for signing a token while signing up and signing in,{" "}
+                <LinkNewTab
+                  data="bcryptjs"
+                  href="https://www.npmjs.com/package/bcryptjs"
+                />{" "}
+                for encoding and decoding the password, and{" "}
+                <LinkNewTab
+                  data="nodemailer"
+                  href="https://nodemailer.com/about/"
+                />{" "}
+                for sending the code verification to the user's email.
               </p>
               <p>
                 Almost every function in the server has a middleware function
@@ -328,9 +413,17 @@ const About = () => {
             <h3>Client</h3>
             <div>
               <p>
-                Using context I create "authContext" and an
-                "AuthContextProvider" provider component, which is wrapping the
-                "App" component.
+                Using{" "}
+                <LinkNewTab
+                  data="context"
+                  href="https://reactjs.org/docs/context.html"
+                />{" "}
+                I create "authContext" and an "AuthContextProvider"{" "}
+                <LinkNewTab
+                  data="provider"
+                  href="https://reactjs.org/docs/context.html#contextprovider"
+                />{" "}
+                component, which is wrapping the "App" component.
               </p>
               <p>
                 In the user's login, a user's token is returned to the client
@@ -395,12 +488,16 @@ const About = () => {
             </p>
             <p>
               In that component, appears on the top – a stopwatch that was built
-              using a self-built custom hook "useStopWatch", the number of the
-              question (from the field "questionsQuantity" field using
-              useSelector) from the number of the total question (from the field
-              "questionIndex" field using useSelector), and the difficulty level
-              of the particular match (from the field "difficultyLevel" field
-              using useSelector).
+              using a self-built{" "}
+              <LinkNewTab
+                data="custom hook"
+                href="https://reactjs.org/docs/hooks-custom.html"
+              />{" "}
+              "useStopWatch", the number of the question (from the field
+              "questionsQuantity" field using useSelector) from the number of
+              the total question (from the field "questionIndex" field using
+              useSelector), and the difficulty level of the particular match
+              (from the field "difficultyLevel" field using useSelector).
             </p>
             <p>
               In its middle, it renders the "Flag" component, which presents the
@@ -458,12 +555,16 @@ const About = () => {
             </p>
             <p>
               But, if this is the player's final question, an http "PATCH"
-              request is sent to the server with the route of "/score-elrom",
-              and a body with fields of the difficulty level, the start time and
-              the end time of the match with milliseconds, the match's score,
-              and "questionsToServer" array. That request, updated the player's
-              data, at the appropriate level field at this score field (type of
-              object).
+              request is sent to the server with the{" "}
+              <LinkNewTab
+                data="route"
+                href="https://expressjs.com/en/guide/routing.html"
+              />{" "}
+              of "/score-elrom", and a body with fields of the difficulty level,
+              the start time and the end time of the match with milliseconds,
+              the match's score, and "questionsToServer" array. That request,
+              updated the player's data, at the appropriate level field at this
+              score field (type of object).
             </p>
             <p>
               As long as "Question" component is rendered, a check is made at
@@ -485,8 +586,13 @@ const About = () => {
               </p>
               <p>
                 On the first render of this component, an http "GET" request is
-                done to the route "/score-elrom/game-summary" with one parameter
-                of the level the player played in his last match.
+                done to the{" "}
+                <LinkNewTab
+                  data="route"
+                  href="https://expressjs.com/en/guide/routing.html"
+                />{" "}
+                "/score-elrom/game-summary" with one parameter of the level the
+                player played in his last match.
               </p>
               <p>
                 This request return some data and analysis about his last match
@@ -518,10 +624,14 @@ const About = () => {
                 </p>
                 <p>
                   At the first render of this component, using useEffect, an
-                  http "GET" request is sent to the route of "/score-elrom".
-                  This request returns multiple data and analyses on each of the
-                  user's levels and an array of the users with their scores by
-                  order.
+                  http "GET" request is sent to the{" "}
+                  <LinkNewTab
+                    data="route"
+                    href="https://expressjs.com/en/guide/routing.html"
+                  />{" "}
+                  of "/score-elrom". This request returns multiple data and
+                  analyses on each of the user's levels and an array of the
+                  users with their scores by order.
                 </p>
                 <p>
                   <strong>"MatchSummary"</strong> is already as mentioned above.
@@ -603,8 +713,13 @@ const About = () => {
                 </p>
                 <p>
                   At this component, on his first render cycle, an http "GET"
-                  request is sent to the route "/badges-elrom" and returns an
-                  array of objects of the user's badges.
+                  request is sent to the{" "}
+                  <LinkNewTab
+                    data="route"
+                    href="https://expressjs.com/en/guide/routing.html"
+                  />{" "}
+                  "/badges-elrom" and returns an array of objects of the user's
+                  badges.
                 </p>
                 <p>
                   From this response, we get data on every badge, if the user
@@ -637,14 +752,23 @@ const About = () => {
                 "UpdatePersonalInfo" renders a form with a button and inputs
                 with already existing values of email, first name and last name.
                 In this component, the user can update his personal info by
-                sending an http "PUT" request to the route of "/auth-elrom".
+                sending an http "PUT" request to the{" "}
+                <LinkNewTab
+                  data="route"
+                  href="https://expressjs.com/en/guide/routing.html"
+                />{" "}
+                of "/auth-elrom".
               </p>
               <p>
                 "ChangePassword" renders a form with a button and two password
                 inputs (second for verification), where the user can update his
                 password. In this component, the user can update his password by
-                sending an http "PUT" request to the route of
-                "/auth-elrom/change-password".
+                sending an http "PUT" request to the{" "}
+                <LinkNewTab
+                  data="route"
+                  href="https://expressjs.com/en/guide/routing.html"
+                />{" "}
+                of "/auth-elrom/change-password".
               </p>
             </div>
           </div>
