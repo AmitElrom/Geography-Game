@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import LinkNewTab from "./LinkNewTab";
 
 import classes from "./About.module.css";
@@ -6,7 +6,11 @@ import classes from "./About.module.css";
 import worldPexelsImg from "../../imgs/pexels-andrea-piacquadio-3769138.jpg";
 import manOnEarthStorysetImg from "../../imgs/Study abroad-bro.png";
 
+import { scrollingTop } from "../../utils/utils-react";
+
 const About = () => {
+  const matchSummaryRef = useRef();
+
   return (
     <div className={classes.page}>
       <img
@@ -189,8 +193,12 @@ const About = () => {
           </p>
           <p>
             By clicking the upper difficulty level buttons, the user chooses his
-            level to play with. By clicking the "start playing" button, a "GET"
-            request in being triggered to the server using a self-built{" "}
+            level to play with. By clicking the "start playing" button, an{" "}
+            <LinkNewTab
+              data="http 'GET' request"
+              href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"
+            />{" "}
+            in being triggered to the server using a self-built{" "}
             <LinkNewTab
               data="custom hook"
               href="https://reactjs.org/docs/hooks-custom.html"
@@ -230,9 +238,14 @@ const About = () => {
               - Sending the desirable questions' quantity and then extracting
               countries randomly four times the desirable questions' quantity.
               If I would want 10 questions than the function will extract 40
-              countries. That is done using a helper function named
-              "getMeRandomElements", which gets 2 parameters – an array and a
-              desirable number, and returns an object that contains 3 arrays:
+              countries. That is done using a{" "}
+              <LinkNewTab
+                data="helper function"
+                href="https://www.geeksforgeeks.org/javascript-helper-methods/"
+              />{" "}
+              named "getMeRandomElements", which gets 2 parameters – an array
+              and a desirable number, and returns an object that contains 3
+              arrays:
               <ul>
                 <li>An array with all the randomly selected items.</li>
                 <li>
@@ -298,8 +311,12 @@ const About = () => {
                 <li>
                   o Then the questions array is saved in the redux store. -
                   Later on, I decided it would be smarter to transmit all the
-                  functionality done in a redux-toolkit reducer to a function
-                  that will do the same on the server.
+                  functionality done in a{" "}
+                  <LinkNewTab
+                    data="redux-toolkit reducer"
+                    href="https://redux-toolkit.js.org/api/createslice#reducers"
+                  />{" "}
+                  to a function that will do the same on the server.
                 </li>
                 <li>
                   o This function does almost the same functionality as in the
@@ -389,7 +406,12 @@ const About = () => {
                   data="jsonwebtoken"
                   href="https://www.npmjs.com/package/jsonwebtoken"
                 />{" "}
-                for signing a token while signing up and signing in,{" "}
+                for signing a{" "}
+                <LinkNewTab
+                  data="token"
+                  href="https://auth0.com/docs/secure/tokens/json-web-tokens"
+                />{" "}
+                while signing up and signing in,{" "}
                 <LinkNewTab
                   data="bcryptjs"
                   href="https://www.npmjs.com/package/bcryptjs"
@@ -427,15 +449,29 @@ const About = () => {
               </p>
               <p>
                 In the user's login, a user's token is returned to the client
-                and saved on the browser's session storage.
+                and saved on the browser's{" "}
+                <LinkNewTab
+                  data="session storage"
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage"
+                />{" "}
+                .
               </p>
               <p>
-                The existence of the token conditionally set the "isLoggedIn"
-                variable in the context. "isLoggedIn" enabled to create a
-                special component - "ProtectedRoute" that checks if there is a
-                token and the user is actually logged in. And only if he is
-                logged in those routes and matching components can be accessed
-                and rendered.
+                The existence of the{" "}
+                <LinkNewTab
+                  data="token"
+                  href="https://auth0.com/docs/secure/tokens/json-web-tokens"
+                />{" "}
+                conditionally set the "isLoggedIn" variable in the context.
+                "isLoggedIn" enabled to create a special component -
+                "ProtectedRoute" that checks if there is a{" "}
+                <LinkNewTab
+                  data="token"
+                  href="https://auth0.com/docs/secure/tokens/json-web-tokens"
+                />{" "}
+                and the user is actually logged in. And only if he is logged in
+                those routes and matching components can be accessed and
+                rendered.
               </p>
             </div>
           </div>
@@ -444,13 +480,23 @@ const About = () => {
           <h2>Forms</h2>
           <div>
             <p>
-              In every form in this app, I used "formik", a third-party library
+              In every form in this app, I used{" "}
+              <LinkNewTab
+                data="Formik"
+                href="https://formik.org/docs/overview"
+              />{" "}
+              , an{" "}
+              <LinkNewTab
+                data="open source library"
+                href="https://www.heavy.ai/technical-glossary/open-source-library"
+              />{" "}
               for handling forms.
             </p>
             <p>
-              Additionally, in some of the forms, I used "Yup", which is is
-              another third-party library and a schema builder for value parsing
-              and validation.
+              Additionally, in some of the forms, I used{" "}
+              <LinkNewTab data="Yup" href="https://www.npmjs.com/package/yup" />
+              , which is another open source library and a schema builder for
+              value parsing and validation.
             </p>
           </div>
         </div>
@@ -459,32 +505,57 @@ const About = () => {
           <div>
             <p>
               On the "Main" component, in the child component "Levels", the user
-              chooses his desirable level, which dispatches action and activates
-              the "startPlaying" reducer at the "countries slice" and sets the –
-              "isStartPlaying", "difficultyLevel" and "startTime" fields at the
-              initial state slice. Then when he clicks on the "start playing"
-              button for starting the current match.
+              chooses his desirable level, which{" "}
+              <LinkNewTab
+                data="dispatches"
+                href="https://react-redux.js.org/api/hooks#usedispatch"
+              />{" "}
+              action and activates the "startPlaying"{" "}
+              <LinkNewTab
+                data="reducer"
+                href="https://redux-toolkit.js.org/api/createslice#reducers"
+              />{" "}
+              at the "countries slice" and sets the – "isStartPlaying",
+              "difficultyLevel" and "startTime" fields at the{" "}
+              <LinkNewTab
+                data="initial state slice"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              . Then when he clicks on the "start playing" button for starting
+              the current match.
             </p>
             <p>
-              That is done by sending an http "GET" request to the server with
-              parameters of "quantity" – number of questions, "minwidth" – the
-              minimum "flagKnown" field of a country object from
-              "countries.json" file, "maxwidth" – the maximum "flagKnown" field
-              of a country object from "countries.json" file and "similarities"
-              – as described above in "Similarity" section.
+              That is done by sending an{" "}
+              <LinkNewTab
+                data="http 'GET' request"
+                href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"
+              />{" "}
+              to the server with parameters of "quantity" – number of questions,
+              "minwidth" – the minimum "flagKnown" field of a country object
+              from "countries.json" file, "maxwidth" – the maximum "flagKnown"
+              field of a country object from "countries.json" file and
+              "similarities" – as described above in "Similarity" section.
             </p>
             <p>
               After sending the request, all the data that return from the
               request - the questions and their quantity are saved respectively
-              on the redux-toolkit slice "countries slice" on the initial state
+              on the redux-toolkit slice "countries slice" on the{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
               fields of "questions" and "questionsQuantity".
             </p>
           </div>
           <div className={classes["section-2"]}>
             <h3>Question</h3>
             <p>
-              The app navigates programmatically to the "/question" route, which
-              renders the "Question" component.
+              The app{" "}
+              <LinkNewTab
+                data="navigates programmatically"
+                href="https://reactrouter.com/en/main/hooks/use-navigate"
+              />{" "}
+              to the "/question" route, which renders the "Question" component.
             </p>
             <p>
               In that component, appears on the top – a stopwatch that was built
@@ -494,10 +565,24 @@ const About = () => {
                 href="https://reactjs.org/docs/hooks-custom.html"
               />{" "}
               "useStopWatch", the number of the question (from the field
-              "questionsQuantity" field using useSelector) from the number of
-              the total question (from the field "questionIndex" field using
-              useSelector), and the difficulty level of the particular match
-              (from the field "difficultyLevel" field using useSelector).
+              "questionsQuantity" field using{" "}
+              <LinkNewTab
+                data="useSelector"
+                href="https://react-redux.js.org/api/hooks#useselector"
+              />{" "}
+              ) from the number of the total question (from the field
+              "questionIndex" field using{" "}
+              <LinkNewTab
+                data="useSelector"
+                href="https://react-redux.js.org/api/hooks#useselector"
+              />{" "}
+              ), and the difficulty level of the particular match (from the
+              field "difficultyLevel" field using{" "}
+              <LinkNewTab
+                data="useSelector"
+                href="https://react-redux.js.org/api/hooks#useselector"
+              />{" "}
+              ).
             </p>
             <p>
               In its middle, it renders the "Flag" component, which presents the
@@ -509,53 +594,119 @@ const About = () => {
               "Options" and "Option" components.
             </p>
             <p>
-              In the "Options" component, there is a helper function, named
-              "shuffleArray", that accepts as argument an array of the
+              In the "Options" component, there is a{" "}
+              <LinkNewTab
+                data="helper function"
+                href="https://www.geeksforgeeks.org/javascript-helper-methods/"
+              />{" "}
+              , named "shuffleArray", that accepts as argument an array of the
               particular question's options When the player chooses an option,
               the option is checked. If the country name in the option the
               player chose belongs to the flag above, the player is correct. If
               the player chose the correct option, this option will change its
-              background to green and it will dispatch an action named
-              "caseTrueAnswer", which will update some of the slice's initial
-              state fields – "score" will increase by one, a question object
-              will be created with the field of "isCorrect" that holds "true"
-              and a "trueCountry" field that holds correct country's id.
-              Eventually, this question object is pushed to the slice's initial
-              state field of "questionsToServer". If the player chose the wrong
+              background to green and it will{" "}
+              <LinkNewTab
+                data="dispatch"
+                href="https://react-redux.js.org/api/hooks#usedispatch"
+              />{" "}
+              an action named "caseTrueAnswer", which will update some of the
+              slice's{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              fields – "score" will increase by one, a question object will be
+              created with the field of "isCorrect" that holds "true" and a
+              "trueCountry" field that holds correct country's id. Eventually,
+              this question object is pushed to the slice's{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              field of "questionsToServer". If the player chose the wrong
               option, the option will change its background to red, the correct
-              one will change its style to greenish and it will dispatch an
-              action named "caseFalseAnswer", which will update the slice
-              initial state field "questionsToServer" – a question object will
-              be created with the field of "isCorrect" that holds "false", a
-              "trueCountry" field that holds correct country's id and a
-              "falseCountry" field that holds false country's id (the options
-              chosen by the player). Eventually, this question object is pushed
-              to the slice's initial state field of "questionsToServer" (type of
-              array).
+              one will change its style to greenish and it will{" "}
+              <LinkNewTab
+                data="dispatch"
+                href="https://react-redux.js.org/api/hooks#usedispatch"
+              />{" "}
+              an action named "caseFalseAnswer", which will update the slice's{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              field "questionsToServer" – a question object will be created with
+              the field of "isCorrect" that holds "false", a "trueCountry" field
+              that holds correct country's id and a "falseCountry" field that
+              holds false country's id (the options chosen by the player).
+              Eventually, this question object is pushed to the slice's{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              field of "questionsToServer" (type of array).
             </p>
             <p>
-              After choosing the option, there is a delay that is done by
-              setTimeOut, and after it a modal appears above the question with a
-              fun fact about the correct country – "FunFactModal" component.
-              This component is rendered through a portal.
+              After choosing the option, there is a delay that is done by{" "}
+              <LinkNewTab
+                data="setTimeOut"
+                href="https://developer.mozilla.org/en-US/docs/Web/API/setTimeout"
+              />{" "}
+              , and after it a modal appears above the question with a fun fact
+              about the correct country – "FunFactModal" component. This
+              component is rendered through a{" "}
+              <LinkNewTab
+                data="portal"
+                href="https://reactjs.org/docs/portals.html"
+              />{" "}
+              .
             </p>
             <p>
               When closing the fun fact, a check is being made – if
-              "questionIndex" from (using useSelector from "countries slice",
-              "questionIndex" field in the slice's initial state) is not equal
-              to "questionsQuantity" (using useSelector from "countries slice",
-              " questionsQuantity " field in the slice's initial state) minus
-              one. That check means, if the player haven't made it yet to his
-              last question on the particular match. As long he didn't, a
+              "questionIndex" from (using{" "}
+              <LinkNewTab
+                data="useSelector"
+                href="https://react-redux.js.org/api/hooks#useselector"
+              />{" "}
+              from "countries slice", "questionIndex" field in the slice's{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              ) is not equal to "questionsQuantity" (using{" "}
+              <LinkNewTab
+                data="useSelector"
+                href="https://react-redux.js.org/api/hooks#useselector"
+              />{" "}
+              from "countries slice", " questionsQuantity " field in the slice's{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              ) minus one. That check means, if the player haven't made it yet
+              to his last question on the particular match. As long he didn't, a
               dipatch is made with action with "nextCountryHandler", that
               increases the questions' index by one – "questionIndex" field. And
               the question's data is being changed by accessing the new data
-              using useSelector and accessing suitable fields in the initial
-              state slice that were mentioned above.
+              using{" "}
+              <LinkNewTab
+                data="useSelector"
+                href="https://react-redux.js.org/api/hooks#useselector"
+              />{" "}
+              and accessing suitable fields in the{" "}
+              <LinkNewTab
+                data="initial state slice"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              that were mentioned above.
             </p>
             <p>
-              But, if this is the player's final question, an http "PATCH"
-              request is sent to the server with the{" "}
+              But, if this is the player's final question, an{" "}
+              <LinkNewTab
+                data="http 'PATCH' request"
+                href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH"
+              />{" "}
+              is sent to the server with the{" "}
               <LinkNewTab
                 data="route"
                 href="https://expressjs.com/en/guide/routing.html"
@@ -568,25 +719,41 @@ const About = () => {
             </p>
             <p>
               As long as "Question" component is rendered, a check is made at
-              his render cycle, if the questions' (from "questions" field in
-              initial state slice of "countries slice") length is equal to zero,
-              which means there are no questions and that means that to user
-              probably refreshed his page. If they are, the app programmatically
-              navigates to the route "/welcome", which renders the "Main"
-              component, and includes the levels and the start playing buttons.
+              his render cycle, if the questions' (from "questions" field in{" "}
+              <LinkNewTab
+                data="initial state"
+                href="https://redux-toolkit.js.org/api/createslice#initialstate"
+              />{" "}
+              of "countries slice") length is equal to zero, which means there
+              are no questions and that means that to user probably refreshed
+              his page. If they are, the app{" "}
+              <LinkNewTab
+                data="programmatically navigates"
+                href="https://reactrouter.com/en/main/hooks/use-navigate"
+              />{" "}
+              to the route "/welcome", which renders the "Main" component, and
+              includes the levels and the start playing buttons.
             </p>
           </div>
-          <div className={classes["section-2"]}>
+          <div className={classes["section-2"]} ref={matchSummaryRef}>
             <h3>Match Summary</h3>
             <div>
               <p>
-                After sending the previously mentioned request, programmatic
-                navigation is done to "/match-summary", which renders
-                "MatchSummary" component.
+                After sending the previously mentioned request,{" "}
+                <LinkNewTab
+                  data="programmatic navigation"
+                  href="https://reactrouter.com/en/main/hooks/use-navigate"
+                />{" "}
+                is done to "/match-summary", which renders "MatchSummary"
+                component.
               </p>
               <p>
-                On the first render of this component, an http "GET" request is
-                done to the{" "}
+                On the first render of this component, an{" "}
+                <LinkNewTab
+                  data="http 'GET' request"
+                  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"
+                />{" "}
+                is done to the{" "}
                 <LinkNewTab
                   data="route"
                   href="https://expressjs.com/en/guide/routing.html"
@@ -623,8 +790,12 @@ const About = () => {
                   "UserLevels", "MatchSummary" and "ScoreTable".
                 </p>
                 <p>
-                  At the first render of this component, using useEffect, an
-                  http "GET" request is sent to the{" "}
+                  At the first render of this component, using useEffect, an{" "}
+                  <LinkNewTab
+                    data="http 'GET' request"
+                    href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"
+                  />{" "}
+                  is sent to the{" "}
                   <LinkNewTab
                     data="route"
                     href="https://expressjs.com/en/guide/routing.html"
@@ -634,7 +805,13 @@ const About = () => {
                   users with their scores by order.
                 </p>
                 <p>
-                  <strong>"MatchSummary"</strong> is already as mentioned above.
+                  <strong
+                    className={classes["link-in-page"]}
+                    onClick={() => scrollingTop(matchSummaryRef)}
+                  >
+                    "MatchSummary"
+                  </strong>{" "}
+                  is the same as mentioned above.
                 </p>
               </div>
               <div>
@@ -642,9 +819,14 @@ const About = () => {
                   <h4>UserLevels</h4>
                   <div>
                     <p>
-                      This component accepts in his props the data and analyses
-                      on each of the user's levels ("userLevelsData" – a type of
-                      array) and the equivalent set state function.
+                      This component accepts in his{" "}
+                      <LinkNewTab
+                        data="props"
+                        href="https://reactjs.org/docs/components-and-props.html"
+                      />{" "}
+                      the data and analyses on each of the user's levels
+                      ("userLevelsData" – a type of array) and the equivalent
+                      set state function.
                     </p>
                     <p>
                       It renders the mapping of the above state array of
@@ -652,9 +834,13 @@ const About = () => {
                       component.
                     </p>
                     <p>
-                      Each "UserLevel" can be toggled separately through
-                      conditional rendering, and all the components of
-                      "UserLevel" can be toggled together.
+                      Each "UserLevel" can be toggled separately through{" "}
+                      <LinkNewTab
+                        data="conditional rendering"
+                        href="https://reactjs.org/docs/conditional-rendering.html"
+                      />{" "}
+                      , and all the components of "UserLevel" can be toggled
+                      together.
                     </p>
                     <p>
                       "UserLevel", renders two components – "UserLevelTitle" and
@@ -665,21 +851,40 @@ const About = () => {
                       "UserLevelData" renders about the user's particular level,
                       the average score, total score and total games. In
                       addition, it renders two components of "BestScoreOrTime".
-                      Through props the first one renders "bestScore" and the
-                      second one renders "bestTime".
+                      Through{" "}
+                      <LinkNewTab
+                        data="props"
+                        href="https://reactjs.org/docs/components-and-props.html"
+                      />{" "}
+                      the first one renders "bestScore" and the second one
+                      renders "bestTime".
                     </p>
                     <p>
-                      Both of these components render a button that toggles and
-                      conditionally renders the mapping of an array of user's
-                      best scores/ best times at this particular level, through
-                      the "BestScoreOrTimeUnit" component.
+                      Both of these components render a button that toggles and{" "}
+                      <LinkNewTab
+                        data="conditionally renders"
+                        href="https://reactjs.org/docs/conditional-rendering.html"
+                      />{" "}
+                      the mapping of an array of user's best scores/ best times
+                      at this particular level, through the
+                      "BestScoreOrTimeUnit" component.
                     </p>
                     <p>
                       Also, "UserLevelData" renders the component
                       "LevelFailsPieChart", which renders a pie chart, and each
                       slice in it represents the equivalent number of fails in a
                       particular country's flag at this level. In order to build
-                      this pie chart I used "recharts", a third-party library.
+                      this pie chart I used{" "}
+                      <LinkNewTab
+                        data="recharts"
+                        href="https://recharts.org/en-US/guide"
+                      />{" "}
+                      , an{" "}
+                      <LinkNewTab
+                        data="open source library"
+                        href="https://www.heavy.ai/technical-glossary/open-source-library"
+                      />{" "}
+                      library.
                     </p>
                     <p>
                       When the user hovers over a slice, a tooltip is rendered,
@@ -693,7 +898,12 @@ const About = () => {
                   <div>
                     <p>
                       This component accepts the "usersWithScores" state through
-                      the prop of "scoresTable".
+                      the{" "}
+                      <LinkNewTab
+                        data="prop"
+                        href="https://reactjs.org/docs/components-and-props.html"
+                      />{" "}
+                      of "scoresTable".
                     </p>
                     <p>
                       It renders a table of all the signed users to the app by
@@ -712,8 +922,12 @@ const About = () => {
                   route "/badges", which renders the "Badges" component.
                 </p>
                 <p>
-                  At this component, on his first render cycle, an http "GET"
-                  request is sent to the{" "}
+                  At this component, on his first render cycle, an{" "}
+                  <LinkNewTab
+                    data="http 'GET' request"
+                    href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"
+                  />{" "}
+                  is sent to the{" "}
                   <LinkNewTab
                     data="route"
                     href="https://expressjs.com/en/guide/routing.html"
@@ -740,9 +954,12 @@ const About = () => {
                 route "/profile", which renders the "Profile" component.
               </p>
               <p>
-                At this component, three child components are conditionally
-                rendered – "PersonalInfo", "UpdatePersonalInfo" and
-                "ChangePassword".
+                At this component, three child components are{" "}
+                <LinkNewTab
+                  data="conditionally rendered"
+                  href="https://reactjs.org/docs/conditional-rendering.html"
+                />{" "}
+                – "PersonalInfo", "UpdatePersonalInfo" and "ChangePassword".
               </p>
               <p>
                 "PersonalInfo" renders the user's info – email, first name and
@@ -752,7 +969,12 @@ const About = () => {
                 "UpdatePersonalInfo" renders a form with a button and inputs
                 with already existing values of email, first name and last name.
                 In this component, the user can update his personal info by
-                sending an http "PUT" request to the{" "}
+                sending an{" "}
+                <LinkNewTab
+                  data="http 'PUT' request"
+                  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT"
+                />{" "}
+                to the{" "}
                 <LinkNewTab
                   data="route"
                   href="https://expressjs.com/en/guide/routing.html"
@@ -763,7 +985,12 @@ const About = () => {
                 "ChangePassword" renders a form with a button and two password
                 inputs (second for verification), where the user can update his
                 password. In this component, the user can update his password by
-                sending an http "PUT" request to the{" "}
+                sending an{" "}
+                <LinkNewTab
+                  data="http 'PUT' request"
+                  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT"
+                />{" "}
+                to the{" "}
                 <LinkNewTab
                   data="route"
                   href="https://expressjs.com/en/guide/routing.html"
