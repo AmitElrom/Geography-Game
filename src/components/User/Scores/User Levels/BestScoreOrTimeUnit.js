@@ -1,10 +1,13 @@
 import React from "react";
 
+import classes from './BestScoreOrTimeUnit.module.css';
+
+
 const BestScoreOrTimeUnit = ({ score, duration, time }) => {
   const { hours, minutes, seconds, milliseconds } = duration;
 
   return (
-    <li>
+    <li className={classes.unit} >
       <ul>
         <li>Score: {score}</li>
         <li>

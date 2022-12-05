@@ -72,6 +72,14 @@ code {
   transform: translateY(0);
 }
 
+.paragraph {
+  margin: 1rem 2rem;
+  font-size: var(--content-font-size);
+  line-height: 1.8rem;
+  text-align: justify;
+  text-align-last: center;
+}
+
 :root {
   --grey: rgb(53, 51, 51);
   --border-radius: 7px;
@@ -79,4 +87,5 @@ code {
   --purple: #7e57c2;
   --border-radius1: 14px;
   --content-font-size: 18px;
+  --nav-height: 13vh;
 }

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import UserLevelTitle from "./UserLevelTitle";
 import UserLevelData from "./UserLevelData";
+
+import classes from './UserLevel.module.css';
 
 const UserLevel = (props) => {
   const { title, isChecked, toggleUserLevelData } = props;
 
   return (
-    <div style={{ width: "20%" }}>
+    <div className={classes.level} >
       <UserLevelTitle
         onClick={toggleUserLevelData}
         checked={isChecked || false}

@@ -1,3 +1,4 @@
 .main {
   height: 75vh;
+  margin-top: var(--nav-height);
 }

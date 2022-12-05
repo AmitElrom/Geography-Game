@@ -1,4 +1,28 @@
+.levels-and-check-all {
+  display: flex;
+  margin: 0 1rem;
+}
+
+.levels {
+  display: flex;
+  width: 85%;
+  justify-content: space-around;
+}
+
+.check-all {
+  width: 8%;
+}
+
 .check-all-checkbox,
 .check-all-label {
   cursor: pointer;
+}
+
+.check-all-label {
+  padding: 5%;
+}
+
+.check-all-checkbox {
+  z-index: 1;
+  position: absolute;
 }

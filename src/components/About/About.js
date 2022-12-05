@@ -18,7 +18,7 @@ const About = () => {
         alt={worldPexelsImg}
         className={classes["top-img"]}
       />
-      <div className={classes["page-with-no-img-top"]}>
+      <div className="paragraph">
         <h1>About</h1>
         <div>
           <p>

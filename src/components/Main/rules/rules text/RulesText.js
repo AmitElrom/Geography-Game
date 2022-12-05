@@ -4,7 +4,7 @@ import classes from "./RulesText.module.css";
 
 const RulesText = () => {
   return (
-    <div className={classes["all-text"]}>
+    <div className={`paragraph ${classes["all-text"]}`}>
       <p>
         In every question, a country's flag is presented and you have to guess
         which country holds this flag. A correct answer will earn you 1 point in

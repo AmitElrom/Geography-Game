@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
+import classes from './MatchSummary.module.css';
 import classesScoresTable from "../Scores Table/Table/ScoresTable.module.css";
 
 const MatchSummary = () => {
@@ -49,23 +50,21 @@ const MatchSummary = () => {
     navigate("/welcome", { replace: true });
   };
 
-  console.log(matchSummaryData);
-
   return (
-    <div>
+    <div className={classes["match-summary"]} >
       <h1>{isMatchSummary ? "Game Summary" : "Last Game Summary"}</h1>
-      <h3>Level - {matchSummaryData?.level}</h3>
+      <h2>Level - {matchSummaryData?.level}</h2>
       <div>
-        <h5>
+        <h3>
           {matchSummaryData?.improvedLevelAverage?.isImproved !== "no"
             ? `Congrats! you improved your level average score by ${matchSummaryData?.improvedLevelAverage?.averageChange} points.`
             : `Bad news! you reduced your level average score by ${matchSummaryData?.improvedLevelAverage?.averageChange} points.`}
-        </h5>
-        <h6>
+        </h3>
+        <h4>
           Your last level average score was{" "}
           {matchSummaryData?.improvedLevelAverage?.lastScoreAverage} and now
           it's {matchSummaryData?.improvedLevelAverage?.currentScoreAverage}
-        </h6>
+        </h4>
       </div>
       <p>
         From a total of {matchSummaryData?.questions?.numberOfQuestions}{" "}
@@ -83,7 +82,7 @@ const MatchSummary = () => {
         {matchSummaryData?.gameDuration?.milliseconds !== 0 &&
           `${matchSummaryData?.gameDuration?.milliseconds} milliseconds.`}
       </p>
-      <h4>The Questions</h4>
+      <h2>The Questions</h2>
       <table className={classesScoresTable.table}>
         <tbody>
           {matchSummaryData?.questions?.questions?.map((question) => {

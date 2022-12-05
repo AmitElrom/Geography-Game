@@ -1,7 +1,5 @@
 .table {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 4vh;
+  margin: 8vh auto;
   width: 90%;
   border-collapse: collapse;
 }

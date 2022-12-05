@@ -1,0 +1,14 @@
+.btn-toggle {
+  font-weight: 600;
+  padding: 1rem;
+  border-color: var(--purple);
+  background-color: #ffffff;
+  color: var(--purple);
+  margin: 0.5rem;
+}
+
+.btn-toggle:hover,
+.btn-toggle-active {
+  background-color: var(--purple);
+  color: #ffffff;
+}

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import BestScoreOrTimeUnit from "./BestScoreOrTimeUnit";
+
+import classes from "./BestScoreOrTime.module.css";
 
 const BestScoreOrTime = ({ bestScore, bestTime }) => {
   const [data, setData] = useState([]);
@@ -28,7 +31,12 @@ const BestScoreOrTime = ({ bestScore, bestTime }) => {
   return (
     <div>
       {isScoreOrTime === "score" && data && (
-        <button onClick={togglList}>
+        <button
+          className={`button-28 ${classes["btn-toggle"]} ${
+            isListVisible && classes["btn-toggle-active"]
+          }`}
+          onClick={togglList}
+        >
           <p>Games With Best Score</p>
           <p>
             {data.length} games played
@@ -37,7 +45,12 @@ const BestScoreOrTime = ({ bestScore, bestTime }) => {
         </button>
       )}
       {isScoreOrTime === "time" && data && (
-        <button onClick={togglList}>
+        <button
+          className={`button-28 ${classes["btn-toggle"]} ${
+            isListVisible && classes["btn-toggle-active"]
+          }`}
+          onClick={togglList}
+        >
           <p>Games With Best Time</p>
           <p>
             {data.length} games played

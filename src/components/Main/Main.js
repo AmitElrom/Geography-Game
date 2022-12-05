@@ -16,9 +16,9 @@ const Main = () => {
 
   return (
     <Fragment>
-      <GameRules />
       <Levels />
       <MainLevel />
+      <GameRules />
     </Fragment>
   );
 };

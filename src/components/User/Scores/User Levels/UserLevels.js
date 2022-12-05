@@ -19,21 +19,25 @@ const UserLevels = ({ userLevelsData, setUserLevelsData }) => {
     }
   };
 
-  const userLevelsDataList = userLevelsData?.map((level) => {
-    return (
-      <UserLevel
-        key={level.id}
-        {...level}
-        setUserLevelsData={setUserLevelsData}
-        userLevelsData={userLevelsData}
-        toggleUserLevelData={toggleUserLevelData}
-      />
-    );
-  });
+  const userLevelsDataList = (
+    <div className={classes.levels}>
+      {userLevelsData?.map((level) => {
+        return (
+          <UserLevel
+            key={level.id}
+            {...level}
+            setUserLevelsData={setUserLevelsData}
+            userLevelsData={userLevelsData}
+            toggleUserLevelData={toggleUserLevelData}
+          />
+        );
+      })}
+    </div>
+  );
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
-      <div>
+    <div className={classes["levels-and-check-all"]}>
+      <div className={classes["check-all"]} >
         <input
           className={classes["check-all-checkbox"]}
           type="checkbox"
@@ -44,7 +48,7 @@ const UserLevels = ({ userLevelsData, setUserLevelsData }) => {
           }
           onChange={toggleUserLevelData}
         />
-        <label className={classes["check-all-label"]} htmlFor="check-all">
+        <label className={`button-28 ${classes["check-all-label"]}`} htmlFor="check-all">
           Show All
         </label>
       </div>

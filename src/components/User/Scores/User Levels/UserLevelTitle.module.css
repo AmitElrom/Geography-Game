@@ -2,3 +2,18 @@
 .label {
   cursor: pointer;
 }
+
+.label {
+  width: 90%;
+}
+
+.checkbox {
+  z-index: 1;
+  position: absolute;
+}
+
+.label-active {
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
