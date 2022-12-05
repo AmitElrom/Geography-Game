@@ -1,8 +1,8 @@
 .page {
-  margin-top: calc(0rem - (var(--main-margin-top)));
   line-height: 200%;
-  margin: 1rem 0;
   padding-bottom: 1rem;
+  margin: auto 0;
+  margin-top: calc(0rem - var(--main-margin-top));
 }
 
 ul li::marker {

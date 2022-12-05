@@ -10,6 +10,8 @@ import { capitlizeFirstLetter } from "../../../../utils/utils-manipulate-strings
 import authContext from "../../../../store/auth-context";
 import FormInput from "../../../Authentication/FormInput/FormInput";
 
+import classes from './UpdatePersonalInfo.module.css';
+
 const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
     const {
         isLoading,
@@ -97,7 +99,7 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
         <form onSubmit={formik.handleSubmit}>
             <div>{updateInfoInuptsList}</div>
             <div>
-                <button type="submit">Update Profile</button>
+                <button className={`button-28 ${classes.button}`} type="submit">Update Profile</button>
             </div>
         </form>
     );

@@ -9,6 +9,8 @@ import FormInput from "../FormInput/FormInput";
 
 import { sixNumbers } from "../../../utils/utils-regex";
 
+import classes from './VerifyEmailCode.module.css';
+
 
 const VerifyEmailCode = () => {
 
@@ -64,7 +66,7 @@ const VerifyEmailCode = () => {
                 }
             />
             <div>
-                <button type="submit">Verify Code</button>
+                <button className={`button-28 ${classes.button}`} type="submit">Verify Code</button>
             </div>
         </form>
     );

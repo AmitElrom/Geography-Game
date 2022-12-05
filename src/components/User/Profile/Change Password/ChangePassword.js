@@ -10,6 +10,8 @@ import FormInput from '../../../Authentication/FormInput/FormInput';
 import { passwordRegex } from "../../../../utils/utils-regex";
 import authContext from "../../../../store/auth-context";
 
+import classes from './ChangePassword.module.css';
+
 const changePasswordItems = [
   { name: "newPassword", placeholder: "Enter New Password", info: "" },
   { name: "confirmedPassword", placeholder: "Confirm Password", info: "" },
@@ -82,7 +84,7 @@ const ChangePassword = ({ setToUpdatePassword }) => {
       <h2>Reset Password</h2>
       <div>{changePasswordItemList}</div>
       <div>
-        <button>Submit</button>
+        <button className={`button-28 ${classes.button}`} >Submit</button>
       </div>
     </form>
   );

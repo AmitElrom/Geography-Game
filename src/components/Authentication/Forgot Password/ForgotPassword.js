@@ -7,6 +7,9 @@ import useHttpAxios from "../../../hooks/use-http-axios";
 import FormInput from "../FormInput/FormInput";
 import { useNavigate } from "react-router-dom";
 
+import classes from './ForgotPassword.module.css';
+
+
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
@@ -55,7 +58,7 @@ const ForgotPassword = () => {
         }
       />
       <div>
-        <button type="submit">Reset Password</button>
+        <button className={`button-28 ${classes.button}`} type="submit">Reset Password</button>
       </div>
     </form>
   );

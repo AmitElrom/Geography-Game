@@ -10,6 +10,8 @@ import FormInput from "../FormInput/FormInput";
 import { passwordRegex } from "../../../utils/utils-regex";
 import authContext from "../../../store/auth-context";
 
+import classes from './ChangePassword.module.css';
+
 const INPUTS = [
   {
     id: "i1",
@@ -107,7 +109,7 @@ const ChangePassword = () => {
     <form onSubmit={formik.handleSubmit}>
       {formInputsList}
       <div>
-        <button type="submit">Verify Code</button>
+        <button className={`button-28 ${classes.button}`} type="submit">Verify Code</button>
       </div>
     </form>
   );
