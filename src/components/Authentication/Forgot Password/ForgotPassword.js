@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -8,10 +8,13 @@ import FormInput from "../FormInput/FormInput";
 import { useNavigate } from "react-router-dom";
 
 import classes from './ForgotPassword.module.css';
+import authContext from "../../../store/auth-context";
 
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
+
+  const { setIsEmailSentForgotPassword } = useContext(authContext);
 
   const {
     error,
@@ -35,6 +38,8 @@ const ForgotPassword = () => {
         },
         (data) => {
           sessionStorage.setItem('email', values.email)
+          setIsEmailSentForgotPassword(true);
+          sessionStorage.setItem('forgot-password-email-sent', true);
           alert(data.message);
           navigate("/verify-email-code", { replace: true });
         }

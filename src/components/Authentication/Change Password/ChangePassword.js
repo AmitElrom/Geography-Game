@@ -71,12 +71,12 @@ const ChangePassword = () => {
           },
         },
         (data) => {
-          console.log(data);
-          sessionStorage.removeItem('token-reset-password')
-          sessionStorage.removeItem('email')
           updateUserInfo(data.userData)
           loginHandler(token, data.userData);
           alert(data.message);
+          sessionStorage.removeItem('token-reset-password')
+          sessionStorage.removeItem('email')
+          sessionStorage.removeItem('forgot-password-email-sent')
           navigate('/welcome');
         }
       );
@@ -109,7 +109,7 @@ const ChangePassword = () => {
     <form onSubmit={formik.handleSubmit}>
       {formInputsList}
       <div>
-        <button className={`button-28 ${classes.button}`} type="submit">Verify Code</button>
+        <button className={`button-28 ${classes.button}`} type="submit">Change Password and Sign In</button>
       </div>
     </form>
   );

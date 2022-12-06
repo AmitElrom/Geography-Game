@@ -16,6 +16,7 @@ const About = () => {
   return (
     <div className={classes.page}>
       <img
+        loading="lazy"
         src={worldPexelsImg}
         alt={worldPexelsImg}
         className={classes["top-img"]}

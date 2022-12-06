@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -46,6 +47,10 @@ const SignUp = () => {
   const { loginHandler } = useContext(authContext);
 
   const { isLoading, error, sendRequest: signUpRequest } = useHttpAxios();
+
+  useEffect(() => {
+    sessionStorage.clear()
+  }, [])
 
   const formik = useFormik({
     initialValues: {

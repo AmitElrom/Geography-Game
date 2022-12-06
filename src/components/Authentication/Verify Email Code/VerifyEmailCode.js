@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +10,14 @@ import FormInput from "../FormInput/FormInput";
 import { sixNumbers } from "../../../utils/utils-regex";
 
 import classes from './VerifyEmailCode.module.css';
+import authContext from "../../../store/auth-context";
 
 
 const VerifyEmailCode = () => {
 
     const navigate = useNavigate();
+
+    const { setIsEmailCodeVerified } = useContext(authContext);
 
     const {
         error,
@@ -41,6 +44,7 @@ const VerifyEmailCode = () => {
                     },
                 },
                 (data) => {
+                    setIsEmailCodeVerified(data.token);
                     sessionStorage.setItem('token-reset-password', data.token)
                     alert(data.token);
                     navigate("/change-password", { replace: true });

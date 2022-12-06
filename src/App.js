@@ -27,7 +27,7 @@ import Badges from './components/User/Badges/Badges/Badges';
 
 function App() {
 
-  const { isLoggedIn } = useContext(authContext);
+  const { isLoggedIn, isCodeVer, isEmailSent } = useContext(authContext);
 
   const { isFunFactShown } = useSelector(state => state.countries)
 
@@ -45,13 +45,11 @@ function App() {
           <Route path='/badges' element={<Badges />} />
         </Route>
         <Route path='/about' element={<About />} />
-        {/* <Route element={<NonProtectedRoute />} > */}
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/verify-email-code' element={<VerifyEmailCode />} />
-        <Route path='/change-password' element={<ChangePassword />} />
-        {/* </Route> */}
+        {isEmailSent && <Route path='/verify-email-code' element={<VerifyEmailCode />} />}
+        {isCodeVer && <Route path='/change-password' element={<ChangePassword />} />}
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </Layout>
