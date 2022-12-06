@@ -18,6 +18,11 @@ const FunFactsSwitch = () => {
   return (
     <button
       className={`button-28 ${classes.button}`}
+      style={
+        isFunFactsShown
+          ? { borderColor: "var(--green)" }
+          : { borderColor: "var(--red)" }
+      }
       onClick={toggleFunFactModals}
       title={
         isFunFactsShown
@@ -26,19 +31,19 @@ const FunFactsSwitch = () => {
       }
     >
       {isFunFactsShown ? (
-        <span>
+        <span style={{ color: "var(--green)" }}>
           With Fun Facts{" "}
           <BiCheckCircle
             size={20}
-            style={{ verticalAlign: "middle", color: "green" }}
+            style={{ verticalAlign: "middle", color: "var(--green" }}
           />
         </span>
       ) : (
-        <span>
+        <span style={{ color: "var(--red)" }}>
           Without Fun Facts{" "}
           <BiXCircle
             size={20}
-            style={{ verticalAlign: "middle", color: "red" }}
+            style={{ verticalAlign: "middle", color: "var(--red)" }}
           />
         </span>
       )}

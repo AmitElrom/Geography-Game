@@ -8,6 +8,7 @@
   width: 7rem;
   cursor: pointer;
   float: left;
+  position: relative;
 }
 
 .level[level="beginner"]:hover {

@@ -43,15 +43,17 @@ const Levels = () => {
 
   const levelsList = levelsData.map((level) => {
     return (
-      <Level
-        className={level.isClicked ? classes["level-clicked"] : undefined}
-        key={level.id}
-        onClick={() => clickLevelHandler(level.name)}
-        onMouseEnter={() => mouseEnteredLevelHandler(level.name)}
-        onMouseLeave={mouseLeftLevelHandler}
-      >
-        {level.name}
-      </Level>
+      <div>
+        <Level
+          className={level.isClicked ? classes["level-clicked"] : undefined}
+          key={level.id}
+          onClick={() => clickLevelHandler(level.name)}
+          onMouseEnter={() => mouseEnteredLevelHandler(level.name)}
+          onMouseLeave={mouseLeftLevelHandler}
+        >
+          {level.name}
+        </Level>
+      </div>
     );
   });
 

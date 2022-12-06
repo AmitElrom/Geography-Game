@@ -1,127 +1,141 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const countriesInitialState = {
-    questions: [],
-    questionsQuantity: 0,
-    isFunFactsShown: false,
-    isQuestionnaireOver: false,
-    score: 0,
-    isFunFactShown: false,
-    questionIndex: 0,
-    isStartPlaying: false,
-    difficultyLevel: null,
-    levelForMatchExplanation: null,
-    startTime: 0,
-    endTime: 0,
-    questionsToServer: []
+  questions: [],
+  questionsQuantity: 0,
+  isFunFactsShown: false,
+  isQuestionnaireOver: false,
+  score: 0,
+  isFunFactShown: false,
+  questionIndex: 0,
+  isStartPlaying: false,
+  difficultyLevel: null,
+  levelForMatchExplanation: null,
+  startTime: 0,
+  endTime: 0,
+  questionsToServer: [],
 };
 
 const countriesSlice = createSlice({
-    name: 'countries',
-    initialState: { ...countriesInitialState },
-    reducers: {
-        manipulateCountries(state, { payload }) {
-            state.questions = payload.questions;
-            state.questionsQuantity = payload.questionsQuantity;
-            state.startTime = new Date().getTime();
-        },
-        setMatchExplanation(state, { payload: level }) {
-            state.levelForMatchExplanation = level;
-        },
-        nullify(state) {
-            state.score = 0;
-            state.questionsQuantity = 0;
-            state.isFunFactShown = false;
-            state.questions = [];
-            state.questionIndex = 0;
-            state.isStartPlaying = false;
-            state.difficultyLevel = null;
-            state.isQuestionnaireOver = false;
-            state.questionsToServer = [];
-        },
-        setIsFunFacts(state, { payload: isFunFactsShown }) {
-            state.isFunFactsShown = isFunFactsShown;
-        },
-        showFunFact(state) {
-            state.isFunFactShown = true;
-        },
-        hideFunFact(state) {
-            state.isFunFactShown = false;
-        },
-        nextCountryHandler(state) {
-            state.questionIndex = state.questionIndex + 1
-        },
-        startPlaying(state, { payload: difficultyLevel }) {
-            state.isStartPlaying = true;
-            state.difficultyLevel = difficultyLevel;
-        },
-        caseTrueAnswer(state, { payload: trueCountry }) {
-            state.score++;
-            const questionObj = { isCorrect: true, trueCountry: '' };
-            questionObj.trueCountry = trueCountry;
-            state.questionsToServer = [...state.questionsToServer, questionObj];
-        },
-        caseFalseAnswer(state, { payload }) {
-            const questionObj = { isCorrect: false, trueCountry: '' };
-            questionObj.trueCountry = payload.trueCountry;
-            questionObj.falseCountry = payload.falseCountry;
-            state.questionsToServer = [...state.questionsToServer, questionObj];
-        },
-        caseAnswer(state, { payload }) {
-            console.log(payload);
-            const { isCorrect, trueCountry, falseCountry, isFinalQuestion } = payload;
-            const questionObj = { isCorrect, trueCountry };
-            if (falseCountry) {
-                questionObj.falseCountry = falseCountry;
-            }
-            state.questionsToServer = [...state.questionsToServer, questionObj];
-            if (isFinalQuestion) {
-                state.endTime = new Date().getTime();
-                state.isQuestionnaireOver = true;
-            }
-        }
-    }
-})
+  name: "countries",
+  initialState: { ...countriesInitialState },
+  reducers: {
+    manipulateCountries(state, { payload }) {
+      state.questions = payload.questions;
+      state.questionsQuantity = payload.questionsQuantity;
+      state.startTime = new Date().getTime();
+    },
+    setMatchExplanation(state, { payload: level }) {
+      state.levelForMatchExplanation = level;
+    },
+    nullify(state) {
+      state.score = 0;
+      state.questionsQuantity = 0;
+      state.isFunFactShown = false;
+      state.questions = [];
+      state.questionIndex = 0;
+      state.isStartPlaying = false;
+      state.difficultyLevel = null;
+      state.isQuestionnaireOver = false;
+      state.questionsToServer = [];
+    },
+    setIsFunFacts(state, { payload: isFunFactsShown }) {
+      state.isFunFactsShown = isFunFactsShown;
+    },
+    showFunFact(state) {
+      state.isFunFactShown = true;
+    },
+    hideFunFact(state) {
+      state.isFunFactShown = false;
+    },
+    nextCountryHandler(state) {
+      state.questionIndex = state.questionIndex + 1;
+    },
+    startPlaying(state, { payload: difficultyLevel }) {
+      state.isStartPlaying = true;
+      state.difficultyLevel = difficultyLevel;
+    },
+    caseTrueAnswer(state, { payload: trueCountry }) {
+      const question = state.questionsToServer.find(
+        (question) => question.trueCountry === trueCountry
+      );
+      if (!question) {
+        state.score++;
+        const questionObj = { isCorrect: true, trueCountry };
+        state.questionsToServer = [...state.questionsToServer, questionObj];
+      }
+    },
+    caseFalseAnswer(state, { payload }) {
+      const question = state.questionsToServer.find(
+        (question) => question.falseCountry === payload.falseCountry
+      );
+      if (!question) {
+        const questionObj = {
+          isCorrect: false,
+          trueCountry: payload.trueCountry,
+          falseCountry: payload.falseCountry,
+        };
+        state.questionsToServer = [...state.questionsToServer, questionObj];
+      }
+    },
+    caseAnswer(state, { payload }) {
+      console.log(payload);
+      const { isCorrect, trueCountry, falseCountry, isFinalQuestion } = payload;
+      const questionObj = { isCorrect, trueCountry };
+      if (falseCountry) {
+        questionObj.falseCountry = falseCountry;
+      }
+      state.questionsToServer = [...state.questionsToServer, questionObj];
+      if (isFinalQuestion) {
+        state.endTime = new Date().getTime();
+        state.isQuestionnaireOver = true;
+      }
+    },
+  },
+});
 
 export const sendScoreRequest = () => {
-    console.log('hello');
-    return async (dispatch) => {
-        // const reqData = { isLoading: false };
-        try {
-            let token = sessionStorage.getItem('token');
-            // reqData.isLoading = true;
-            console.log({
-                level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
-                startTime: countriesSlice.getInitialState().startTime,
-                endTime: new Date().getTime(),
-                score: countriesSlice.getInitialState().score,
-                questions: countriesSlice.getInitialState().questionsToServer
-            });
-            const { data: sendScoreRequestData } = await axios.patch("http://localhost:8000/score-elrom", {
-                level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
-                startTime: countriesSlice.getInitialState().startTime,
-                endTime: new Date().getTime(),
-                score: countriesSlice.getInitialState().score,
-                questions: countriesSlice.getInitialState().questionsToServer
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json;charset=UTF-8',
-                }
-            })
-            // reqData.isLoading = false;
-            // reqData.sendScoreRequestData = sendScoreRequestData;
-            dispatch(countriesActions.nullify())
-            console.log(sendScoreRequestData);
-        } catch (error) {
-            dispatch(countriesActions.nullify())
-            // reqData.error = error;
-            // return reqData;
+  console.log("hello");
+  return async (dispatch) => {
+    // const reqData = { isLoading: false };
+    try {
+      let token = sessionStorage.getItem("token");
+      // reqData.isLoading = true;
+      console.log({
+        level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
+        startTime: countriesSlice.getInitialState().startTime,
+        endTime: new Date().getTime(),
+        score: countriesSlice.getInitialState().score,
+        questions: countriesSlice.getInitialState().questionsToServer,
+      });
+      const { data: sendScoreRequestData } = await axios.patch(
+        "http://localhost:8000/score-elrom",
+        {
+          level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
+          startTime: countriesSlice.getInitialState().startTime,
+          endTime: new Date().getTime(),
+          score: countriesSlice.getInitialState().score,
+          questions: countriesSlice.getInitialState().questionsToServer,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
         }
-    };
+      );
+      // reqData.isLoading = false;
+      // reqData.sendScoreRequestData = sendScoreRequestData;
+      dispatch(countriesActions.nullify());
+      console.log(sendScoreRequestData);
+    } catch (error) {
+      dispatch(countriesActions.nullify());
+      // reqData.error = error;
+      // return reqData;
+    }
+  };
 };
 
 export const countriesActions = countriesSlice.actions;
