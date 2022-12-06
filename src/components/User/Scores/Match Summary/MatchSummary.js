@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
+import classes from './MatchSummary.module.css';
 import classesScoresTable from "../Scores Table/Table/ScoresTable.module.css";
 import classesUsersScores from '../Scores Table/Scores/UsersScores.module.css';
 
@@ -121,7 +122,7 @@ const MatchSummary = () => {
         </tbody>
       </table>
       {isMatchSummary && (
-        <button onClick={toMainPageHandler}>to main page</button>
+        <button className={`button-28 ${classes.button}`} onClick={toMainPageHandler}>to main page</button>
       )}
     </div>
   );
