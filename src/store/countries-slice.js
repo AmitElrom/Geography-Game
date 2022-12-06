@@ -22,11 +22,9 @@ const countriesSlice = createSlice({
     initialState: { ...countriesInitialState },
     reducers: {
         manipulateCountries(state, { payload }) {
-
-            const { questions, questionsQuantity } = payload;
-
-            state.questions = questions;
-            state.questionsQuantity = questionsQuantity;
+            state.questions = payload.questions;
+            state.questionsQuantity = payload.questionsQuantity;
+            state.startTime = new Date().getTime();
         },
         setMatchExplanation(state, { payload: level }) {
             state.levelForMatchExplanation = level;
@@ -54,7 +52,7 @@ const countriesSlice = createSlice({
         startPlaying(state, { payload: difficultyLevel }) {
             state.isStartPlaying = true;
             state.difficultyLevel = difficultyLevel;
-            state.startTime = new Date().getTime();
+            // state.startTime = new Date().getTime();
         },
         caseTrueAnswer(state, { payload: trueCountry }) {
             state.score++;

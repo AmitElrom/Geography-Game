@@ -56,7 +56,7 @@ const MainLevel = () => {
             console.log(data);
             dispatch(countriesActions.manipulateCountries({
                 questions: data,
-                questionsQuantity: data.length
+                questionsQuantity: data.length,
             }))
             navigate('/question');
         })
