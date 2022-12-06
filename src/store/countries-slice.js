@@ -5,6 +5,7 @@ import axios from 'axios';
 const countriesInitialState = {
     questions: [],
     questionsQuantity: 0,
+    isFunFactsShown: false,
     isQuestionnaireOver: false,
     score: 0,
     isFunFactShown: false,
@@ -40,6 +41,9 @@ const countriesSlice = createSlice({
             state.isQuestionnaireOver = false;
             state.questionsToServer = [];
         },
+        setIsFunFacts(state, { payload: isFunFactsShown }) {
+            state.isFunFactsShown = isFunFactsShown;
+        },
         showFunFact(state) {
             state.isFunFactShown = true;
         },
@@ -52,7 +56,6 @@ const countriesSlice = createSlice({
         startPlaying(state, { payload: difficultyLevel }) {
             state.isStartPlaying = true;
             state.difficultyLevel = difficultyLevel;
-            // state.startTime = new Date().getTime();
         },
         caseTrueAnswer(state, { payload: trueCountry }) {
             state.score++;

@@ -1,0 +1,5 @@
+.users-scores {
+  border: 2px solid var(--purple);
+  border-radius: var(--border-radius);
+  margin: 3rem;
+}

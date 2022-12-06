@@ -48,28 +48,28 @@ const FunFactModal = () => {
       console.log("that was the final question");
       // dispatch(countriesActions.caseFinalQuestion())
       // dispatch(sendScoreRequest())
-      sessionStorage.setItem("last-match-level", difficultyLevel.toLowerCase());
-      let token = sessionStorage.getItem("token");
-      sendScoreRequest(
-        {
-          method: "PATCH",
-          url: "http://localhost:8000/score-elrom",
-          body: {
-            level: difficultyLevel.toLowerCase(),
-            startTime,
-            endTime: new Date().getTime(),
-            score,
-            questions: questionsToServer,
-          },
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-        (data) => {
-          console.log("score sent to server status", data);
-          navigate("/match-summary", { replace: true });
-        }
-      );
+      navigate("/match-summary", { replace: true });
+      // let token = sessionStorage.getItem("token");
+      // sendScoreRequest(
+      //   {
+      //     method: "PATCH",
+      //     url: "http://localhost:8000/score-elrom",
+      //     body: {
+      //       level: difficultyLevel.toLowerCase(),
+      //       startTime,
+      //       endTime: new Date().getTime(),
+      //       score,
+      //       questions: questionsToServer,
+      //     },
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   },
+      //   (data) => {
+      //     console.log("score sent to server status", data);
+      //     navigate("/match-summary", { replace: true });
+      //   }
+      // );
     }
   };
 

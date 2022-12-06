@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useHttpAxios from "../../../hooks/use-http-axios";
 
+import UsersScores from "./Scores Table/Scores/UsersScores";
 import ScoresTable from "./Scores Table/Table/ScoresTable";
 import UserLevels from "./User Levels/UserLevels";
 import MatchSummary from "./Match Summary/MatchSummary";
@@ -37,7 +38,7 @@ const Scores = () => {
         setUserLevelsData={setUserLevelsData}
       />
       {level && <MatchSummary />}
-      <ScoresTable scoresTable={usersWithScores} />
+      <UsersScores scoresTable={usersWithScores} />
     </div>
   );
 };

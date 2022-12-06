@@ -6,6 +6,7 @@ import Levels from "./Levels General/Levels";
 import MainLevel from "./Levels General/MainLevel";
 
 import { countriesActions } from "../../store/countries-slice";
+import FunFactsSwitch from "../UI/Fun Facts Switch/FunFactsSwitch";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Main = () => {
 
   return (
     <Fragment>
+      <FunFactsSwitch />
       <Levels />
       <MainLevel />
       <GameRules />

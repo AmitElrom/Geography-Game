@@ -3,10 +3,8 @@ import React, { useEffect } from "react";
 import useStopWatch from "../../../hooks/use-stop-watch";
 
 const StopWatch = ({ isStopWatchActivated }) => {
-  const { time, toggleIsTimeRunning, rewriteTimeFields } =
+  const { toggleIsTimeRunning, rewriteTimeFields } =
     useStopWatch();
-
-  console.log(time);
 
   useEffect(() => {
     if (isStopWatchActivated) {

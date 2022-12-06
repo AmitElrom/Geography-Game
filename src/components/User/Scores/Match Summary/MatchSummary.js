@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
-import classes from './MatchSummary.module.css';
 import classesScoresTable from "../Scores Table/Table/ScoresTable.module.css";
+import classesUsersScores from '../Scores Table/Scores/UsersScores.module.css';
 
 const MatchSummary = () => {
   const [matchSummaryData, setMatchSummaryData] = useState({});
@@ -51,7 +51,7 @@ const MatchSummary = () => {
   };
 
   return (
-    <div className={classes["match-summary"]} >
+    <div className={classesUsersScores["users-scores"]} >
       <h1>{isMatchSummary ? "Game Summary" : "Last Game Summary"}</h1>
       <h2>Level - {matchSummaryData?.level}</h2>
       <div>

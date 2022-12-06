@@ -40,8 +40,8 @@ const Badge = ({
     <div className={classes.badge}>
       <h3>
         {headline}{" "}
-        <span style={{ color: "green" }}>
-          {hasBadge ? <GrStatusGood /> : <BiLock color="grey" />}
+        <span>
+          {hasBadge ? <GrStatusGood color="green" /> : <BiLock color="grey" />}
         </span>
       </h3>
       {isToolTipVisible && hasBadge && (
@@ -53,9 +53,8 @@ const Badge = ({
         />
       )}
       <img
-        className={`${hasBadge && classes["badge-img"]} ${
-          imgScaled && hasBadge && classes["badge-img-scale"]
-        }`}
+        className={`${hasBadge && classes["badge-img"]} ${imgScaled && hasBadge && classes["badge-img-scale"]
+          }`}
         width={120}
         height={120}
         src={img}
