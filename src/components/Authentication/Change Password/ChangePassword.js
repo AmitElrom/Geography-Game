@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Toaster } from "react-hot-toast";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
@@ -10,7 +11,8 @@ import FormInput from "../FormInput/FormInput";
 import { passwordRegex } from "../../../utils/utils-regex";
 import authContext from "../../../store/auth-context";
 
-import classes from './ChangePassword.module.css';
+import classes from "./ChangePassword.module.css";
+import { notifyError, notifySuccess } from "../../../utils/utils-toast";
 
 const INPUTS = [
   {
@@ -28,7 +30,6 @@ const INPUTS = [
 ];
 
 const ChangePassword = () => {
-
   const { loginHandler, updateUserInfo } = useContext(authContext);
 
   const navigate = useNavigate();
@@ -57,27 +58,28 @@ const ChangePassword = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      let token = sessionStorage.getItem('token-reset-password');
+      let token = sessionStorage.getItem("token-reset-password");
       changePasswordRequest(
         {
           method: "PUT",
           url: "http://localhost:8000/auth-elrom/change-password",
           body: {
             newPassword: values.password,
-            confirmedPassword: values.confirmedPassword
+            confirmedPassword: values.confirmedPassword,
           },
           headers: {
             Authorization: `Bearer ${token}`,
           },
         },
         (data) => {
-          updateUserInfo(data.userData)
+          notifySuccess(data);
+          updateUserInfo(data.userData);
           loginHandler(token, data.userData);
           alert(data.message);
-          sessionStorage.removeItem('token-reset-password')
-          sessionStorage.removeItem('email')
-          sessionStorage.removeItem('forgot-password-email-sent')
-          navigate('/welcome');
+          sessionStorage.removeItem("token-reset-password");
+          sessionStorage.removeItem("email");
+          sessionStorage.removeItem("forgot-password-email-sent");
+          navigate("/welcome");
         }
       );
     },
@@ -109,7 +111,13 @@ const ChangePassword = () => {
     <form onSubmit={formik.handleSubmit}>
       {formInputsList}
       <div>
-        <button className={`button-28 ${classes.button}`} type="submit">Change Password and Sign In</button>
+        <button
+          className={`button-28 ${classes.button}`}
+          type="submit"
+          onClick={() => error && notifyError(error)}
+        >
+          Change Password and Sign In
+        </button>
       </div>
     </form>
   );

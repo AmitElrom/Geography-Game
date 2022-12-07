@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import useHttpAxios from './hooks/use-http-axios';
+import { Toast } from 'react-hot-toast';
 
 import Layout from './components/Main Header/Layout/Layout';
 import Main from './components/Main/Main';
@@ -29,7 +29,7 @@ function App() {
 
   const { isLoggedIn, isCodeVer, isEmailSent } = useContext(authContext);
 
-  const { isFunFactShown } = useSelector(state => state.countries)
+  const { isFunFactShown } = useSelector(state => state.countries);
 
   return (
     <Layout className={!isFunFactShown ? 'App' : 'App-fun-fact-shown'} >

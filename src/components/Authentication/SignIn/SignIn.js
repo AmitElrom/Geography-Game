@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
@@ -10,6 +10,7 @@ import FormInput from "../FormInput/FormInput";
 import classes from "../SignUp/SignUp.module.css";
 
 import authContext from "../../../store/auth-context";
+import { notifyError, notifySuccess } from "../../../utils/utils-toast";
 
 const formInputs = [
   {
@@ -24,19 +25,16 @@ const formInputs = [
   },
 ];
 
-
-
 const SignIn = () => {
   const navigate = useNavigate();
 
   const { loginHandler } = useContext(authContext);
 
   const { error, isLoading, sendRequest: signInRequest } = useHttpAxios();
-  const notify = () => toast.error(`${error?.response?.data?.error} - ${error?.response?.status}`);
 
   useEffect(() => {
-    sessionStorage.clear()
-  }, [])
+    sessionStorage.clear();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -48,6 +46,7 @@ const SignIn = () => {
       password: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
+      error && notifyError(error);
       signInRequest(
         {
           method: "POST",
@@ -56,7 +55,7 @@ const SignIn = () => {
         },
         (data) => {
           if (data.token) {
-            console.log(data);
+            notifySuccess(data);
             loginHandler(data.token, { ...data.userData });
             navigate("/welcome", { replace: true });
           }
@@ -91,8 +90,9 @@ const SignIn = () => {
       <h1>Sign In</h1>
       {formInputList}
       <div>
-        <button className="button-28" type="submit" onClick={notify} >Sign In</button>
-        {error && <Toaster />}
+        <button className="button-28" type="submit">
+          Sign In
+        </button>
       </div>
       <div className={classes["forgot-password"]}>
         <Link to="/forgot-password">Forgot password?</Link>

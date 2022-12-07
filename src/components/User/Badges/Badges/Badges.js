@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import useHttpAxios from '../../../../hooks/use-http-axios';
+import useHttpAxios from "../../../../hooks/use-http-axios";
 
 import Badge from "../Badge/Badge";
 
@@ -27,6 +27,7 @@ import beginner_and_timer_badge_img from "../../../../imgs/badges/beginner_and_t
 import beginner_and_timer__disabled_badge_img from "../../../../imgs/badges/beginner_and_timer_disabled.png";
 
 import classes from "./Badges.module.css";
+import CustomSpinner from "../../../UI/Spinner/Spinner";
 
 const BADGES = [
   {
@@ -113,31 +114,40 @@ const Badges = () => {
 
   useEffect(() => {
     let token = sessionStorage.getItem("token");
-    getUserBadges({
-      method: "GET",
-      url: "http://localhost:8000/badges-elrom",
-      headers: {
-        Authorization: `Bearer ${token}`,
+    getUserBadges(
+      {
+        method: "GET",
+        url: "http://localhost:8000/badges-elrom",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+      (data) => {
+        const transformedBadges = BADGES.map((badge) => {
+          let apiBadge = data.find((badgeAPI) => badgeAPI.name === badge.name);
+          return {
+            img: apiBadge.hasBadge
+              ? badge.imgHaveBadge
+              : badge.imgDontHaveBadge,
+            headline: badge.headline,
+            paragraph: badge.paragraph,
+            ...apiBadge,
+          };
+        });
+        setBadges(transformedBadges);
       }
-    }, (data) => {
-      const transformedBadges = BADGES.map((badge) => {
-        let apiBadge = data.find(badgeAPI => badgeAPI.name === badge.name);
-        return {
-          img: apiBadge.hasBadge ? badge.imgHaveBadge : badge.imgDontHaveBadge,
-          headline: badge.headline,
-          paragraph: badge.paragraph,
-          ...apiBadge
-        };
-      });
-      setBadges(transformedBadges);
-    })
+    );
   }, [getUserBadges]);
 
   const badgesList = badges.map((badge) => {
     return <Badge key={badge.name} {...badge} />;
   });
 
-  return <div className={classes.badges}>{badgesList}</div>;
+  return (
+    <div className={classes.badges}>
+      {isLoading ? <CustomSpinner /> : badgesList}
+    </div>
+  );
 };
 
 export default Badges;
