@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast, { Toaster } from 'react-hot-toast';
 import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
@@ -23,12 +24,15 @@ const formInputs = [
   },
 ];
 
+
+
 const SignIn = () => {
   const navigate = useNavigate();
 
   const { loginHandler } = useContext(authContext);
 
   const { error, isLoading, sendRequest: signInRequest } = useHttpAxios();
+  const notify = () => toast.error(`${error?.response?.data?.error} - ${error?.response?.status}`);
 
   useEffect(() => {
     sessionStorage.clear()
@@ -87,7 +91,8 @@ const SignIn = () => {
       <h1>Sign In</h1>
       {formInputList}
       <div>
-        <button className="button-28" type="submit">Sign In</button>
+        <button className="button-28" type="submit" onClick={notify} >Sign In</button>
+        {error && <Toaster />}
       </div>
       <div className={classes["forgot-password"]}>
         <Link to="/forgot-password">Forgot password?</Link>
