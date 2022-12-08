@@ -1,17 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
+import Spinner from "../../UI/Spinner/Spinner";
 import FormInput from "../FormInput/FormInput";
-import { useNavigate } from "react-router-dom";
 
 import classes from './ForgotPassword.module.css';
 import authContext from "../../../store/auth-context";
 
+import { alertActions } from "../../../store/alert-slice";
+
 
 const ForgotPassword = () => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const { setIsEmailSentForgotPassword } = useContext(authContext);
@@ -21,6 +27,12 @@ const ForgotPassword = () => {
     isLoading,
     sendRequest: resetPasswordRequest,
   } = useHttpAxios();
+
+  useEffect(() => {
+    if (error) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -37,10 +49,10 @@ const ForgotPassword = () => {
           body: values,
         },
         (data) => {
+          dispatch(alertActions.activateAlert({ isError: false, data }));
           sessionStorage.setItem('email', values.email)
           setIsEmailSentForgotPassword(true);
           sessionStorage.setItem('forgot-password-email-sent', true);
-          alert(data.message);
           navigate("/verify-email-code", { replace: true });
         }
       );
@@ -48,7 +60,7 @@ const ForgotPassword = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Fragment>{isLoading ? <Spinner /> : <form onSubmit={formik.handleSubmit}>
       <FormInput
         label="Email"
         placeholder="Enter your email address"
@@ -65,7 +77,9 @@ const ForgotPassword = () => {
       <div>
         <button className={`button-28 ${classes.button}`} type="submit">Reset Password</button>
       </div>
-    </form>
+    </form>}
+
+    </Fragment>
   );
 };
 

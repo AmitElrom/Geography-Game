@@ -1,12 +1,14 @@
-import { useEffect, useReducer } from 'react';
+import { Fragment, useEffect, useReducer } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Level from '../../UI/Difficulty Level/DifficultyLevel';
+import Spinner from "../../UI/Spinner/Spinner";
 
 import classes from './MainLevel.module.css';
 
 import { countriesActions } from '../../../store/countries-slice';
+import { alertActions } from "../../../store/alert-slice";
 import useHttpAxios from '../../../hooks/use-http-axios';
 
 import { buildUrl } from '../../../utils/utils-api';
@@ -45,22 +47,20 @@ const MainLevel = () => {
 
     const [urlState, urlDisptch] = useReducer(urlReducer);
 
-    const { isLoading, error, sendRequest: getCountries } = useHttpAxios();
+    const { isLoading, sendRequest: getCountries } = useHttpAxios();
 
     useEffect(() => {
-        console.log(urlState);
         getCountries({
             method: 'GET',
             url: urlState
         }, (data) => {
-            console.log(data);
             dispatch(countriesActions.manipulateCountries({
                 questions: data,
                 questionsQuantity: data.length,
             }))
             navigate('/question');
         })
-    }, [urlState, dispatch, navigate])
+    }, [urlState, dispatch, navigate, getCountries])
 
 
     const startPlayingHandler = () => {
@@ -70,15 +70,17 @@ const MainLevel = () => {
     }
 
     return (
-        <div className='centered-horizontally'>
-            {levelForMatchExplanation && <MatchExplanation level={levelForMatchExplanation} />}
-            <Level
-                size='100'
-                className={classes["main-level"] && !isStartPlaying ? classes.disabled : undefined}
-                onClick={isStartPlaying ? startPlayingHandler : undefined} >
-                start playing
-            </Level>
-        </div >
+        <Fragment>
+            {isLoading ? <Spinner /> : <div className='centered-horizontally'>
+                {levelForMatchExplanation && <MatchExplanation level={levelForMatchExplanation} />}
+                <Level
+                    size='100'
+                    className={classes["main-level"] && !isStartPlaying ? classes.disabled : undefined}
+                    onClick={isStartPlaying ? startPlayingHandler : undefined} >
+                    start playing
+                </Level>
+            </div >}
+        </Fragment>
     )
 }
 

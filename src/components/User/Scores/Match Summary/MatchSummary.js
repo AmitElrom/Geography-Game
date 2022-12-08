@@ -1,25 +1,37 @@
-import React, { useEffect, useState } from "react";
-
+import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import Spinner from "../../../UI/Spinner/Spinner";
+
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
 import classes from './MatchSummary.module.css';
 import classesScoresTable from "../Scores Table/Table/ScoresTable.module.css";
 import classesUsersScores from '../Scores Table/Scores/UsersScores.module.css';
 
-const MatchSummary = () => {
-  const [matchSummaryData, setMatchSummaryData] = useState({});
-  const [isLevelLastMatch, setIsLevelLastMatch] = useState(true);
-  const [isMatchSummary, setIsMatchSummary] = useState(false);
+import { alertActions } from "../../../../store/alert-slice";
 
+
+const MatchSummary = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const [matchSummaryData, setMatchSummaryData] = useState({});
+  const [isMatchSummary, setIsMatchSummary] = useState(false);
 
   const {
     error,
     isLoading,
     sendRequest: getMatchSummaryRequest,
   } = useHttpAxios();
+
+  useEffect(() => {
+    if (error) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, dispatch]);
 
   useEffect(() => {
     let level = sessionStorage.getItem("last-match-level");
@@ -52,7 +64,7 @@ const MatchSummary = () => {
   };
 
   return (
-    <div className={classesUsersScores["users-scores"]} >
+    <Fragment>{isLoading ? <Spinner /> : <div className={classesUsersScores["users-scores"]} >
       <h1>{isMatchSummary ? "Game Summary" : "Last Game Summary"}</h1>
       <h2>Level - {matchSummaryData?.level}</h2>
       <div>
@@ -124,7 +136,8 @@ const MatchSummary = () => {
       {isMatchSummary && (
         <button className={`button-28 ${classes.button}`} onClick={toMainPageHandler}>to main page</button>
       )}
-    </div>
+    </div>}</Fragment>
+
   );
 };
 

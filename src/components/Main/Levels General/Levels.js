@@ -43,7 +43,7 @@ const Levels = () => {
 
   const levelsList = levelsData.map((level) => {
     return (
-      <div>
+      <div key={`${level.id}${level.name}`} >
         <Level
           className={level.isClicked ? classes["level-clicked"] : undefined}
           key={level.id}

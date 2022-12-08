@@ -1,10 +1,27 @@
-import React from 'react'
-import { Spinner } from "@chakra-ui/spinner";
+import React from "react";
+import { ClipLoader } from "react-spinners";
 
-const CustomSpinner = () => {
-    return (
-        <Spinner width={90} color="var(--blue)" />
-    )
-}
+const override = {
+  display: "block",
+  margin: "0 auto",
+};
 
-export default CustomSpinner;
+const Spinner = ({
+  color = "var(--blue)",
+  loading,
+  cssOverride = override,
+  size = 80,
+}) => {
+  return (
+    <ClipLoader
+      color={color}
+      loading={loading}
+      cssOverride={cssOverride}
+      size={size}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
+  );
+};
+
+export default Spinner;

@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
 import Card from "../../../UI/Card/Card";
+import Spinner from "../../../UI/Spinner/Spinner";
 
 import classes from "./Option.module.css";
 
 import { countriesActions } from "../../../../store/countries-slice";
-import { useNavigate } from "react-router-dom";
+
+import { alertActions } from "../../../../store/alert-slice";
+
 
 const Option = ({
   answer,
@@ -32,18 +36,18 @@ const Option = ({
 
   const { error, isLoading, sendRequest: sendScoreRequest } = useHttpAxios();
 
+  useEffect(() => {
+    if (error) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, dispatch]);
+
   const [isOptionClicked, setIsOptionClicked] = useState(false);
   const [optionClasses, setOptionClasses] = useState(classes.option);
 
   let isFinalQuestion = questionIndex === questionsQuantity;
 
   useEffect(() => {
-    // console.log(
-    //   "isFinalQuestion",
-    //   isFinalQuestion,
-    //   "isOptionClicked",
-    //   isOptionClicked
-    // );
     if (isOptionClicked) {
       console.log(questionIndex);
       setIsOptionClicked(false);
@@ -77,7 +81,6 @@ const Option = ({
             },
           },
           (data) => {
-            console.log("score sent to server status", data);
             if (isFunFactsShown) {
               dispatch(countriesActions.showFunFact());
             } else {

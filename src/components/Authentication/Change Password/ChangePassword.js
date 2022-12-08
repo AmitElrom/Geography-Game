@@ -1,18 +1,21 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Toaster } from "react-hot-toast";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
+import Spinner from "../../UI/Spinner/Spinner";
 
 import { passwordRegex } from "../../../utils/utils-regex";
 import authContext from "../../../store/auth-context";
 
 import classes from "./ChangePassword.module.css";
-import { notifyError, notifySuccess } from "../../../utils/utils-toast";
+
+import { alertActions } from "../../../store/alert-slice";
+
 
 const INPUTS = [
   {
@@ -32,6 +35,8 @@ const INPUTS = [
 const ChangePassword = () => {
   const { loginHandler, updateUserInfo } = useContext(authContext);
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const {
@@ -39,6 +44,12 @@ const ChangePassword = () => {
     isLoading,
     sendRequest: changePasswordRequest,
   } = useHttpAxios();
+
+  useEffect(() => {
+    if (error) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -72,10 +83,9 @@ const ChangePassword = () => {
           },
         },
         (data) => {
-          notifySuccess(data);
           updateUserInfo(data.userData);
           loginHandler(token, data.userData);
-          alert(data.message);
+          dispatch(alertActions.activateAlert({ isError: false, data }));
           sessionStorage.removeItem("token-reset-password");
           sessionStorage.removeItem("email");
           sessionStorage.removeItem("forgot-password-email-sent");
@@ -108,18 +118,19 @@ const ChangePassword = () => {
   );
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      {formInputsList}
-      <div>
-        <button
-          className={`button-28 ${classes.button}`}
-          type="submit"
-          onClick={() => error && notifyError(error)}
-        >
-          Change Password and Sign In
-        </button>
-      </div>
-    </form>
+    <Fragment>
+      {isLoading ? <Spinner /> : <form onSubmit={formik.handleSubmit}>
+        {formInputsList}
+        <div>
+          <button
+            className={`button-28 ${classes.button}`}
+            type="submit"
+          >
+            Change Password and Sign In
+          </button>
+        </div>
+      </form>}
+    </Fragment>
   );
 };
 

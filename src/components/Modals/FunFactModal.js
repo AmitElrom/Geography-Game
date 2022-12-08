@@ -8,26 +8,16 @@ import Card from "../UI/Card/Card";
 import classes from "./Modal.module.css";
 
 import { countriesActions } from "../../store/countries-slice";
-import { sendScoreRequest } from "../../store/countries-slice";
 
 import { getMeRandomElement } from "../../utils/utils-general";
-import useHttpAxios from "../../hooks/use-http-axios";
 
 const FunFactModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { error, isLoading, sendRequest: sendScoreRequest } = useHttpAxios();
-
-  const {
-    questionIndex,
-    questionsQuantity,
-    questions,
-    difficultyLevel,
-    startTime,
-    score,
-    questionsToServer,
-  } = useSelector((state) => state.countries);
+  const { questionIndex, questionsQuantity, questions } = useSelector(
+    (state) => state.countries
+  );
 
   const [answer, setAnswer] = useState({});
   const [funFact, setFunFact] = useState("");
@@ -45,31 +35,7 @@ const FunFactModal = () => {
     if (questionIndex !== questionsQuantity - 1) {
       dispatch(countriesActions.nextCountryHandler());
     } else {
-      console.log("that was the final question");
-      // dispatch(countriesActions.caseFinalQuestion())
-      // dispatch(sendScoreRequest())
       navigate("/match-summary", { replace: true });
-      // let token = sessionStorage.getItem("token");
-      // sendScoreRequest(
-      //   {
-      //     method: "PATCH",
-      //     url: "http://localhost:8000/score-elrom",
-      //     body: {
-      //       level: difficultyLevel.toLowerCase(),
-      //       startTime,
-      //       endTime: new Date().getTime(),
-      //       score,
-      //       questions: questionsToServer,
-      //     },
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //     },
-      //   },
-      //   (data) => {
-      //     console.log("score sent to server status", data);
-      //     navigate("/match-summary", { replace: true });
-      //   }
-      // );
     }
   };
 

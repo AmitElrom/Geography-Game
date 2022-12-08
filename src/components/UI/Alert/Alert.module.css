@@ -1,0 +1,23 @@
+.alert {
+  z-index: 10;
+  position: fixed;
+  width: auto;
+  padding: 1rem;
+  transform: translateX(-50%);
+  left: 50%;
+  margin-top: 1rem;
+  border-radius: var(--border-radius);
+  background-color: white;
+  font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 4px 15px;
+}
+
+.ok {
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+
+.error {
+  border: 1px solid var(--red);
+  color: var(--red);
+}

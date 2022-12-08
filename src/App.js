@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Toast } from 'react-hot-toast';
 
 import Layout from './components/Main Header/Layout/Layout';
 import Main from './components/Main/Main';

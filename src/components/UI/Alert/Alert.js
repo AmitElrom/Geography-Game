@@ -1,10 +1,18 @@
-import React from 'react';
-import { } from 'react-toastify';
+import React from "react";
+import { useSelector } from "react-redux";
+
+import classes from "./Alert.module.css";
 
 const Alert = () => {
-    return (
-        <div>Alert</div>
-    )
-}
+  const { isError, data } = useSelector((state) => state.alert);
 
-export default Alert
+  return (
+    <div className={`${classes.alert} ${isError ? classes.error : classes.ok}`}>
+      {isError
+        ? data?.response?.data?.error || data?.message || "Error"
+        : data?.message || "Success"}
+    </div>
+  );
+};
+
+export default Alert;

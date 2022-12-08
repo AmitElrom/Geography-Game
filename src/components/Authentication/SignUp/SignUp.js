@@ -1,17 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useContext, Fragment } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
+import Spinner from "../../UI/Spinner/Spinner";
 
 import classes from "./SignUp.module.css";
 
 import { nameRegex, passwordRegex } from "../../../utils/utils-regex";
 import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
-import { useContext } from "react";
 import authContext from "../../../store/auth-context";
+
+import { alertActions } from "../../../store/alert-slice";
+
 
 const formInputs = [
   {
@@ -42,6 +46,9 @@ const formInputs = [
 ];
 
 const SignUp = () => {
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const { loginHandler } = useContext(authContext);
@@ -51,6 +58,12 @@ const SignUp = () => {
   useEffect(() => {
     sessionStorage.clear()
   }, [])
+
+  useEffect(() => {
+    if (error) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -86,7 +99,7 @@ const SignUp = () => {
           body: values,
         },
         (data) => {
-          console.log(data);
+          dispatch(alertActions.activateAlert({ isError: false, data }));
           loginHandler(data.token, { ...data.userData });
           navigate("/welcome", { replace: true });
         }
@@ -126,17 +139,19 @@ const SignUp = () => {
   );
 
   return (
-    <form className={classes.form} onSubmit={formik.handleSubmit}>
-      <h1>Sign Up</h1>
-      {formInputList}
-      <div>
-        <button className="button-28" type="submit">Sign Up</button>
-      </div>
-      <div className={classes["sign-in"]}>
-        <p>Already have an account? &nbsp;</p>
-        <Link to="/sign-in">Sign In</Link>
-      </div>
-    </form>
+    <Fragment>
+      {isLoading ? <Spinner /> : <form className={classes.form} onSubmit={formik.handleSubmit}>
+        <h1>Sign Up</h1>
+        {formInputList}
+        <div>
+          <button className="button-28" type="submit">Sign Up</button>
+        </div>
+        <div className={classes["sign-in"]}>
+          <p>Already have an account? &nbsp;</p>
+          <Link to="/sign-in">Sign In</Link>
+        </div>
+      </form>}
+    </Fragment>
   );
 };
 

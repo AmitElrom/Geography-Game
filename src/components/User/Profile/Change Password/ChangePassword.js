@@ -1,16 +1,19 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
-import ChangePasswordItem from "../Change Password Item/ChangePaswordItem";
-import FormInput from '../../../Authentication/FormInput/FormInput';
+import FormInput from "../../../Authentication/FormInput/FormInput";
+import Spinner from "../../../UI/Spinner/Spinner";
 
 import { passwordRegex } from "../../../../utils/utils-regex";
 import authContext from "../../../../store/auth-context";
 
-import classes from './ChangePassword.module.css';
+import classes from "./ChangePassword.module.css";
+
+import { alertActions } from "../../../../store/alert-slice";
 
 const changePasswordItems = [
   { name: "newPassword", placeholder: "Enter New Password", info: "" },
@@ -18,6 +21,8 @@ const changePasswordItems = [
 ];
 
 const ChangePassword = ({ setToUpdatePassword }) => {
+  const dispatch = useDispatch();
+
   const { token } = useContext(authContext);
 
   const {
@@ -25,6 +30,12 @@ const ChangePassword = ({ setToUpdatePassword }) => {
     error,
     sendRequest: changePasswordRequest,
   } = useHttpAxios();
+
+  useEffect(() => {
+    if (error) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -53,14 +64,12 @@ const ChangePassword = ({ setToUpdatePassword }) => {
           },
         },
         (data) => {
-          console.log(data);
-          alert(data.message);
+          dispatch(alertActions.activateAlert({ isError: false, data }));
           setToUpdatePassword(false);
         }
       );
     },
   });
-
 
   const changePasswordItemList = changePasswordItems.map((item) => {
     return (
@@ -80,13 +89,19 @@ const ChangePassword = ({ setToUpdatePassword }) => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <h2>Reset Password</h2>
-      <div>{changePasswordItemList}</div>
-      <div>
-        <button className={`button-28 ${classes.button}`} >Submit</button>
-      </div>
-    </form>
+    <Fragment>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <form onSubmit={formik.handleSubmit}>
+          <h2>Reset Password</h2>
+          <div>{changePasswordItemList}</div>
+          <div>
+            <button className={`button-28 ${classes.button}`}>Submit</button>
+          </div>
+        </form>
+      )}
+    </Fragment>
   );
 };
 

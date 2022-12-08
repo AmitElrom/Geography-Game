@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
 import Badge from "../Badge/Badge";
+import Spinner from "../../../UI/Spinner/Spinner";
+
+import { alertActions } from "../../../../store/alert-slice";
 
 import beginner_badge_img from "../../../../imgs/badges/beginner.png";
 import beginner_disabled_badge_img from "../../../../imgs/badges/beginner_disabled.png";
@@ -27,7 +30,7 @@ import beginner_and_timer_badge_img from "../../../../imgs/badges/beginner_and_t
 import beginner_and_timer__disabled_badge_img from "../../../../imgs/badges/beginner_and_timer_disabled.png";
 
 import classes from "./Badges.module.css";
-import CustomSpinner from "../../../UI/Spinner/Spinner";
+import { useDispatch } from "react-redux";
 
 const BADGES = [
   {
@@ -108,9 +111,16 @@ const BADGES = [
 ];
 
 const Badges = () => {
+  const dispatch = useDispatch();
   const [badges, setBadges] = useState([]);
 
   const { error, isLoading, sendRequest: getUserBadges } = useHttpAxios();
+
+  useEffect(() => {
+    if (error) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, dispatch]);
 
   useEffect(() => {
     let token = sessionStorage.getItem("token");
@@ -144,9 +154,13 @@ const Badges = () => {
   });
 
   return (
-    <div className={classes.badges}>
-      {isLoading ? <CustomSpinner /> : badgesList}
-    </div>
+    <Fragment>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className={classes.badges}>{badgesList}</div>
+      )}
+    </Fragment>
   );
 };
 

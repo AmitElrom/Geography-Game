@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import useHttpAxios from "../../../../../hooks/use-http-axios";
+import React from "react";
+
 import TableHead from "../Table Header/TableHead";
 import TableRow from "../Table Row/TableRow";
 
 import classes from "./ScoresTable.module.css";
+
 
 const ScoresTable = ({ scoresTable }) => {
 
