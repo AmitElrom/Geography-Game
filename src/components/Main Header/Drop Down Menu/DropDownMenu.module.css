@@ -1,10 +1,21 @@
 .dropdown {
-  position: absolute;
+  z-index: 9;
+  position: fixed;
+  right: 0;
   box-sizing: border-box;
   border: 0.2rem solid var(--blue);
   border-radius: var(--border-radius1);
-  top: 80px;
   padding: 1rem;
-  overflow: hidden;
+  margin-top: calc(0rem - var(--main-margin-top));
   background-color: black;
+}
+
+.dropdown[pathname="/about"] {
+  margin-top: 0;
+}
+
+@media (width <= 768px) {
+  .dropdown {
+    width: 100%;
+  }
 }

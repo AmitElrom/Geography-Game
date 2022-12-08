@@ -1,18 +1,17 @@
 import { useState, useEffect, useContext } from "react";
+import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 import classes from "./Navigation.module.css";
 
 import authContext from "../../../store/auth-context";
 import { countriesActions } from "../../../store/countries-slice";
-import { useDispatch } from "react-redux";
-import DropDownMenu from "../Drop Down Menu/DropDownMenu";
+import { menuActions } from "../../../store/menu-slice";
 
 const Navigation = () => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({});
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { isLoggedIn, userData } = useContext(authContext);
 
@@ -24,22 +23,16 @@ const Navigation = () => {
     dispatch(countriesActions.nullify());
   };
 
-  const openMenu = () => {
-    setIsMenuOpen(true);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  const logoutHandler = () => {
-    setIsMenuOpen(false);
+  const toggleMenu = () => {
+    dispatch(menuActions.toggleMenu());
   };
 
   return (
     <header className={classes.header}>
       <div className={classes["game-name"]}>
-        <Link className="button-28" to={isLoggedIn ? "/welcome" : "/sign-in"}>Flags Game</Link>
+        <Link className="button-28" to={isLoggedIn ? "/welcome" : "/sign-in"}>
+          Flags Game
+        </Link>
       </div>
       <nav className={classes.nav}>
         <ul>
@@ -65,16 +58,15 @@ const Navigation = () => {
                 paddingBottom: "2rem",
                 marginTop: "2rem",
               }}
-              onMouseEnter={openMenu}
-              onMouseLeave={closeMenu}
             >
-              <span className={classes.username}>{user && user?.fullName}</span>
-              {isMenuOpen && <DropDownMenu onLogout={logoutHandler} />}
+              <span className={classes.username} onClick={toggleMenu}>
+                {user && user?.fullName}
+              </span>
             </li>
           )}
         </ul>
       </nav>
-    </header >
+    </header>
   );
 };
 

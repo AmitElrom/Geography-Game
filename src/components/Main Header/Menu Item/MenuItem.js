@@ -1,17 +1,24 @@
 import { useContext } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import authContext from '../../../store/auth-context';
 
 import classes from './MenuItem.module.css';
 
-const MenuItem = ({ children, onLogout }) => {
+import { menuActions } from '../../../store/menu-slice';
+
+
+const MenuItem = ({ children }) => {
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
     const { logoutHandler } = useContext(authContext);
 
     const clickMenuItemHandler = () => {
+        dispatch(menuActions.toggleMenu({ toOpenMenu: false }));
         switch (children) {
             case 'Scores':
                 navigate('/scores')
@@ -23,7 +30,6 @@ const MenuItem = ({ children, onLogout }) => {
                 navigate('/badges')
                 break
             case "Log Out":
-                onLogout()
                 logoutHandler();
                 break
             default:

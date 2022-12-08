@@ -1,9 +1,9 @@
 import { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Alert from '../../UI/Alert/Alert';
-
 import Navigation from '../Navigation/Navigation';
+import DropDownMenu from '../Drop Down Menu/DropDownMenu';
+import Alert from '../../UI/Alert/Alert';
 
 import classes from './Layout.module.css';
 
@@ -14,6 +14,7 @@ const Layout = ({ children, className }) => {
     const dispatch = useDispatch();
 
     const { isAlertActivated } = useSelector(state => state.alert);
+    const { isMenuOpen } = useSelector(state => state.menu);
 
     useEffect(() => {
         if (isAlertActivated) {
@@ -27,6 +28,7 @@ const Layout = ({ children, className }) => {
         <Fragment>
             {isAlertActivated && <Alert />}
             <Navigation />
+            {isMenuOpen && <DropDownMenu />}
             <main className={`${className} ${classes.main}`} >{children}</main>
         </Fragment>
     )
