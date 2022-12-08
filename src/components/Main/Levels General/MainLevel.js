@@ -74,8 +74,7 @@ const MainLevel = () => {
             {isLoading ? <Spinner /> : <div className='centered-horizontally'>
                 {levelForMatchExplanation && <MatchExplanation level={levelForMatchExplanation} />}
                 <Level
-                    size='100'
-                    className={classes["main-level"] && !isStartPlaying ? classes.disabled : undefined}
+                    className={!isStartPlaying ? classes.disabled : undefined && classes["main-level"]}
                     onClick={isStartPlaying ? startPlayingHandler : undefined} >
                     start playing
                 </Level>

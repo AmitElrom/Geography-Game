@@ -4,11 +4,12 @@
   margin-right: auto;
   margin: 1rem;
   padding: 0;
-  height: 7rem;
-  width: 7rem;
+  height: 6rem;
+  width: 6rem;
   cursor: pointer;
   float: left;
   position: relative;
+  font-size: 93%;
 }
 
 .level[level="beginner"]:hover {

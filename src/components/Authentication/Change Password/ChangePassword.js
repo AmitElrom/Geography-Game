@@ -16,6 +16,7 @@ import classes from "./ChangePassword.module.css";
 
 import { alertActions } from "../../../store/alert-slice";
 
+import confirmedImg from "../../../imgs/Confirmed-cuate.png";
 
 const INPUTS = [
   {
@@ -119,17 +120,23 @@ const ChangePassword = () => {
 
   return (
     <Fragment>
-      {isLoading ? <Spinner /> : <form onSubmit={formik.handleSubmit}>
-        {formInputsList}
-        <div>
-          <button
-            className={`button-28 ${classes.button}`}
-            type="submit"
-          >
-            Change Password and Sign In
-          </button>
-        </div>
-      </form>}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <form onSubmit={formik.handleSubmit}>
+          {formInputsList}
+          <div>
+            <button className={`button-28 ${classes.button}`} type="submit">
+              Change Password and Sign In
+            </button>
+          </div>
+        </form>
+      )}
+      <img
+        src={confirmedImg}
+        alt="Confirmed-cuate"
+        className="img-reset-password"
+      />
     </Fragment>
   );
 };

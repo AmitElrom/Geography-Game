@@ -80,6 +80,11 @@ code {
   text-align-last: center;
 }
 
+.img-reset-password {
+  width: 18rem;
+  margin-top: 4vh;
+}
+
 :root {
   --grey: rgb(53, 51, 51);
   --border-radius: 7px;

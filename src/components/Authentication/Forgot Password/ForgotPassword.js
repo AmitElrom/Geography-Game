@@ -9,11 +9,12 @@ import useHttpAxios from "../../../hooks/use-http-axios";
 import Spinner from "../../UI/Spinner/Spinner";
 import FormInput from "../FormInput/FormInput";
 
-import classes from './ForgotPassword.module.css';
+import classes from "./ForgotPassword.module.css";
 import authContext from "../../../store/auth-context";
 
 import { alertActions } from "../../../store/alert-slice";
 
+import sentMessageImg from "../../../imgs/Sent Message-cuate.png";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
@@ -50,9 +51,9 @@ const ForgotPassword = () => {
         },
         (data) => {
           dispatch(alertActions.activateAlert({ isError: false, data }));
-          sessionStorage.setItem('email', values.email)
+          sessionStorage.setItem("email", values.email);
           setIsEmailSentForgotPassword(true);
-          sessionStorage.setItem('forgot-password-email-sent', true);
+          sessionStorage.setItem("forgot-password-email-sent", true);
           navigate("/verify-email-code", { replace: true });
         }
       );
@@ -60,25 +61,36 @@ const ForgotPassword = () => {
   });
 
   return (
-    <Fragment>{isLoading ? <Spinner /> : <form onSubmit={formik.handleSubmit}>
-      <FormInput
-        label="Email"
-        placeholder="Enter your email address"
-        name="email"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={
-          formik.touched.email && formik.errors.email
-            ? formik.errors.email
-            : null
-        }
+    <Fragment>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <form onSubmit={formik.handleSubmit}>
+          <FormInput
+            label="Email"
+            placeholder="Enter your email address"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.email && formik.errors.email
+                ? formik.errors.email
+                : null
+            }
+          />
+          <div>
+            <button className={`button-28 ${classes.button}`} type="submit">
+              Reset Password
+            </button>
+          </div>
+        </form>
+      )}
+      <img
+        src={sentMessageImg}
+        alt="Sent Message-cuate"
+        className="img-reset-password"
       />
-      <div>
-        <button className={`button-28 ${classes.button}`} type="submit">Reset Password</button>
-      </div>
-    </form>}
-
     </Fragment>
   );
 };
