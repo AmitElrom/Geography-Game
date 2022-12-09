@@ -29,19 +29,15 @@ const Navigation = () => {
 
   return (
     <header className={classes.header}>
-      <div className={classes["game-name"]}>
+      <div className={`${classes["game-name"]} ${classes.responsive}`}>
         <Link className="button-28" to={isLoggedIn ? "/welcome" : "/sign-in"}>
-          Flags Game
+          <span className={classes["game-name-span"]}>Flags </span>
+          <span className={classes["game-name-span"]}>Game</span>
         </Link>
       </div>
       <nav className={classes.nav}>
         <ul>
-          <li
-            style={{
-              paddingBottom: "2rem",
-              marginTop: "2rem",
-            }}
-          >
+          <li className={classes.responsive}>
             <NavLink
               to="/about"
               onClick={toAboutPageHandler}
@@ -53,13 +49,11 @@ const Navigation = () => {
             </NavLink>
           </li>
           {isLoggedIn && (
-            <li
-              style={{
-                paddingBottom: "2rem",
-                marginTop: "2rem",
-              }}
-            >
-              <span className={classes.username} onClick={toggleMenu}>
+            <li className={classes.responsive}>
+              <span
+                className={`${classes.username} ${classes.responsive}`}
+                onClick={toggleMenu}
+              >
                 {user && user?.fullName}
               </span>
             </li>

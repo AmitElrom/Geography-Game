@@ -4,6 +4,12 @@
   position: relative;
 }
 
+@media (width <= 575px) {
+  .responsive-main-level {
+    margin-bottom: 1rem;
+  }
+}
+
 .disabled {
   background-color: #cccccc;
   color: #666666;

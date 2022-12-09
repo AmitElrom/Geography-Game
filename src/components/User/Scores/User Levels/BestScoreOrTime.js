@@ -25,16 +25,17 @@ const BestScoreOrTime = ({ bestScore, bestTime }) => {
   });
 
   const togglList = () => {
-    setIsListVisible((prevVal) => !prevVal);
+    if (data.length) {
+      setIsListVisible((prevVal) => !prevVal);
+    }
   };
 
   return (
     <div>
       {isScoreOrTime === "score" && data && (
         <button
-          className={`button-28 ${classes["btn-toggle"]} ${
-            isListVisible && classes["btn-toggle-active"]
-          }`}
+          className={`button-28 ${classes["btn-toggle"]} ${isListVisible && classes["btn-toggle-active"]
+            }`}
           onClick={togglList}
         >
           <p>Games With Best Score</p>
@@ -46,28 +47,24 @@ const BestScoreOrTime = ({ bestScore, bestTime }) => {
       )}
       {isScoreOrTime === "time" && data && (
         <button
-          className={`button-28 ${classes["btn-toggle"]} ${
-            isListVisible && classes["btn-toggle-active"]
-          }`}
+          className={`button-28 ${classes["btn-toggle"]} ${isListVisible && classes["btn-toggle-active"]
+            }`}
           onClick={togglList}
         >
           <p>Games With Best Time</p>
           <p>
             {data.length} games played
             {data[0]
-              ? `, with the best time of ${
-                  data[0]?.duration.hours
-                    ? `${data[0]?.duration.hours} hours`
-                    : ""
-                }${
-                  data[0]?.duration.minutes
-                    ? `${data[0]?.duration.minutes}, `
-                    : ""
-                }${
-                  data[0]?.duration.seconds
-                    ? `${data[0]?.duration.seconds} seconds and `
-                    : ""
-                }${data[0]?.duration.milliseconds} milliseconds`
+              ? `, with the best time of ${data[0]?.duration.hours
+                ? `${data[0]?.duration.hours} hours,`
+                : ""
+              }${data[0]?.duration.minutes
+                ? `${data[0]?.duration.minutes} minutes, `
+                : ""
+              }${data[0]?.duration.seconds
+                ? `${data[0]?.duration.seconds} seconds and `
+                : ""
+              }${data[0]?.duration.milliseconds} milliseconds`
               : ""}
           </p>
         </button>

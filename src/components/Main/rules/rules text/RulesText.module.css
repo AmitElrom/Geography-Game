@@ -2,6 +2,13 @@
   width: 67%;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 1rem;
   text-align: justify;
   text-align-last: center;
+}
+
+@media (width <= 740px) {
+  .all-text {
+    width: 75%;
+  }
 }

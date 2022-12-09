@@ -21,7 +21,7 @@ const About = () => {
         alt={worldPexelsImg}
         className={classes["top-img"]}
       />
-      <div className="paragraph">
+      <div className={`paragraph ${classes["page-without-image"]}`}>
         <h1>About</h1>
         <div>
           <p>
@@ -33,7 +33,7 @@ const About = () => {
             about new countries, flags, capital cities, etc.
           </p>
           <p>
-            When I got better at coding, I thought why not build a flags game
+            When I got better at coding, I thought why not building a flags game
             with different difficulty levels and with an analysis of your past
             games that would enable you to learn from your past mistakes?
           </p>
@@ -135,6 +135,7 @@ const About = () => {
           <p>
             I used another external source –{" "}
             <LinkNewTab
+              className={classes["sporcle-link"]}
               data="https://www.sporcle.com/games/RobPro/flags-of-the-world-progressively-harder"
               href="https://www.sporcle.com/games/RobPro/flags-of-the-world-progressively-harder"
             />

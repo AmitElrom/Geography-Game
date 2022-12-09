@@ -62,7 +62,7 @@ const FormInput = ({
             name === "password2" ||
             name === "newPassword" ||
             name === "confirmedPassword" ||
-            name === "code") && "off"}
+            name === "code") ? "off" : undefined}
           type={typeState}
           style={style}
           name={name}

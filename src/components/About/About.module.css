@@ -5,6 +5,13 @@
   margin-top: calc(0rem - var(--main-margin-top));
 }
 
+@media (width <= 428px) {
+  .page-without-image {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
+
 ul li::marker {
   color: var(--blue);
 }
@@ -17,6 +24,10 @@ ul li ul li::marker {
   object-fit: cover;
   width: 100%;
   height: 40vh;
+}
+
+.list {
+  padding-left: 1rem;
 }
 
 .list li {
@@ -34,6 +45,13 @@ ul li ul li::marker {
   border: 2px solid var(--purple);
   padding: 2rem;
   border-radius: var(--border-radius);
+}
+
+@media (width <= 428px) {
+  .section-1 {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
 }
 
 .section-2 {
@@ -75,7 +93,17 @@ ul li ul li::marker {
   list-style-type: none;
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   padding: 0;
+}
+
+@media (width <= 560px) {
+  .stack-list {
+    flex-direction: column;
+  }
+  .stack-list li button {
+    transform: scale(0.9);
+  }
 }
 
 .stack-list li button {
@@ -135,4 +163,8 @@ ul li ul li::marker {
 .link-in-page:hover {
   position: relative;
   bottom: 2px;
+}
+
+.sporcle-link {
+  word-wrap: break-word;
 }

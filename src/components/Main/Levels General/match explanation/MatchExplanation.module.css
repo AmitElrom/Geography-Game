@@ -5,7 +5,13 @@
   padding: 1rem;
   background-color: white;
   color: var(--purple);
-  height: 9rem;
+  height: 9.5rem;
+}
+
+@media (width <= 1150px) {
+  .match-explanation {
+    height: max-content;
+  }
 }
 
 .h-explanation {

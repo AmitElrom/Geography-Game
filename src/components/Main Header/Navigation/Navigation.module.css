@@ -19,6 +19,13 @@
   cursor: pointer;
 }
 
+@media (width <= 575px) {
+  .game-name-span {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 .header div a {
   text-decoration: none;
   color: inherit;
@@ -33,11 +40,14 @@
   list-style: none;
   display: flex;
   margin: 0;
+  padding-left: 0;
 }
 
 .nav li {
   margin-left: 1.5rem;
   font-size: 1.25rem;
+  padding-bottom: "2rem";
+  margin-top: "2rem";
 }
 
 .nav a {
@@ -54,4 +64,10 @@
 
 .nav .username {
   cursor: pointer;
+}
+
+@media (width <= 575px) {
+  .responsive {
+    transform: scale(0.97);
+  }
 }
