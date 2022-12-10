@@ -46,3 +46,14 @@
 .numbers-list li {
   margin-right: 1rem;
 }
+
+@media (width <= 520px) {
+  .numbers {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .numbers table tr td {
+    border-color: var(--purple);
+  }
+}

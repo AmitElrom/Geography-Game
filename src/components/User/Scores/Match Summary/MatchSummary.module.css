@@ -1,3 +1,8 @@
+.paragraph {
+  padding: 0.5rem;
+}
+
 .button {
   width: auto;
+  margin: 1rem;
 }

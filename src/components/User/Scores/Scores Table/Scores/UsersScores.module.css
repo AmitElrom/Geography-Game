@@ -3,3 +3,7 @@
   border-radius: var(--border-radius);
   margin: 3rem;
 }
+
+.users-scores {
+  margin: 1rem;
+}

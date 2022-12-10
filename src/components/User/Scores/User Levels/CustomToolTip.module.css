@@ -5,6 +5,7 @@
   color: white;
   overflow-y: visible;
   max-height: 80vh;
+  width: 80%;
 }
 
 .tr td {

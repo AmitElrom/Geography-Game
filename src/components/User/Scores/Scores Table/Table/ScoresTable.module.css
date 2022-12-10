@@ -1,6 +1,52 @@
 .table {
-  margin: 8vh auto;
+  margin: 1rem auto;
+  /* table-layout: fixed; */
   width: 95%;
   border-collapse: collapse;
   font-size: var(--content-font-size);
+}
+
+@media (width <= 1100px) {
+  .table {
+    font-size: 0.97rem;
+  }
+}
+
+@media (width <= 960px) {
+  .table {
+    font-size: 0.92rem;
+  }
+}
+
+@media (width <= 900px) {
+  .table {
+    font-size: 0.88rem;
+  }
+}
+
+@media (width <= 860px) {
+  .table {
+    font-size: 0.84rem;
+  }
+}
+
+@media (width <= 820px) {
+  .table {
+    font-size: 0.8rem;
+  }
+}
+
+@media (width <= 780px) {
+  .table {
+    font-size: 0.74rem;
+  }
+}
+
+@media (width <= 760px) {
+  .wrapper {
+    overflow-x: auto;
+  }
+  .table {
+    white-space: nowrap;
+  }
 }

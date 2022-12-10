@@ -44,7 +44,7 @@ const MatchExplanation = ({ level }) => {
     setLevelExplanation(tempLevelExp);
   }, [level]);
 
-  let classesDiv = `${classesMatchExplanation["match-explanation"]} ${classes["match-explanation"]} ${classes2["all-text"]}`
+  let classesDiv = `${classes["match-explanation"]} ${classes2["all-text"]} ${classesMatchExplanation["match-explanation"]}`
 
   return (
     <div className={classesDiv} >

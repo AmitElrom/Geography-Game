@@ -43,8 +43,9 @@ const Question = () => {
 
   let cardClasses = `centered-horizontally ${classes.question}`;
 
-  return (
-    <Card className={cardClasses}>
+  let top;
+  if (window.screen.width > 520) {
+    top = (
       <Card className={classes.numbers}>
         <div>
           <ul className={classes["numbers-list"]}>
@@ -61,6 +62,50 @@ const Question = () => {
           <p>{difficultyLevel} Level</p>
         </div>
       </Card>
+    );
+  }
+  if (window.screen.width <= 520) {
+    top = (
+      <Card className={classes.numbers}>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                No. {questionIndex + 1} / {questionsQuantity}
+              </td>
+              <td>Score {score}</td>
+            </tr>
+            <tr>
+              <td>{difficultyLevel} Level</td>
+              <td>
+                <StopWatch isStopWatchActivated={isStopWatchActivated} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className={cardClasses}>
+      {/* <Card className={classes.numbers}>
+        <div>
+          <ul className={classes["numbers-list"]}>
+            <li>
+              <StopWatch isStopWatchActivated={isStopWatchActivated} />
+            </li>
+            <li>
+              No. {questionIndex + 1} / {questionsQuantity}
+            </li>
+            <li>Score {score}</li>
+          </ul>
+        </div>
+        <div>
+          <p>{difficultyLevel} Level</p>
+        </div>
+      </Card> */}
+      {top}
       <Flag flag={answer.flag} />
       <Options questionData={question} />
     </Card>

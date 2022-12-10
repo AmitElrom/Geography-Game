@@ -7,6 +7,12 @@
   width: 90%;
 }
 
+@media (width <= 524px) {
+  .title {
+    transform: scale(0.8);
+  }
+}
+
 .checkbox {
   z-index: 1;
   position: absolute;

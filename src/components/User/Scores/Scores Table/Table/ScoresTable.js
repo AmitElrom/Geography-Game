@@ -5,18 +5,18 @@ import TableRow from "../Table Row/TableRow";
 
 import classes from "./ScoresTable.module.css";
 
-
 const ScoresTable = ({ scoresTable }) => {
-
   const usersWithScoresList = scoresTable.map((user) => {
     return <TableRow key={user.userDetails.userId} {...user} />;
   });
 
   return (
-    <table border={0} cellSpacing={0} className={classes.table}>
-      <TableHead />
-      <tbody>{usersWithScoresList}</tbody>
-    </table>
+    <div className={classes.wrapper}>
+      <table border={0} cellSpacing={0} className={classes.table}>
+        <TableHead />
+        <tbody>{usersWithScoresList}</tbody>
+      </table>
+    </div>
   );
 };
 

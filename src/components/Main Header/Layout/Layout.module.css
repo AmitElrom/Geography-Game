@@ -2,3 +2,12 @@
   height: 75vh;
   margin-top: calc(var(--nav-height) + var(--main-margin-top));
 }
+
+@media (width <= 520px) {
+  .main[pathname="/question"] {
+    margin-top: calc(var(--nav-height) + 0.5rem);
+    margin-bottom: 0.5rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+  }
+}

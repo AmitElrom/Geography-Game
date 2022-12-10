@@ -10,7 +10,7 @@ const UserLevelTitle = ({ titleLevel, onClick, checked }) => {
   }, [titleLevel]);
 
   return (
-    <div>
+    <div className={classes.title}>
       <input
         className={classes.checkbox}
         type="checkbox"

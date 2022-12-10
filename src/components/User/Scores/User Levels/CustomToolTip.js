@@ -5,11 +5,13 @@ import classes from "./CustomToolTip.module.css";
 const CustomToolTip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const failData = payload[0].payload;
-    const { countryName, countryFlag, falseCountries } = failData;
+    const { countryName, countryFlag, falseCountries, levelTotalFails } = failData;
     return (
       <div className={classes.tooltip}>
         <h4>
-          {`${countryName} - ${payload[0].value} total fails`}{" "}
+          {`${countryName} - ${((levelTotalFails / payload[0].value) * 100) % 10 === 0
+            ? `${((levelTotalFails / payload[0].value)).toFixed(0)}%`
+            : `${((levelTotalFails / payload[0].value)).toFixed(2)}%`} of total fails - ${payload[0].value} fails`}{" "}
           <img
             className={
               `${classes["country-img"]} ${classes["flag-img"]}`}

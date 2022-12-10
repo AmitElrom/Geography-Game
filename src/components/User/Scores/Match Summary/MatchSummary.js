@@ -6,12 +6,11 @@ import Spinner from "../../../UI/Spinner/Spinner";
 
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
-import classes from './MatchSummary.module.css';
+import classes from "./MatchSummary.module.css";
 import classesScoresTable from "../Scores Table/Table/ScoresTable.module.css";
-import classesUsersScores from '../Scores Table/Scores/UsersScores.module.css';
+import classesUsersScores from "../Scores Table/Scores/UsersScores.module.css";
 
 import { alertActions } from "../../../../store/alert-slice";
-
 
 const MatchSummary = () => {
   const dispatch = useDispatch();
@@ -64,80 +63,97 @@ const MatchSummary = () => {
   };
 
   return (
-    <Fragment>{isLoading ? <Spinner /> : <div className={classesUsersScores["users-scores"]} >
-      <h1>{isMatchSummary ? "Game Summary" : "Last Game Summary"}</h1>
-      <h2>Level - {matchSummaryData?.level}</h2>
-      <div>
-        <h3>
-          {matchSummaryData?.improvedLevelAverage?.isImproved !== "no"
-            ? `Congrats! you improved your level average score by ${matchSummaryData?.improvedLevelAverage?.averageChange} points.`
-            : `Bad news! you reduced your level average score by ${matchSummaryData?.improvedLevelAverage?.averageChange} points.`}
-        </h3>
-        <h4>
-          Your last level average score was{" "}
-          {matchSummaryData?.improvedLevelAverage?.lastScoreAverage} and now
-          it's {matchSummaryData?.improvedLevelAverage?.currentScoreAverage}
-        </h4>
-      </div>
-      <p>
-        From a total of {matchSummaryData?.questions?.numberOfQuestions}{" "}
-        questions, you answered correctly on{" "}
-        {matchSummaryData?.questions?.numberOfTrueQuestions}.
-      </p>
-      <p>
-        The game took you{" "}
-        {matchSummaryData?.gameDuration?.hours !== 0 &&
-          `${matchSummaryData?.gameDuration?.hours} hours, `}
-        {matchSummaryData?.gameDuration?.minutes !== 0 &&
-          `${matchSummaryData?.gameDuration?.minutes} minutes, `}
-        {matchSummaryData?.gameDuration?.seconds !== 0 &&
-          `${matchSummaryData?.gameDuration?.seconds} seconds and `}
-        {matchSummaryData?.gameDuration?.milliseconds !== 0 &&
-          `${matchSummaryData?.gameDuration?.milliseconds} milliseconds.`}
-      </p>
-      <h2>The Questions</h2>
-      <table className={classesScoresTable.table}>
-        <tbody>
-          {matchSummaryData?.questions?.questions?.map((question) => {
-            return (
-              <tr key={question._id}>
-                <td>{question.index}</td>
-                <td>{question.isCorrect ? "Correct" : "Wrong"}</td>
-                <td>The true country was {question.trueCountryName}</td>
-                <td>
-                  <img
-                    src={question.trueCountryFlag}
-                    width={30}
-                    alt={`${question.trueCountryName} flag`}
-                  />
-                </td>
-                {matchSummaryData?.questions?.numberOfFalseQuestions > 0 && (
-                  <td>
-                    {!question.isCorrect &&
-                      `The false country was ${question.falseCountryName}`}
-                  </td>
-                )}
-                {matchSummaryData?.questions?.numberOfFalseQuestions > 0 && (
-                  <td>
-                    {!question.isCorrect && (
-                      <img
-                        src={question.falseCountryFlag}
-                        width={30}
-                        alt={`${question.falseCountryName} flag`}
-                      />
-                    )}
-                  </td>
-                )}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      {isMatchSummary && (
-        <button className={`button-28 ${classes.button}`} onClick={toMainPageHandler}>to main page</button>
+    <Fragment>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className={classesUsersScores["users-scores"]}>
+          <div className={classes.paragraph}>
+            <h1>{isMatchSummary ? "Game Summary" : "Last Game Summary"}</h1>
+            <h2>Level - {matchSummaryData?.level}</h2>
+            <div>
+              <h3>
+                {matchSummaryData?.improvedLevelAverage?.isImproved !== "no"
+                  ? `Congrats! you improved your level average score by ${matchSummaryData?.improvedLevelAverage?.averageChange} points.`
+                  : `Bad news! you reduced your level average score by ${matchSummaryData?.improvedLevelAverage?.averageChange} points.`}
+              </h3>
+              <h4>
+                Your last level average score was{" "}
+                {matchSummaryData?.improvedLevelAverage?.lastScoreAverage} and
+                now it's{" "}
+                {matchSummaryData?.improvedLevelAverage?.currentScoreAverage}
+              </h4>
+            </div>
+            <p>
+              From a total of {matchSummaryData?.questions?.numberOfQuestions}{" "}
+              questions, you answered correctly on{" "}
+              {matchSummaryData?.questions?.numberOfTrueQuestions}.
+            </p>
+            <p>
+              The game took you{" "}
+              {matchSummaryData?.gameDuration?.hours !== 0 &&
+                `${matchSummaryData?.gameDuration?.hours} hours, `}
+              {matchSummaryData?.gameDuration?.minutes !== 0 &&
+                `${matchSummaryData?.gameDuration?.minutes} minutes, `}
+              {matchSummaryData?.gameDuration?.seconds !== 0 &&
+                `${matchSummaryData?.gameDuration?.seconds} seconds and `}
+              {matchSummaryData?.gameDuration?.milliseconds !== 0 &&
+                `${matchSummaryData?.gameDuration?.milliseconds} milliseconds.`}
+            </p>
+          </div>
+          <h2>The Questions</h2>
+          <div className={classesScoresTable.wrapper}>
+            <table className={classesScoresTable.table}>
+              <tbody>
+                {matchSummaryData?.questions?.questions?.map((question) => {
+                  return (
+                    <tr key={question._id}>
+                      <td>{question.index}</td>
+                      <td>{question.isCorrect ? "Correct" : "Wrong"}</td>
+                      <td>The true country was {question.trueCountryName}</td>
+                      <td>
+                        <img
+                          src={question.trueCountryFlag}
+                          width={30}
+                          alt={`${question.trueCountryName} flag`}
+                        />
+                      </td>
+                      {matchSummaryData?.questions?.numberOfFalseQuestions >
+                        0 && (
+                        <td>
+                          {!question.isCorrect &&
+                            `The false country was ${question.falseCountryName}`}
+                        </td>
+                      )}
+                      {matchSummaryData?.questions?.numberOfFalseQuestions >
+                        0 && (
+                        <td>
+                          {!question.isCorrect && (
+                            <img
+                              src={question.falseCountryFlag}
+                              width={30}
+                              alt={`${question.falseCountryName} flag`}
+                            />
+                          )}
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          {isMatchSummary && (
+            <button
+              className={`button-28 ${classes.button}`}
+              onClick={toMainPageHandler}
+            >
+              to main page
+            </button>
+          )}
+        </div>
       )}
-    </div>}</Fragment>
-
+    </Fragment>
   );
 };
 
