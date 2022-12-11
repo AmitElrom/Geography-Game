@@ -1,11 +1,19 @@
 .tooltip {
   background: rgba(0, 0, 0, 0.8);
+  overflow: auto;
   border: 3px solid black;
   border-radius: 8px;
   color: white;
-  overflow-y: visible;
   max-height: 80vh;
-  width: 80%;
+}
+
+@media (width <= 655px) {
+  .tooltip {
+    font-size: 0.8em;
+  }
+  .table {
+    width: 97vw;
+  }
 }
 
 .tr td {

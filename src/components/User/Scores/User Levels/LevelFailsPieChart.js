@@ -45,12 +45,16 @@ const LevelFailsPieChart = ({ fails, title }) => {
             ))}
           </Pie>
           <Tooltip
+            viewBox={{ width: "100%" }}
             wrapperStyle={{
               width: "max-content",
               zIndex: 10,
               position: "fixed",
-              top: "20%",
-              left: "25%",
+              // top: "20%",
+              // left: "25%",
+              marginLeft: 0,
+              marginRight: 0,
+              marginTop: "var(--nav-height)",
             }}
             content={<CustomToolTip />}
           />
