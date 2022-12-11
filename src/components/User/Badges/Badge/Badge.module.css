@@ -1,6 +1,9 @@
 .badge {
-  width: 20%;
   box-sizing: border-box;
+}
+
+.badge p {
+  width: 15rem;
 }
 
 .badge-img:hover,
