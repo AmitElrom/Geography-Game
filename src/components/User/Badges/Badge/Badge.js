@@ -37,7 +37,7 @@ const Badge = ({
   };
 
   return (
-    <div className={classes.badge}>
+    <div className={classes.badge} id={name} >
       <h3>
         {headline}{" "}
         <span>

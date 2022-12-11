@@ -31,6 +31,7 @@ import beginner_and_timer__disabled_badge_img from "../../../../imgs/badges/begi
 
 import classes from "./Badges.module.css";
 import { useDispatch } from "react-redux";
+import TinyBadges from "../Tiny Badges/TinyBadges";
 
 const BADGES = [
   {
@@ -39,6 +40,7 @@ const BADGES = [
     paragraph: "At Beginner Level - Answered correctly all questions",
     imgHaveBadge: beginner_badge_img,
     imgDontHaveBadge: beginner_disabled_badge_img,
+    color: "var(--beginner)",
   },
   {
     name: "amateur_badge",
@@ -46,6 +48,7 @@ const BADGES = [
     paragraph: "At Amateur Level - Answered correctly all questions",
     imgHaveBadge: amateur_badge_img,
     imgDontHaveBadge: amateur_disabled_badge_img,
+    color: "var(--amateur)",
   },
   {
     name: "medium_badge",
@@ -53,6 +56,7 @@ const BADGES = [
     paragraph: "At Medium Level - Answered correctly all questions",
     imgHaveBadge: medium_badge_img,
     imgDontHaveBadge: medium_disabled_badge_img,
+    color: "var(--medium)",
   },
   {
     name: "hard_badge",
@@ -60,6 +64,7 @@ const BADGES = [
     paragraph: "At Hard Level - Answered correctly all questions",
     imgHaveBadge: hard_badge_img,
     imgDontHaveBadge: hard_disabled_badge_img,
+    color: "var(--hard)",
   },
   {
     name: "expert_badge",
@@ -67,6 +72,7 @@ const BADGES = [
     paragraph: "At Expert Level - Answered correctly all questions",
     imgHaveBadge: expert_badge_img,
     imgDontHaveBadge: expert_disabled_badge_img,
+    color: "var(--expert)",
   },
   {
     name: "beginner_and_timer_badge",
@@ -75,6 +81,7 @@ const BADGES = [
       "At Beginner Level - Answered correctly all questions and did it in less than 45 seconds",
     imgHaveBadge: beginner_and_timer_badge_img,
     imgDontHaveBadge: beginner_and_timer__disabled_badge_img,
+    color: "var(--beginner)",
   },
   {
     name: "amateur_and_timer_badge",
@@ -83,6 +90,7 @@ const BADGES = [
       "At Amateur Level - Answered correctly all questions and did it in less than 1 minute and 5 seconds",
     imgHaveBadge: amateur_and_timer_badge_img,
     imgDontHaveBadge: amateur_and_timer__disabled_badge_img,
+    color: "var(--amateur)",
   },
   {
     name: "medium_and_timer_badge",
@@ -91,6 +99,7 @@ const BADGES = [
       "At Medium Level - Answered correctly all questions and did it in less than 1 minute and 10 seconds",
     imgHaveBadge: medium_and_timer_badge_img,
     imgDontHaveBadge: medium_and_timer__disabled_badge_img,
+    color: "var(--medium)",
   },
   {
     name: "hard_and_timer_badge",
@@ -99,6 +108,7 @@ const BADGES = [
       "At Hard Level - Answered correctly all questions and did it in less than 1 minute and 20 seconds",
     imgHaveBadge: hard_and_timer_badge_img,
     imgDontHaveBadge: hard_and_timer__disabled_badge_img,
+    color: "var(--hard)",
   },
   {
     name: "expert_and_timer_badge",
@@ -107,6 +117,7 @@ const BADGES = [
       "At Expert Level - Answered correctly all questions and did it in less than 1 minute and 30 seconds",
     imgHaveBadge: expert_and_timer_badge_img,
     imgDontHaveBadge: expert_and_timer__disabled_badge_img,
+    color: "var(--expert)",
   },
 ];
 
@@ -141,6 +152,7 @@ const Badges = () => {
               : badge.imgDontHaveBadge,
             headline: badge.headline,
             paragraph: badge.paragraph,
+            backgroundColor: badge.color,
             ...apiBadge,
           };
         });
@@ -149,16 +161,23 @@ const Badges = () => {
     );
   }, [getUserBadges]);
 
-  const badgesList = badges.map((badge) => {
-    return <Badge key={badge.name} {...badge} />;
-  });
+  const badgesList = (
+    <div className={classes.badges}>
+      {badges.map((badge) => {
+        return <Badge key={badge.name} {...badge} />;
+      })}
+    </div>
+  );
 
   return (
     <Fragment>
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className={classes.badges}>{badgesList}</div>
+        <div>
+          {window.screen.width < 1200 && <TinyBadges badges={badges} />}
+          {badgesList}
+        </div>
       )}
     </Fragment>
   );

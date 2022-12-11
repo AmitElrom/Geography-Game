@@ -9,6 +9,7 @@ import classes from "./Layout.module.css";
 
 import { alertActions } from "../../../store/alert-slice";
 import { useLocation } from "react-router-dom";
+import BackToTopButton from "../../UI/Back To Top Button/BackToTopButton";
 
 const Layout = ({ children, className }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Layout = ({ children, className }) => {
       <main className={`${className} ${classes.main}`} pathname={pathname}>
         {children}
       </main>
+      <BackToTopButton />
     </Fragment>
   );
 };

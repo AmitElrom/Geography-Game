@@ -1,0 +1,21 @@
+.badges {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (width <= 700px) {
+  .badges {
+    width: 75%;
+  }
+}
+
+@media (width <= 428px) {
+  .badges {
+    width: 90%;
+  }
+}
