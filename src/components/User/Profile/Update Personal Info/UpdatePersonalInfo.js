@@ -111,6 +111,7 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
             ? changeInputHandler
             : formik.handleChange
         }
+        onBlur={formik.handleBlur}
         error={
           formik.touched[info.name] && formik.errors[info.name]
             ? formik.errors[info.name]
@@ -129,9 +130,8 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
           <div>{updateInfoInuptsList}</div>
           <button
             disabled={isButtonDisabled}
-            className={`button-28 ${classes.button} ${
-              isButtonDisabled && classes.disabled
-            }`}
+            className={`button-28 ${classes.button} ${isButtonDisabled && classes.disabled
+              }`}
             type="submit"
           >
             Update Profile
