@@ -8,7 +8,6 @@ import Spinner from "../../UI/Spinner/Spinner";
 import classes from './MainLevel.module.css';
 
 import { countriesActions } from '../../../store/countries-slice';
-import { alertActions } from "../../../store/alert-slice";
 import useHttpAxios from '../../../hooks/use-http-axios';
 
 import { buildUrl } from '../../../utils/utils-api';

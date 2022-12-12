@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import UserLevel from "./UserLevel";
 
 import classes from "./UserLevels.module.css";
@@ -49,10 +49,9 @@ const UserLevels = ({ userLevelsData, setUserLevelsData }) => {
           onChange={toggleUserLevelData}
         />
         <label
-          className={`button-28 ${classes["check-all-label"]} ${
-            !userLevelsData?.filter((level) => level.isChecked !== true)
+          className={`button-28 ${classes["check-all-label"]} ${!userLevelsData?.filter((level) => level.isChecked !== true)
               .length && classes["check-all-label-active"]
-          }`}
+            }`}
           htmlFor="check-all"
         >
           Show All

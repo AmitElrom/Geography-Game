@@ -4,6 +4,7 @@ import TinyBagde from "../Tiny Badage/TinyBagde";
 import classes from "../Tiny Badges/TinyBadges.module.css";
 
 const TinyBadges = ({ badges }) => {
+  // eslint-disable-next-line array-callback-return
   const tinyBadgesFirstList = badges?.map((badge, index) => {
     if (index < 5) {
       return (
@@ -18,6 +19,7 @@ const TinyBadges = ({ badges }) => {
     }
   });
 
+  // eslint-disable-next-line array-callback-return
   const tinyBadgesSecondList = badges?.map((badge, index) => {
     if (index >= 5) {
       return (
