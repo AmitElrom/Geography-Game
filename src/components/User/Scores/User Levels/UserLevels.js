@@ -37,7 +37,7 @@ const UserLevels = ({ userLevelsData, setUserLevelsData }) => {
 
   return (
     <div className={classes["levels-and-check-all"]}>
-      <div className={classes["check-all"]} >
+      <div className={classes["check-all"]}>
         <input
           className={classes["check-all-checkbox"]}
           type="checkbox"
@@ -48,7 +48,13 @@ const UserLevels = ({ userLevelsData, setUserLevelsData }) => {
           }
           onChange={toggleUserLevelData}
         />
-        <label className={`button-28 ${classes["check-all-label"]}`} htmlFor="check-all">
+        <label
+          className={`button-28 ${classes["check-all-label"]} ${
+            !userLevelsData?.filter((level) => level.isChecked !== true)
+              .length && classes["check-all-label-active"]
+          }`}
+          htmlFor="check-all"
+        >
           Show All
         </label>
       </div>

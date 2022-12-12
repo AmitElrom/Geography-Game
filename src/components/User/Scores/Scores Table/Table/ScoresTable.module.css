@@ -50,3 +50,8 @@
     white-space: nowrap;
   }
 }
+
+.button {
+  width: auto;
+  margin-bottom: 1rem;
+}

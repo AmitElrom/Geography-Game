@@ -11,11 +11,10 @@ const CustomToolTip = ({ active, payload }) => {
       <div className={classes.tooltip}>
         <h4>
           <div>{countryName}</div>
-          {`${
-            ((levelTotalFails / payload[0].value) * 100) % 10 === 0
-              ? `${(levelTotalFails / payload[0].value).toFixed(0)}%`
-              : `${(levelTotalFails / payload[0].value).toFixed(2)}%`
-          } of total fails - ${payload[0].value} fails`}{" "}
+          {`${((payload[0].value / levelTotalFails) * 100) % 10 === 0
+            ? `${((payload[0].value / levelTotalFails) * 100).toFixed(0)}%`
+            : `${((payload[0].value / levelTotalFails) * 100).toFixed(2)}%`
+            } of total fails - ${payload[0].value} fails`}{" "}
           <img
             className={`${classes["country-img"]} ${classes["flag-img"]}`}
             src={countryFlag}

@@ -1,5 +1,5 @@
 import React from "react";
-import TableHeadCell from "./TableHeadCell";
+import TableHeadCell from "./TableHeadCell.js";
 
 const tableHeadCells = [
   "Rank",

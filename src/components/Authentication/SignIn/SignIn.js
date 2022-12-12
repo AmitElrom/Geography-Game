@@ -1,11 +1,12 @@
 import { Fragment, useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
+import InternalLink from "../../UI/Internal Link/InternalLink";
 import Spinner from "../../UI/Spinner/Spinner";
 
 import classes from "../SignUp/SignUp.module.css";
@@ -108,11 +109,11 @@ const SignIn = () => {
             </button>
           </div>
           <div className={classes["forgot-password"]}>
-            <Link to="/forgot-password">Forgot password?</Link>
+            <InternalLink to="/forgot-password">Forgot password?</InternalLink>
           </div>
           <div className={classes["sign-up"]}>
             <p>Don't have an account? &nbsp;</p>
-            <Link to="/sign-up">Sign Up</Link>
+            <InternalLink to="/sign-up">Sign Up</InternalLink>
           </div>
         </form>
       )}
