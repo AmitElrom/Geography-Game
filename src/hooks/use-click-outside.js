@@ -5,7 +5,7 @@ const useClickOutside = (ref, actionCreator) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const handler = (e) => {
-      if (!ref?.current.contains(e.target)) {
+      if (!ref?.current.contains(e.target) && e.target.id !== "username") {
         dispatch(actionCreator);
       }
     };

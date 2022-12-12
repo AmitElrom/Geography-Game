@@ -89,6 +89,24 @@ ul li ul li::marker {
   shape-margin: 2rem;
 }
 
+@media (width <= 900px) {
+  .story-set-img {
+    width: 35%;
+  }
+}
+
+@media (width <= 650px) {
+  .story-set-img {
+    width: 45%;
+  }
+}
+
+@media (width <= 640px) {
+  .story-set-img {
+    width: 50%;
+  }
+}
+
 .stack-list {
   list-style-type: none;
   display: flex;
@@ -147,6 +165,7 @@ ul li ul li::marker {
 
 .link {
   color: var(--purple);
+  word-break: break-all;
 }
 
 .link:hover {

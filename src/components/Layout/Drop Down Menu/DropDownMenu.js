@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import useClickOutside from "../../../hooks/use-click-outside";
 import { menuActions } from "../../../store/menu-slice";

@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Layout from './components/Main Header/Layout/Layout';
+import Layout from './components/Layout/Layout/Layout';
 import Main from './components/Main/Main';
 import About from './components/About/About';
 import Question from './components/Question General/Question/Question';
@@ -19,8 +19,7 @@ import FunFactModal from './components/Modals/FunFactModal';
 import ProtectedRoute from './components/Authentication/ProtectedRoute/ProtectedRoute';
 
 import './App.css';
-import NonProtectedRoute from './components/Authentication/NonProtectedRoute/NonProtectedRoute';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import authContext from './store/auth-context';
 import Badges from './components/User/Badges/Badges/Badges';
 

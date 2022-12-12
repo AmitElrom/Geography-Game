@@ -5,14 +5,12 @@ import { useNavigate } from "react-router-dom";
 import useHttpAxios from "../../../../hooks/use-http-axios";
 
 import Card from "../../../UI/Card/Card";
-import Spinner from "../../../UI/Spinner/Spinner";
 
 import classes from "./Option.module.css";
 
 import { countriesActions } from "../../../../store/countries-slice";
 
 import { alertActions } from "../../../../store/alert-slice";
-
 
 const Option = ({
   answer,
@@ -34,7 +32,7 @@ const Option = ({
     isFunFactsShown,
   } = useSelector((state) => state.countries);
 
-  const { error, isLoading, sendRequest: sendScoreRequest } = useHttpAxios();
+  const { error, sendRequest: sendScoreRequest } = useHttpAxios();
 
   useEffect(() => {
     if (error) {
@@ -101,6 +99,8 @@ const Option = ({
     score,
     questionsToServer,
     navigate,
+    questionIndex,
+    questionsQuantity,
   ]);
 
   useEffect(() => {

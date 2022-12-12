@@ -51,6 +51,7 @@ const Navigation = () => {
           {isLoggedIn && (
             <li className={classes.responsive}>
               <span
+                id="username"
                 className={`${classes.username} ${classes.responsive}`}
                 onClick={toggleMenu}
               >

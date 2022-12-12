@@ -22,7 +22,8 @@ const About = () => {
         className={classes["top-img"]}
       />
       <div className={`paragraph ${classes["page-without-image"]}`}>
-        <h1>About</h1>
+        <h1>Flags Game</h1>
+        <h1>By Amit Elrom</h1>
         <div>
           <p>
             Since I was a small child, I used to check and learn everything I
