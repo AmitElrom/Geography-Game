@@ -1,19 +1,19 @@
 .backdrop {
   position: fixed;
-  top: 5rem;
-  left: 0;
+  top: calc(0rem - var(--main-margin-top));
   width: 100%;
-  height: 100vh;
+  height: calc(100vh + var(--main-margin-top));
   z-index: 10;
   background: rgba(0, 0, 0, 0.75);
 }
 
 .modal {
-  position: fixed;
-  top: 30vh;
-  left: 10%;
-  width: 80%;
-  z-index: 100;
+  position: absolute;
+  width: 80vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
 }
 
 .header {
@@ -29,17 +29,4 @@
 
 .content {
   padding: 1rem;
-}
-
-.actions {
-  padding: 1rem;
-  display: flex;
-  justify-content: flex-end;
-}
-
-@media (min-width: 768px) {
-  .modal {
-    left: calc(50% - 20rem);
-    width: 40rem;
-  }
 }

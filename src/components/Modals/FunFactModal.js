@@ -58,7 +58,7 @@ const FunFactModal = () => {
   const portalElement = document.getElementById("modal");
 
   return (
-    <div>
+    <div >
       <div className={classes.backdrop}></div>
       {createPortal(<Modal />, portalElement)}
     </div>

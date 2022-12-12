@@ -19,3 +19,15 @@
     width: 90%;
   }
 }
+
+@media (width <= 400px) {
+  .badges {
+    flex-wrap: wrap;
+  }
+}
+
+@media (width <= 320px) {
+  .badges {
+    width: 95%;
+  }
+}
