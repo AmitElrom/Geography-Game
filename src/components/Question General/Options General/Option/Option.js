@@ -34,6 +34,8 @@ const Option = ({
 
   const { error, sendRequest: sendScoreRequest } = useHttpAxios();
 
+  const [isFinalQuestion, setIsFinalQuestion] = useState();
+
   useEffect(() => {
     if (error) {
       dispatch(alertActions.activateAlert({ isError: true, data: error }));
@@ -43,21 +45,20 @@ const Option = ({
   const [isOptionClicked, setIsOptionClicked] = useState(false);
   const [optionClasses, setOptionClasses] = useState(classes.option);
 
-  let isFinalQuestion = questionIndex === questionsQuantity;
+  useEffect(() => {
+    setIsFinalQuestion(questionIndex !== questionsQuantity - 1);
+  }, [questionIndex, questionsQuantity])
 
   useEffect(() => {
     if (isOptionClicked) {
-      console.log(questionIndex);
       setIsOptionClicked(false);
-      if (questionIndex !== questionsQuantity - 1) {
+      if (isFinalQuestion) {
         if (isFunFactsShown) {
           dispatch(countriesActions.showFunFact());
         } else {
           dispatch(countriesActions.nextCountryHandler());
         }
       } else {
-        console.log(questionIndex, questionsQuantity);
-        console.log("final question clicked");
         sessionStorage.setItem(
           "last-match-level",
           difficultyLevel.toLowerCase()
@@ -90,7 +91,6 @@ const Option = ({
     }
   }, [
     isOptionClicked,
-    isFinalQuestion,
     dispatch,
     isFunFactsShown,
     difficultyLevel,
@@ -99,8 +99,7 @@ const Option = ({
     score,
     questionsToServer,
     navigate,
-    questionIndex,
-    questionsQuantity,
+    isFinalQuestion
   ]);
 
   useEffect(() => {
