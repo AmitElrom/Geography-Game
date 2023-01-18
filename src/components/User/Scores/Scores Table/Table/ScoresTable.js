@@ -47,7 +47,6 @@ const ScoresTable = ({ scoresTable }) => {
       return <TableRow key={user.userDetails.userId} {...user} />;
     });
 
-  console.log(usersAmount.usersLeft);
 
   return (
     <div className={classes.wrapper}>

@@ -38,7 +38,7 @@ const MatchSummary = () => {
     if (level) {
       getMatchSummaryRequest(
         {
-          url: `http://localhost:8000/score-elrom/game-summary?level=${level}`,
+          url: `${process.env.REACT_APP_SERVER_BASE_URL}/score-elrom/game-summary?level=${level}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -120,23 +120,23 @@ const MatchSummary = () => {
                       </td>
                       {matchSummaryData?.questions?.numberOfFalseQuestions >
                         0 && (
-                        <td>
-                          {!question.isCorrect &&
-                            `The false country was ${question.falseCountryName}`}
-                        </td>
-                      )}
+                          <td>
+                            {!question.isCorrect &&
+                              `The false country was ${question.falseCountryName}`}
+                          </td>
+                        )}
                       {matchSummaryData?.questions?.numberOfFalseQuestions >
                         0 && (
-                        <td>
-                          {!question.isCorrect && (
-                            <img
-                              src={question.falseCountryFlag}
-                              width={30}
-                              alt={`${question.falseCountryName} flag`}
-                            />
-                          )}
-                        </td>
-                      )}
+                          <td>
+                            {!question.isCorrect && (
+                              <img
+                                src={question.falseCountryFlag}
+                                width={30}
+                                alt={`${question.falseCountryName} flag`}
+                              />
+                            )}
+                          </td>
+                        )}
                     </tr>
                   );
                 })}

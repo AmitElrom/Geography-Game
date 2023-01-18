@@ -62,7 +62,7 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
         updateUserInfoRequest(
           {
             method: "PUT",
-            url: "http://localhost:8000/auth-elrom",
+            url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom`,
             body: values,
             headers: {
               Authorization: `Bearer ${token}`,

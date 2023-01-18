@@ -138,7 +138,7 @@ const Badges = () => {
     getUserBadges(
       {
         method: "GET",
-        url: "http://localhost:8000/badges-elrom",
+        url: `${process.env.REACT_APP_SERVER_BASE_URL}/badges-elrom`,
         headers: {
           Authorization: `Bearer ${token}`,
         },

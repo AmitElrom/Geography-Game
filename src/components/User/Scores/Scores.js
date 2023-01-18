@@ -29,7 +29,7 @@ const Scores = () => {
     let token = sessionStorage.getItem("token");
     getUsersScores(
       {
-        url: "http://localhost:8000/score-elrom",
+        url: `${process.env.REACT_APP_SERVER_BASE_URL}/score-elrom`,
         headers: {
           Authorization: `Bearer ${token}`,
         },

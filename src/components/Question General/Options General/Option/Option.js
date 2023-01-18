@@ -67,7 +67,7 @@ const Option = ({
         sendScoreRequest(
           {
             method: "PATCH",
-            url: "http://localhost:8000/score-elrom",
+            url: `${process.env.REACT_APP_SERVER_BASE_URL}/score-elrom`,
             body: {
               level: difficultyLevel.toLowerCase(),
               startTime,

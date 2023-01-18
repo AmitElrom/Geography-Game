@@ -110,7 +110,7 @@ export const sendScoreRequest = () => {
         questions: countriesSlice.getInitialState().questionsToServer,
       });
       const { data: sendScoreRequestData } = await axios.patch(
-        "http://localhost:8000/score-elrom",
+        `${process.env.REACT_APP_SERVER_BASE_URL}/score-elrom`,
         {
           level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
           startTime: countriesSlice.getInitialState().startTime,
@@ -126,14 +126,10 @@ export const sendScoreRequest = () => {
           },
         }
       );
-      // reqData.isLoading = false;
-      // reqData.sendScoreRequestData = sendScoreRequestData;
       dispatch(countriesActions.nullify());
       console.log(sendScoreRequestData);
     } catch (error) {
       dispatch(countriesActions.nullify());
-      // reqData.error = error;
-      // return reqData;
     }
   };
 };

@@ -46,7 +46,7 @@ const ForgotPassword = () => {
       resetPasswordRequest(
         {
           method: "POST",
-          url: "http://localhost:8000/auth-elrom/forgot-password",
+          url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/forgot-password`,
           body: values,
         },
         (data) => {

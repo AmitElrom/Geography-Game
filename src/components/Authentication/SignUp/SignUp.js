@@ -96,7 +96,7 @@ const SignUp = () => {
       signUpRequest(
         {
           method: "POST",
-          url: "http://localhost:8000/auth-elrom/sign-up",
+          url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/sign-up`,
           body: values,
         },
         (data) => {

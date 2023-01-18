@@ -57,7 +57,7 @@ const ChangePassword = ({ setToUpdatePassword }) => {
       changePasswordRequest(
         {
           method: "PUT",
-          url: "http://localhost:8000/auth-elrom/change-password",
+          url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/change-password`,
           body: values,
           headers: {
             Authorization: `Bearer ${token}`,

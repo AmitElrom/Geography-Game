@@ -54,7 +54,7 @@ const VerifyEmailCode = () => {
       resetPasswordRequest(
         {
           method: "POST",
-          url: "http://localhost:8000/auth-elrom/verify-code",
+          url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/verify-code`,
           body: {
             ...values,
             email,
@@ -78,9 +78,8 @@ const VerifyEmailCode = () => {
         <form onSubmit={formik.handleSubmit}>
           <FormInput
             style={{
-              width: `calc(${
-                "Enter the code you got in your email".length * 8
-              }px + 1.2rem)`,
+              width: `calc(${"Enter the code you got in your email".length * 8
+                }px + 1.2rem)`,
             }}
             label="Email Code"
             placeholder="Enter the code you got in your email"
