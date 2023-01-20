@@ -1,10 +1,10 @@
 // Only English letters 
-const nameRegex = /^[A-Za-z]+$/;
+const nameRegex = /^[a-zA-Z\s]+$/;
 
-// Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+// Minimum 6 characters
+const passwordRegex = /^.{6,}$/;
 
 // exactly 6 characters
-const sixNumbers = /^[0-9]{6}/
+const sixNumbers = /^[0-9]{6}/;
 
 export { nameRegex, passwordRegex, sixNumbers };
