@@ -46,7 +46,7 @@ const ChangePassword = ({ setToUpdatePassword }) => {
       newPassword: Yup.string()
         .matches(
           passwordRegex,
-          "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+          "Minimum six characters"
         )
         .required("Required"),
       confirmedPassword: Yup.string()

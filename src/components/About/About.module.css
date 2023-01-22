@@ -3,6 +3,7 @@
   padding-bottom: 1rem;
   margin: auto 0;
   margin-top: calc(0rem - var(--main-margin-top));
+  overflow-x: hidden;
 }
 
 @media (width <= 428px) {
@@ -22,7 +23,7 @@ ul li ul li::marker {
 
 .top-img {
   object-fit: cover;
-  width: 100%;
+  width: 100vw;
   height: 40vh;
 }
 

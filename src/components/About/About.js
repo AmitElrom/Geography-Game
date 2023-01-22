@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { BsGithub } from "react-icons/bs";
+import { IoLogoLinkedin } from "react-icons/io";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import LinkNewTab from "./LinkNewTab";
 
@@ -15,15 +17,20 @@ const About = () => {
 
   return (
     <div className={classes.page}>
-      <img
-        loading="lazy"
+      <LazyLoadImage
         src={worldPexelsImg}
-        alt={worldPexelsImg}
+        placeholderSrc={worldPexelsImg}
+        effect="blur"
+        alt='world pexels image'
         className={classes["top-img"]}
       />
       <div className={`paragraph ${classes["page-without-image"]}`}>
         <h1>Flags Game</h1>
         <h1>By Amit Elrom</h1>
+        <LinkNewTab
+          data={<IoLogoLinkedin size={50} />}
+          href="www.linkedin.com/in/amit-elrom"
+        />
         <div>
           <p>
             Since I was a small child, I used to check and learn everything I

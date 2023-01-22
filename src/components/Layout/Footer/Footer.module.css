@@ -1,0 +1,44 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: white;
+}
+
+.data {
+  all: unset;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--purple);
+  padding: 0.7rem;
+}
+
+.developer-name {
+  all: unset;
+  text-decoration: none;
+  margin-left: 0.25rem;
+  background-image: radial-gradient(
+    closest-side at 50% 50%,
+    #fffcd7 0%,
+    #fcf7ce 5%,
+    #eedc9e 36%,
+    #e5c97c 63%,
+    #dfbe67 85%,
+    #ddba60 100%
+  );
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 300ms ease-in-out;
+  transform-origin: center;
+  text-decoration: none;
+}
+
+.developer-name:hover {
+  background-size: 100% 13%;
+}
+
+.developer-name-mobile {
+  background-size: 100% 13%;
+}

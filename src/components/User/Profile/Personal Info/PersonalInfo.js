@@ -1,4 +1,5 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import PersonalInfoItem from "../Personal Info Item/PersonalInfoItem";
 
@@ -18,7 +19,14 @@ const PersonalInfo = ({ userInfo }) => {
   return (
     <div>
       <div>{PersonalInfoItems}</div>
-      <img src={profileImg} alt="Resume bro" className="img-reset-password" />
+
+      <LazyLoadImage
+        src={profileImg}
+        placeholderSrc={profileImg}
+        effect="blur"
+        alt="Resume bro"
+        className="img-reset-password"
+      />
     </div>
   );
 };

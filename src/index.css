@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100%;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -81,6 +82,7 @@ code {
 }
 
 .img-reset-password {
+  margin: 0 auto;
   width: 18rem;
   margin-top: 4vh;
 }

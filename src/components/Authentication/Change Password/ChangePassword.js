@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
@@ -61,7 +62,7 @@ const ChangePassword = () => {
       password: Yup.string()
         .matches(
           passwordRegex,
-          "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+          "Minimum six characters"
         )
         .required("Required"),
       confirmedPassword: Yup.string()
@@ -132,8 +133,10 @@ const ChangePassword = () => {
           </div>
         </form>
       )}
-      <img
+      <LazyLoadImage
         src={confirmedImg}
+        placeholderSrc={confirmedImg}
+        effect="blur"
         alt="Confirmed-cuate"
         className="img-reset-password"
       />

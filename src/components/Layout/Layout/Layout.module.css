@@ -1,6 +1,6 @@
 .main {
-  height: 75vh;
   margin-top: calc(var(--nav-height) + var(--main-margin-top));
+  flex: 1;
 }
 
 @media (width <= 520px) {

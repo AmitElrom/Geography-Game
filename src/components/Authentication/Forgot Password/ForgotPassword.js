@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
@@ -86,8 +87,10 @@ const ForgotPassword = () => {
           </div>
         </form>
       )}
-      <img
+      <LazyLoadImage
         src={sentMessageImg}
+        placeholderSrc={sentMessageImg}
+        effect="blur"
         alt="Sent Message-cuate"
         className="img-reset-password"
       />

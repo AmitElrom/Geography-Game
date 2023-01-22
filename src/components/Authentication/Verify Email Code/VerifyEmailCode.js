@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
@@ -100,8 +101,10 @@ const VerifyEmailCode = () => {
           </div>
         </form>
       )}
-      <img
+      <LazyLoadImage
         src={newMessageImg}
+        placeholderSrc={newMessageImg}
+        effect="blur"
         alt="New message-pana"
         className="img-reset-password"
       />
