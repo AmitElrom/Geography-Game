@@ -21,16 +21,18 @@ const About = () => {
         src={worldPexelsImg}
         placeholderSrc={worldPexelsImg}
         effect="blur"
-        alt='world pexels image'
+        alt="world pexels image"
         className={classes["top-img"]}
       />
       <div className={`paragraph ${classes["page-without-image"]}`}>
         <h1>Flags Game</h1>
         <h1>By Amit Elrom</h1>
-        <LinkNewTab
-          data={<IoLogoLinkedin size={50} />}
-          href="www.linkedin.com/in/amit-elrom"
-        />
+        <div>
+          <LinkNewTab
+            data={<IoLogoLinkedin size={50} />}
+            href="https://www.linkedin.com/in/amit-elrom"
+          />
+        </div>
         <div>
           <p>
             Since I was a small child, I used to check and learn everything I

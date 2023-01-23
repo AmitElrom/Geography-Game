@@ -19,7 +19,7 @@ const RulesText = () => {
       </p>
       <p>
         Be ready! Fun facts are going to pop up after answering every question.
-        Match time is being counted all the time, so you can also disable (and of course show) the fun facts buy clicking the page's upper button.
+        Match time is being counted all the time, so you can also disable (and of course show) the fun facts by clicking the page's upper button.
       </p>
       <p>
         Have Fun !
