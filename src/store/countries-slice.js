@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const countriesInitialState = {
   questions: [],
@@ -80,7 +79,6 @@ const countriesSlice = createSlice({
       }
     },
     caseAnswer(state, { payload }) {
-      console.log(payload);
       const { isCorrect, trueCountry, falseCountry, isFinalQuestion } = payload;
       const questionObj = { isCorrect, trueCountry };
       if (falseCountry) {
@@ -94,45 +92,6 @@ const countriesSlice = createSlice({
     },
   },
 });
-
-export const sendScoreRequest = () => {
-  console.log("hello");
-  return async (dispatch) => {
-    // const reqData = { isLoading: false };
-    try {
-      let token = sessionStorage.getItem("token");
-      // reqData.isLoading = true;
-      console.log({
-        level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
-        startTime: countriesSlice.getInitialState().startTime,
-        endTime: new Date().getTime(),
-        score: countriesSlice.getInitialState().score,
-        questions: countriesSlice.getInitialState().questionsToServer,
-      });
-      const { data: sendScoreRequestData } = await axios.patch(
-        `${process.env.REACT_APP_SERVER_BASE_URL}/score-elrom`,
-        {
-          level: countriesSlice.getInitialState().difficultyLevel.toLowerCase(),
-          startTime: countriesSlice.getInitialState().startTime,
-          endTime: new Date().getTime(),
-          score: countriesSlice.getInitialState().score,
-          questions: countriesSlice.getInitialState().questionsToServer,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-          },
-        }
-      );
-      dispatch(countriesActions.nullify());
-      console.log(sendScoreRequestData);
-    } catch (error) {
-      dispatch(countriesActions.nullify());
-    }
-  };
-};
 
 export const countriesActions = countriesSlice.actions;
 

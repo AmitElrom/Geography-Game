@@ -120,9 +120,7 @@ const Option = ({
     if (optionData.isCountry) {
       setOptionClasses(`${classes.option} ${classes.true}`);
       setTimeout(() => {
-        console.log(optionData.id);
         dispatch(countriesActions.caseTrueAnswer(optionData.id));
-        // dispatch(countriesActions.showFunFact());
         setIsOptionClicked(true);
       }, 800);
     } else {
@@ -136,7 +134,6 @@ const Option = ({
           })
         );
         notDisplayTrueCountry();
-        // dispatch(countriesActions.showFunFact());
         setIsOptionClicked(true);
       }, 800);
     }

@@ -9,11 +9,8 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const LevelFailsPieChart = ({ fails, title }) => {
 
-  console.log(fails);
-
   let levelTotalFails = 0;
   fails?.forEach(fail => {
-    console.log(fail.numOfFails);
     levelTotalFails += fail.numOfFails;
   })
 

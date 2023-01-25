@@ -70,7 +70,6 @@ const ChangePassword = () => {
         .required("Required"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       let token = sessionStorage.getItem("token-reset-password");
       changePasswordRequest(
         {

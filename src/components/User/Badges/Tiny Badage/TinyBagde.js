@@ -4,7 +4,6 @@ import { Button } from "react-scroll";
 import classes from "./TinyBadge.module.css";
 
 const TinyBagde = ({ size = 30, hasBadge, name, backgroundColor, index }) => {
-  console.log(backgroundColor);
   return (
     <Button
       type="button"

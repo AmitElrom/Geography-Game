@@ -9,7 +9,6 @@ const isEmail = value => {
             valueArr.push(value[i]);
         }
         let valueAtIndex = +valueArr.findIndex(char => char === '@');
-        console.log(valueAtIndex);
         if (valueArr[valueAtIndex - 1] && valueArr[valueAtIndex + 1]) {
             return true;
         } else {

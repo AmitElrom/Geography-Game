@@ -2,17 +2,18 @@
   z-index: 100;
   position: fixed;
   right: 0;
+  top: var(--nav-height);
   box-sizing: border-box;
-  border: 0.2rem solid var(--blue);
+  border: 0.15rem solid var(--blue);
   border-radius: var(--border-radius1);
   padding: 1rem;
-  margin-top: calc(0rem - var(--main-margin-top));
+  /* margin-top: calc(0rem - var(--main-margin-top)); */
   background-color: black;
 }
 
-.dropdown[pathname="/about"] {
+/* .dropdown[pathname="/about"] {
   margin-top: 0;
-}
+} */
 
 @media (width <= 768px) {
   .dropdown {

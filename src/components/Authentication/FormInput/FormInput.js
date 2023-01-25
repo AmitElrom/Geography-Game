@@ -19,7 +19,6 @@ const FormInput = ({
   const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
 
   useEffect(() => {
-    console.log(name, isPasswordVisibile);
     if (
       name === "email" ||
       name === "firstName" ||
