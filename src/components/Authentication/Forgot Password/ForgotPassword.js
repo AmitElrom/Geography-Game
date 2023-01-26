@@ -17,6 +17,8 @@ import { alertActions } from "../../../store/alert-slice";
 
 import sentMessageImg from "../../../imgs/Sent Message-cuate.png";
 
+// let emailRegex = /^\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\s*$/;
+
 const ForgotPassword = () => {
   const dispatch = useDispatch();
 
@@ -41,6 +43,7 @@ const ForgotPassword = () => {
       email: "",
     },
     validationSchema: Yup.object({
+      // email: Yup.string().matches(emailRegex, "Invalid email address").required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: (values) => {

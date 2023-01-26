@@ -2,7 +2,7 @@ import { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Navigation from "../Navigation/Navigation";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 import DropDownMenu from "../Drop Down Menu/DropDownMenu";
 import Alert from "../../UI/Alert/Alert";
 
@@ -35,7 +35,7 @@ const Layout = ({ children, className }) => {
       <main className={`${className} ${classes.main}`} pathname={pathname}>
         {children}
       </main>
-      <Footer />
+      {/* <Footer /> */}
       <BackToTopButton />
     </Fragment>
   );

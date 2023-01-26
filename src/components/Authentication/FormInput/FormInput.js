@@ -13,7 +13,7 @@ const FormInput = ({
   value,
   title,
   className,
-  style
+  style,
 }) => {
   const [typeState, setTypeState] = useState("");
   const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
@@ -45,8 +45,8 @@ const FormInput = ({
   }, [name, isPasswordVisibile]);
 
   const togglePasswordVisibility = (e) => {
-    e.preventDefault()
-    e.target.blur()
+    e.preventDefault();
+    e.target.blur();
     setIsPasswordVisibile((prevValue) => !prevValue);
   };
 
@@ -55,13 +55,19 @@ const FormInput = ({
       {title && <p className={classes.title}>{title}</p>}
       <div className={classes["input-element-wrapper"]}>
         <input
-          className={`${classes["input-field"]} ${className} ${error && classes["input-field-error"]}`}
-          autoComplete={(name === "password" ||
+          className={`${classes["input-field"]} ${className} ${
+            error && classes["input-field-error"]
+          }`}
+          autoComplete={
+            name === "password" ||
             name === "password1" ||
             name === "password2" ||
             name === "newPassword" ||
             name === "confirmedPassword" ||
-            name === "code") ? "off" : undefined}
+            name === "code"
+              ? "off"
+              : undefined
+          }
           type={typeState}
           style={style}
           name={name}
@@ -72,14 +78,15 @@ const FormInput = ({
         />
         <span
           onClick={togglePasswordVisibility}
-          className={`${classes.span} ${(name === "password" ||
-            name === "password1" ||
-            name === "password2" ||
-            name === "newPassword" ||
-            name === "confirmedPassword" ||
-            name === "code") &&
+          className={`${classes.span} ${
+            (name === "password" ||
+              name === "password1" ||
+              name === "password2" ||
+              name === "newPassword" ||
+              name === "confirmedPassword" ||
+              name === "code") &&
             classes["password-icon"]
-            }`}
+          }`}
         >
           {isPasswordVisibile &&
             (name === "password" ||
