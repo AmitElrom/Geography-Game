@@ -80,8 +80,8 @@ const FormInput = ({
             name === "confirmedPassword" ||
             name === "email"
               ? name === "email"
-                ? value.trim().toLowerCase()
-                : value.trim()
+                ? value?.trim().toLowerCase()
+                : value?.trim()
               : value
           }
           onChange={onChange}
