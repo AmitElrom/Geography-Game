@@ -73,12 +73,14 @@ const FormInput = ({
           name={name}
           placeholder={placeholder}
           value={
-            name === "password" ||
-            name === "password1" ||
-            name === "password2" ||
-            name === "newPassword" ||
-            name === "confirmedPassword" ||
-            name === "email"
+            value &&
+            (name === "password" ||
+              name === "password1" ||
+              name === "password2" ||
+              name === "newPassword" ||
+              name === "confirmedPassword" ||
+              name === "code" ||
+              name === "email")
               ? name === "email"
                 ? value?.trim().toLowerCase()
                 : value?.trim()

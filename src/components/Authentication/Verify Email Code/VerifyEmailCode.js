@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
@@ -23,6 +23,8 @@ const VerifyEmailCode = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const { pathname } = useLocation();
 
   const { setIsEmailCodeVerified } = useContext(authContext);
 
@@ -71,6 +73,28 @@ const VerifyEmailCode = () => {
     },
   });
 
+  console.log(formik.values.code);
+
+  const changeInputHandler = (e) => {
+    const { name, value } = e.target;
+    formik.setFieldValue(name, value);
+  };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (formik.values.code.length === 6) {
+        formik.submitForm();
+        setTimeout(() => {
+          if (pathname === "/verify-email-code") {
+            formik.setFieldValue("code", "");
+          }
+        }, 1500);
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [formik, formik.values.code, pathname]);
+
   return (
     <Fragment>
       {isLoading ? (
@@ -79,14 +103,16 @@ const VerifyEmailCode = () => {
         <form onSubmit={formik.handleSubmit}>
           <FormInput
             style={{
-              width: `calc(${"Enter the code you got in your email".length * 8
-                }px + 1.2rem)`,
+              width: `calc(${
+                "Enter the code you got in your email".length * 8
+              }px + 1.2rem)`,
             }}
             label="Email Code"
             placeholder="Enter the code you got in your email"
             name="code"
             value={formik.values.code}
-            onChange={formik.handleChange}
+            onChange={changeInputHandler}
+            // onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={
               formik.touched.code && formik.errors.code
@@ -94,11 +120,11 @@ const VerifyEmailCode = () => {
                 : null
             }
           />
-          <div>
+          {/* <div>
             <button className={`button-28 ${classes.button}`} type="submit">
               Verify Code
             </button>
-          </div>
+          </div> */}
         </form>
       )}
       <LazyLoadImage
