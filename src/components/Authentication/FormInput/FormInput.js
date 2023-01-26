@@ -78,7 +78,6 @@ const FormInput = ({
             name === "password2" ||
             name === "newPassword" ||
             name === "confirmedPassword" ||
-            name === "code" ||
             name === "email"
               ? name === "email"
                 ? value.trim().toLowerCase()
