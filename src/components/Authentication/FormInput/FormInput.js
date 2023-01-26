@@ -72,7 +72,19 @@ const FormInput = ({
           style={style}
           name={name}
           placeholder={placeholder}
-          value={value}
+          value={
+            name === "password" ||
+            name === "password1" ||
+            name === "password2" ||
+            name === "newPassword" ||
+            name === "confirmedPassword" ||
+            name === "code" ||
+            name === "email"
+              ? name === "email"
+                ? value.trim().toLowerCase()
+                : value.trim()
+              : value
+          }
           onChange={onChange}
           onBlur={onBlur}
         />

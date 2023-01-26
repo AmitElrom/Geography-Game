@@ -7,4 +7,5 @@ const passwordRegex = /^.{6,}$/;
 // exactly 6 characters
 const sixNumbers = /^[0-9]{6}/;
 
+
 export { nameRegex, passwordRegex, sixNumbers };

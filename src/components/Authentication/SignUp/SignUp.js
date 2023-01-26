@@ -13,6 +13,7 @@ import classes from "./SignUp.module.css";
 
 import { nameRegex, passwordRegex } from "../../../utils/utils-regex";
 import { capitlizeFirstLetter } from "../../../utils/utils-manipulate-strings";
+import { manipulateForm } from "../../../utils/utils-objects";
 import authContext from "../../../store/auth-context";
 
 import { alertActions } from "../../../store/alert-slice";
@@ -88,11 +89,12 @@ const SignUp = () => {
         .required("Required"),
     }),
     onSubmit: async (values) => {
+      const transformedValues = manipulateForm(values);
       signUpRequest(
         {
           method: "POST",
           url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/sign-up`,
-          body: values,
+          body: transformedValues,
         },
         (data) => {
           dispatch(alertActions.activateAlert({ isError: false, data }));
@@ -116,11 +118,7 @@ const SignUp = () => {
           <FormInput
             key={input.id}
             {...input}
-            value={
-              input.name === "firstName" || input.name === "lastName"
-                ? formik.values[input.name]
-                : formik.values[input.name].trim()
-            }
+            value={formik.values[input.name]}
             onChange={
               input.name === "firstName" || input.name === "lastName"
                 ? changeInputNameHandler

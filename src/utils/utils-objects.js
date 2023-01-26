@@ -1,18 +1,7 @@
 const manipulateForm = (originalObject) => {
   let newObject = Object.entries(originalObject).reduce((obj, [key, value]) => {
-    switch (key) {
-      case "password":
-      case "password1":
-      case "password2":
-      case "newPassword":
-      case "confirmedPassword":
-      case "code":
-      case "email":
-        obj[key] = value.trim();
-        break;
-      default:
-        break;
-    }
+    if (key === "firstName" || key === "lastName") obj[key] = value.trim().replace(/\s+/g, ' ');
+    else obj[key] = value;
     return obj;
   }, {});
   return newObject;
