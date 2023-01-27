@@ -89,22 +89,6 @@ const Question = () => {
 
   return (
     <Card className={cardClasses}>
-      {/* <Card className={classes.numbers}>
-        <div>
-          <ul className={classes["numbers-list"]}>
-            <li>
-              <StopWatch isStopWatchActivated={isStopWatchActivated} />
-            </li>
-            <li>
-              No. {questionIndex + 1} / {questionsQuantity}
-            </li>
-            <li>Score {score}</li>
-          </ul>
-        </div>
-        <div>
-          <p>{difficultyLevel} Level</p>
-        </div>
-      </Card> */}
       {top}
       <Flag flag={answer.flag} />
       <Options questionData={question} />

@@ -12,6 +12,8 @@ import { countriesActions } from "../../../../store/countries-slice";
 
 import { alertActions } from "../../../../store/alert-slice";
 
+let isOptionClickedOnce = true;
+
 const Option = ({
   answer,
   optionData,
@@ -32,6 +34,10 @@ const Option = ({
     isFunFactsShown,
   } = useSelector((state) => state.countries);
 
+  useEffect(() => {
+    isOptionClickedOnce = true;
+  }, [questionIndex]);
+
   const { error, sendRequest: sendScoreRequest } = useHttpAxios();
 
   const [isFinalQuestion, setIsFinalQuestion] = useState();
@@ -47,7 +53,7 @@ const Option = ({
 
   useEffect(() => {
     setIsFinalQuestion(questionIndex !== questionsQuantity - 1);
-  }, [questionIndex, questionsQuantity])
+  }, [questionIndex, questionsQuantity]);
 
   useEffect(() => {
     if (isOptionClicked) {
@@ -99,7 +105,7 @@ const Option = ({
     score,
     questionsToServer,
     navigate,
-    isFinalQuestion
+    isFinalQuestion,
   ]);
 
   useEffect(() => {
@@ -117,25 +123,28 @@ const Option = ({
   };
 
   const clickOptionHandler = () => {
-    if (optionData.isCountry) {
-      setOptionClasses(`${classes.option} ${classes.true}`);
-      setTimeout(() => {
-        dispatch(countriesActions.caseTrueAnswer(optionData.id));
-        setIsOptionClicked(true);
-      }, 800);
-    } else {
-      setOptionClasses(`${classes.option} ${classes.false}`);
-      displayTrueCountry();
-      setTimeout(() => {
-        dispatch(
-          countriesActions.caseFalseAnswer({
-            falseCountry: optionData.id,
-            trueCountry: answer,
-          })
-        );
-        notDisplayTrueCountry();
-        setIsOptionClicked(true);
-      }, 800);
+    if (isOptionClickedOnce) {
+      isOptionClickedOnce = false;
+      if (optionData.isCountry) {
+        setOptionClasses(`${classes.option} ${classes.true}`);
+        setTimeout(() => {
+          dispatch(countriesActions.caseTrueAnswer(optionData.id));
+          setIsOptionClicked(true);
+        }, 800);
+      } else {
+        setOptionClasses(`${classes.option} ${classes.false}`);
+        displayTrueCountry();
+        setTimeout(() => {
+          dispatch(
+            countriesActions.caseFalseAnswer({
+              falseCountry: optionData.id,
+              trueCountry: answer,
+            })
+          );
+          notDisplayTrueCountry();
+          setIsOptionClicked(true);
+        }, 800);
+      }
     }
   };
 
