@@ -130,7 +130,7 @@ const Option = ({
         setTimeout(() => {
           dispatch(countriesActions.caseTrueAnswer(optionData.id));
           setIsOptionClicked(true);
-        }, 1500);
+        }, 800);
       } else {
         setOptionClasses(`${classes.option} ${classes.false}`);
         displayTrueCountry();
@@ -143,7 +143,7 @@ const Option = ({
           );
           notDisplayTrueCountry();
           setIsOptionClicked(true);
-        }, 1500);
+        }, 800);
       }
     }
   };
