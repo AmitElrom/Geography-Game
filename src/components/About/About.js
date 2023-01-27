@@ -15,6 +15,8 @@ import { scrollingTop } from "../../utils/utils-react";
 const About = () => {
   const matchSummaryRef = useRef();
 
+  console.log("hello world");
+
   return (
     <div className={classes.page}>
       <LazyLoadImage
