@@ -71,7 +71,7 @@ const ForgotPassword = () => {
             label="Email"
             placeholder="Enter your email address"
             name="email"
-            value={formik.values.email}
+            value={formik.values.email.trim()}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={

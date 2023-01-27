@@ -73,8 +73,6 @@ const VerifyEmailCode = () => {
     },
   });
 
-  console.log(formik.values.code);
-
   const changeInputHandler = (e) => {
     const { name, value } = e.target;
     formik.setFieldValue(name, value);
