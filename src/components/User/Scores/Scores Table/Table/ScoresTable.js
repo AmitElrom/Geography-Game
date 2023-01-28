@@ -50,7 +50,7 @@ const ScoresTable = ({ scoresTable }) => {
 
   return (
     <div className={classes.wrapper}>
-      <table border={0} cellSpacing={0} className={classes.table}>
+      <table border={0} cellSpacing={0} className={classes.table} >
         <TableHead />
         <tbody>{usersWithScoresList}</tbody>
       </table>

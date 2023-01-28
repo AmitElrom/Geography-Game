@@ -1,6 +1,5 @@
 .table {
   margin: 1rem auto;
-  /* table-layout: fixed; */
   width: 95%;
   border-collapse: collapse;
   font-size: var(--content-font-size);

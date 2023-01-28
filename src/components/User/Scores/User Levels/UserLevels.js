@@ -24,7 +24,7 @@ const UserLevels = ({ userLevelsData, setUserLevelsData }) => {
       {userLevelsData?.map((level) => {
         return (
           <UserLevel
-            key={level.id}
+            key={level?.title}
             {...level}
             setUserLevelsData={setUserLevelsData}
             userLevelsData={userLevelsData}
@@ -50,7 +50,7 @@ const UserLevels = ({ userLevelsData, setUserLevelsData }) => {
         />
         <label
           className={`button-28 ${classes["check-all-label"]} ${!userLevelsData?.filter((level) => level.isChecked !== true)
-              .length && classes["check-all-label-active"]
+            .length && classes["check-all-label-active"]
             }`}
           htmlFor="check-all"
         >
