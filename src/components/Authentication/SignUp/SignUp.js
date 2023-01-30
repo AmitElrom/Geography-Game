@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useGoogleLogin } from "@react-oauth/google";
+
 import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
@@ -17,6 +19,7 @@ import { manipulateForm } from "../../../utils/utils-objects";
 import authContext from "../../../store/auth-context";
 
 import { alertActions } from "../../../store/alert-slice";
+import GoogleButton from "../Google Button/GoogleButton";
 
 const formInputs = [
   {
@@ -54,6 +57,11 @@ const SignUp = () => {
   const { loginHandler } = useContext(authContext);
 
   const { isLoading, error, sendRequest: signUpRequest } = useHttpAxios();
+  const {
+    isLoadingGoogle,
+    errorGoogle,
+    sendRequest: signUpGoogleRequest,
+  } = useHttpAxios();
 
   useEffect(() => {
     sessionStorage.clear();
@@ -63,7 +71,12 @@ const SignUp = () => {
     if (error) {
       dispatch(alertActions.activateAlert({ isError: true, data: error }));
     }
-  }, [error, dispatch]);
+    if (errorGoogle) {
+      dispatch(
+        alertActions.activateAlert({ isError: true, data: errorGoogle })
+      );
+    }
+  }, [error, errorGoogle, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -136,9 +149,32 @@ const SignUp = () => {
     </div>
   );
 
+  const handleGoogleSignUpSuccess = (tokenResponse) => {
+    const accessToken = tokenResponse.access_token;
+
+    signUpGoogleRequest(
+      {
+        method: "POST",
+        url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/sign-up`,
+        body: { googleAccessToken: accessToken },
+      },
+      (data) => {
+        if (data.token) {
+          dispatch(alertActions.activateAlert({ isError: false, data }));
+          loginHandler(data.token, { ...data.userData });
+          navigate("/welcome", { replace: true });
+        }
+      }
+    );
+  };
+
+  const signUp = useGoogleLogin({
+    onSuccess: handleGoogleSignUpSuccess,
+  });
+
   return (
     <Fragment>
-      {isLoading ? (
+      {isLoading || isLoadingGoogle ? (
         <Spinner />
       ) : (
         <form className={classes.form} onSubmit={formik.handleSubmit}>
@@ -148,6 +184,9 @@ const SignUp = () => {
             <button className="button-28" type="submit">
               Sign Up
             </button>
+          </div>
+          <div>
+            <GoogleButton text="sign up with Google" onClick={() => signUp()} />
           </div>
           <div className={classes["sign-in"]}>
             <p>Already have an account? &nbsp;</p>
