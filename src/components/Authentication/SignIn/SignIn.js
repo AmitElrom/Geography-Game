@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useGoogleLogin } from "@react-oauth/google";
+
 import useHttpAxios from "../../../hooks/use-http-axios";
 
 import FormInput from "../FormInput/FormInput";
@@ -14,6 +16,7 @@ import classes from "../SignUp/SignUp.module.css";
 import authContext from "../../../store/auth-context";
 
 import { alertActions } from "../../../store/alert-slice";
+import GoogleButton from "../Google Button/GoogleButton";
 
 const formInputs = [
   {
@@ -36,6 +39,11 @@ const SignIn = () => {
   const { loginHandler } = useContext(authContext);
 
   const { error, isLoading, sendRequest: signInRequest } = useHttpAxios();
+  const {
+    isLoadingGoogle,
+    errorGoogle,
+    sendRequest: signInGoogleRequest,
+  } = useHttpAxios();
 
   useEffect(() => {
     sessionStorage.clear();
@@ -45,7 +53,10 @@ const SignIn = () => {
     if (error) {
       dispatch(alertActions.activateAlert({ isError: true, data: error }));
     }
-  }, [error, dispatch]);
+    if (errorGoogle) {
+      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+    }
+  }, [error, errorGoogle, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -95,9 +106,32 @@ const SignIn = () => {
     </div>
   );
 
+  const handleGoogleSignInSuccess = (tokenResponse) => {
+    const accessToken = tokenResponse.access_token;
+
+    signInGoogleRequest(
+      {
+        method: "POST",
+        url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/sign-in`,
+        body: { googleAccessToken: accessToken },
+      },
+      (data) => {
+        if (data.token) {
+          dispatch(alertActions.activateAlert({ isError: false, data }));
+          loginHandler(data.token, { ...data.userData });
+          navigate("/welcome", { replace: true });
+        }
+      }
+    );
+  };
+
+  const signIn = useGoogleLogin({
+    onSuccess: handleGoogleSignInSuccess,
+  });
+
   return (
     <Fragment>
-      {isLoading ? (
+      {isLoading || isLoadingGoogle ? (
         <Spinner />
       ) : (
         <form className={classes.form} onSubmit={formik.handleSubmit}>
@@ -107,6 +141,9 @@ const SignIn = () => {
             <button className="button-28" type="submit">
               Sign In
             </button>
+          </div>
+          <div>
+            <GoogleButton text="sign in with Google" onClick={() => signIn()} />
           </div>
           <div className={classes["forgot-password"]}>
             <InternalLink to="/forgot-password">Forgot password?</InternalLink>
