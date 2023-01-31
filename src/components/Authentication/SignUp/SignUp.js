@@ -1,4 +1,4 @@
-import { useEffect, useContext, Fragment } from "react";
+import { useEffect, useContext, Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -57,11 +57,8 @@ const SignUp = () => {
   const { loginHandler } = useContext(authContext);
 
   const { isLoading, error, sendRequest: signUpRequest } = useHttpAxios();
-  const {
-    isLoadingGoogle,
-    errorGoogle,
-    sendRequest: signUpGoogleRequest,
-  } = useHttpAxios();
+  const { errorGoogle, sendRequest: signUpGoogleRequest } = useHttpAxios();
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
 
   useEffect(() => {
     sessionStorage.clear();
@@ -150,6 +147,7 @@ const SignUp = () => {
   );
 
   const handleGoogleSignUpSuccess = (tokenResponse) => {
+    setIsLoadingGoogle(true);
     const accessToken = tokenResponse.access_token;
 
     signUpGoogleRequest(
@@ -162,6 +160,7 @@ const SignUp = () => {
         if (data.token) {
           dispatch(alertActions.activateAlert({ isError: false, data }));
           loginHandler(data.token, { ...data.userData });
+          setIsLoadingGoogle(false);
           navigate("/welcome", { replace: true });
         }
       }
