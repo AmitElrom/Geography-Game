@@ -13,21 +13,43 @@ import MatchSummary from './components/User/Scores/Match Summary/MatchSummary';
 import ForgotPassword from './components/Authentication/Forgot Password/ForgotPassword';
 import VerifyEmailCode from './components/Authentication/Verify Email Code/VerifyEmailCode';
 import ChangePassword from './components/Authentication/Change Password/ChangePassword';
+import ChangePasswordProfile from './components/User/Profile/Change Password/ChangePassword';
 
 import FunFactModal from './components/Modals/FunFactModal';
 
 import ProtectedRoute from './components/Authentication/ProtectedRoute/ProtectedRoute';
 
 import './App.css';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import authContext from './store/auth-context';
 import Badges from './components/User/Badges/Badges/Badges';
+import PersonalInfo from './components/User/Profile/Personal Info/PersonalInfo';
+import UpdatePersonalInfo from './components/User/Profile/Update Personal Info/UpdatePersonalInfo';
+import DeleteUser from './components/User/Profile/Delete User/DeleteUser';
+import ResetScore from './components/User/Profile/Resert Score/ResetScore';
 
 function App() {
 
   const { isLoggedIn, isCodeVer, isEmailSent } = useContext(authContext);
 
   const { isFunFactShown } = useSelector(state => state.countries);
+
+  const [userInfo, setUserInfo] = useState([
+    { title: "First Name", info: "" },
+    { title: "Last Name", info: "" },
+    { title: "Email", info: "" },
+  ]);
+
+  const { userData } = useContext(authContext);
+  const { fullName, firstName, lastName, email } = userData;
+
+  useEffect(() => {
+    setUserInfo([
+      { name: "firstName", title: "First Name", info: firstName },
+      { name: "lastName", title: "Last Name", info: lastName },
+      { name: "email", title: "Email", info: email },
+    ]);
+  }, [firstName, lastName, email]);
 
   return (
     <Layout className={!isFunFactShown ? 'App' : 'App-fun-fact-shown'} >
@@ -39,7 +61,13 @@ function App() {
           <Route path='/question' element={<Question />} />
           <Route path='/match-summary' element={<MatchSummary />} />
           <Route path='/scores' element={<Scores />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile />} >
+            <Route path='/profile' element={<PersonalInfo userInfo={userInfo} />} />
+            <Route path='/profile/reset-score' element={<ResetScore />} />
+            <Route path='/profile/delete-user' element={<DeleteUser />} />
+            <Route path='/profile/change-password' element={<ChangePasswordProfile />} />
+            <Route path='/profile/update-personal-info' element={<UpdatePersonalInfo userInfo={userInfo} />} />
+          </Route>
           <Route path='/badges' element={<Badges />} />
         </Route>
         <Route path='/about' element={<About />} />

@@ -1,59 +1,39 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+
 import authContext from "../../../store/auth-context";
 
 import classes from "./Profile.module.css";
 
-import PersonalInfo from "./Personal Info/PersonalInfo";
-import UpdatePersonalInfo from "./Update Personal Info/UpdatePersonalInfo";
-import ChangePassword from "./Change Password/ChangePassword";
-
-
 const Profile = () => {
-  const [toUpdateInfo, setToUpdateInfo] = useState(false);
-  const [toUpdatePassword, setToUpdatePassword] = useState(false);
-  const [userInfo, setUserInfo] = useState([
-    { title: "First Name", info: "" },
-    { title: "Last Name", info: "" },
-    { title: "Email", info: "" },
-  ]);
+  const navigate = useNavigate();
 
-  const { userData } = useContext(authContext);
-  const { fullName, firstName, lastName, email } = userData;
+  const {
+    userData: { fullName },
+  } = useContext(authContext);
 
-  useEffect(() => {
-    setUserInfo([
-      { name: "firstName", title: "First Name", info: firstName },
-      { name: "lastName", title: "Last Name", info: lastName },
-      { name: "email", title: "Email", info: email },
-    ]);
-  }, [firstName, lastName, email]);
-
-  const updatePersonalInfo = () => {
-    setToUpdatePassword(false);
-    setToUpdateInfo((prevVal) => !prevVal);
-  };
-
-  const updatePassword = () => {
-    setToUpdateInfo(false);
-    setToUpdatePassword((prevVal) => !prevVal);
+  const navigateHandler = (e) => {
+    navigate(`/profile${e.target.id}`);
   };
 
   return (
     <div className={classes.profile}>
-      <h1>{fullName}</h1>
-      <div>
-        {!(toUpdatePassword && !toUpdateInfo) && <h4 className={classes.update} onClick={updatePersonalInfo}>
+      <h1 onClick={navigateHandler}>{fullName}</h1>
+      <div className={classes.options}>
+        <h4 onClick={navigateHandler} id="/update-personal-info">
           Update Personal Information
-        </h4>}
-      </div>
-      <div>
-        {!(toUpdateInfo && !toUpdatePassword) && <h4 className={classes.update} onClick={updatePassword}>
+        </h4>
+        <h4 onClick={navigateHandler} id="/change-password">
           Change Password
-        </h4>}
+        </h4>
+        <h4 onClick={navigateHandler} id="/reset-score">
+          Reset Score
+        </h4>
+        <h4 onClick={navigateHandler} id="/delete-user">
+          Delete User
+        </h4>
       </div>
-      {!toUpdateInfo && !toUpdatePassword && <PersonalInfo userInfo={userInfo} />}
-      {toUpdateInfo && <UpdatePersonalInfo userInfo={userInfo} setToUpdateInfo={setToUpdateInfo} />}
-      {toUpdatePassword && <ChangePassword setToUpdatePassword={setToUpdatePassword} />}
+      <Outlet />
     </div>
   );
 };
