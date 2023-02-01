@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useHttpAxios from "../../../../hooks/use-http-axios";
+
+import ModalProfile from "../../../UI/Modal Profile/ModalProfile";
 
 const DeleteUser = () => {
-  const deleteUserHandler = () => {
-    console.log("helo");
+  const navigate = useNavigate();
+
+  const [isModalShown, setIsModalShown] = useState(false);
+
+  const { error, isLoading, sendRequest: deleteUserRequest } = useHttpAxios();
+
+  const openModalHandler = () => {
+    setIsModalShown(true);
+  };
+
+  const deleteUserHandler = async () => {
+    let token = sessionStorage.getItem("token");
+    await deleteUserRequest(
+      {
+        url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/users`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+    sessionStorage.clear();
+    navigate("/sign-in");
   };
 
   return (
     <div>
+      {isModalShown && (
+        <ModalProfile button="Delete User" onClick={deleteUserHandler} />
+      )}
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
         mollitia expedita nostrum quam blanditiis. Maiores quo voluptates,
@@ -17,7 +48,7 @@ const DeleteUser = () => {
         <button
           className="button-28"
           style={{ width: "auto" }}
-          onClick={deleteUserHandler}
+          onClick={openModalHandler}
         >
           Delete User
         </button>

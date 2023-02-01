@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import useHttpAxios from "../../../../hooks/use-http-axios";
+
+import ModalProfile from "../../../UI/Modal Profile/ModalProfile";
 
 const ResetScore = () => {
+  const [isModalShown, setIsModalShown] = useState(false);
+
+  const { error, isLoading, sendRequest: resetScoreRequest } = useHttpAxios();
+
+  const openModalHandler = () => {
+    setIsModalShown(true);
+  };
+
   const resetScoreHandler = () => {
-    console.log("helo");
+    let token = sessionStorage.getItem("token");
+    resetScoreRequest(
+      {
+        url: `${process.env.REACT_APP_SERVER_BASE_URL}/score-elrom/reset`,
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
   };
 
   return (
     <div>
+      {isModalShown && (
+        <ModalProfile button="Reset Score" onClick={resetScoreHandler} />
+      )}
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
         mollitia expedita nostrum quam blanditiis. Maiores quo voluptates,
@@ -17,7 +43,7 @@ const ResetScore = () => {
         <button
           className="button-28"
           style={{ width: "auto" }}
-          onClick={resetScoreHandler}
+          onClick={openModalHandler}
         >
           Reset Score
         </button>
