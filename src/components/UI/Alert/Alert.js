@@ -14,7 +14,7 @@ const Alert = () => {
     }>
       {
         isError
-          ? data?.response?.data?.error || data?.message || "Error"
+          ? data?.response?.data?.error || data?.message || data || "Error"
           : data?.message || "Success"}
     </div >, alertElement)
   );

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
@@ -146,11 +147,11 @@ const SignUp = () => {
     </div>
   );
 
-  const handleGoogleSignUpSuccess = (tokenResponse) => {
-    setIsLoadingGoogle(true);
+  const handleGoogleSignUpSuccess = async (tokenResponse) => {
     const accessToken = tokenResponse.access_token;
 
-    signUpGoogleRequest(
+    setIsLoadingGoogle(true);
+    await signUpGoogleRequest(
       {
         method: "POST",
         url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/sign-up`,
@@ -165,6 +166,33 @@ const SignUp = () => {
         }
       }
     );
+    setIsLoadingGoogle(false);
+    // try {
+    //   const { data } = await axios.get(
+    //     "https://www.googleapis.com/oauth2/v3/userinfo",
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${accessToken}`,
+    //       },
+    //     }
+    //   );
+    //   setIsLoadingGoogle(false);
+    //   dispatch(
+    //     alertActions.activateAlert({
+    //       isError: true,
+    //       data: `A user with email of ${data?.email} already exists, please sign in with it, or sign up with another email`,
+    //       longError: true,
+    //     })
+    //   );
+    // } catch (error) {
+    //   setIsLoadingGoogle(false);
+    //   dispatch(
+    //     alertActions.activateAlert({
+    //       isError: true,
+    //       data: error,
+    //     })
+    //   );
+    // }
   };
 
   const signUp = useGoogleLogin({

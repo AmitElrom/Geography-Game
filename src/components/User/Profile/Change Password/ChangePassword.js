@@ -44,10 +44,7 @@ const ChangePassword = ({ setToUpdatePassword }) => {
     },
     validationSchema: Yup.object({
       newPassword: Yup.string()
-        .matches(
-          passwordRegex,
-          "Minimum six characters"
-        )
+        .matches(passwordRegex, "Minimum six characters")
         .required("Required"),
       confirmedPassword: Yup.string()
         .oneOf([Yup.ref("newPassword"), null], "Passwords must match")

@@ -4,6 +4,7 @@ const alertInitialState = {
   isAlertActivated: false,
   isError: false,
   data: "",
+  longError: false
 };
 
 const alertSlice = createSlice({
@@ -15,8 +16,9 @@ const alertSlice = createSlice({
       state.data = payload.data
         ? payload.data
         : payload.isError
-        ? "Error"
-        : "Success";
+          ? "Error"
+          : "Success";
+      state.longError = payload.longError ? payload.longError : false
       state.isAlertActivated = true;
     },
     deactivateAlert(state) {

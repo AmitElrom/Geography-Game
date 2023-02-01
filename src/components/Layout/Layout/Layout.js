@@ -16,16 +16,22 @@ const Layout = ({ children, className }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  const { isAlertActivated } = useSelector((state) => state.alert);
+  const { isAlertActivated, longError } = useSelector((state) => state.alert);
   const { isMenuOpen } = useSelector((state) => state.menu);
 
   useEffect(() => {
     if (isAlertActivated) {
-      setTimeout(() => {
-        dispatch(alertActions.deactivateAlert());
-      }, [3000]);
+      if (longError) {
+        setTimeout(() => {
+          dispatch(alertActions.deactivateAlert());
+        }, [7500]);
+      } else {
+        setTimeout(() => {
+          dispatch(alertActions.deactivateAlert());
+        }, [3000]);
+      }
     }
-  }, [isAlertActivated, dispatch]);
+  }, [isAlertActivated, dispatch, longError]);
 
   return (
     <Fragment>

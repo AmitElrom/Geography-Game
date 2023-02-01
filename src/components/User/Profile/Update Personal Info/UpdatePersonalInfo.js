@@ -56,7 +56,7 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
         values.lastName === userInfo[1].info &&
         values.email === userInfo[2].info
       ) {
-        dispatch(alertActions.deactivateAlert({ isError: true, data: error }));
+        dispatch(alertActions.activateAlert({ isError: true, data: error }));
       } else {
         updateUserInfo(values);
         updateUserInfoRequest(

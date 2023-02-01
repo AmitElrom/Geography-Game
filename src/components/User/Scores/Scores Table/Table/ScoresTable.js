@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import TableHead from "../Table Header/TableHead";
 import TableRow from "../Table Row/TableRow";
@@ -49,11 +49,13 @@ const ScoresTable = ({ scoresTable }) => {
 
 
   return (
-    <div className={classes.wrapper}>
-      <table border={0} cellSpacing={0} className={classes.table} >
-        <TableHead />
-        <tbody>{usersWithScoresList}</tbody>
-      </table>
+    <Fragment>
+      <div className={classes.wrapper}>
+        <table border={0} cellSpacing={0} className={classes.table} >
+          <TableHead />
+          <tbody>{usersWithScoresList}</tbody>
+        </table>
+      </div>
       {usersAmount.usersLeft > 0 && (
         <button
           className={`button-28 ${classes.button}`}
@@ -62,7 +64,7 @@ const ScoresTable = ({ scoresTable }) => {
           show more users
         </button>
       )}
-    </div>
+    </Fragment>
   );
 };
 
