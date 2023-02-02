@@ -488,8 +488,8 @@ const About = () => {
                 In the user's login, a user's token is returned to the client
                 and saved on the browser's{" "}
                 <LinkNewTab
-                  data="session storage"
-                  href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage"
+                  data="local storage"
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
                 />{" "}
                 .
               </p>

@@ -12,7 +12,6 @@ import Spinner from "../../UI/Spinner/Spinner";
 
 import { sixNumbers } from "../../../utils/utils-regex";
 
-import classes from "./VerifyEmailCode.module.css";
 import authContext from "../../../store/auth-context";
 
 import { alertActions } from "../../../store/alert-slice";
@@ -53,7 +52,7 @@ const VerifyEmailCode = () => {
         .required("Required"),
     }),
     onSubmit: (values) => {
-      let email = sessionStorage.getItem("email");
+      let email = localStorage.getItem("email");
       resetPasswordRequest(
         {
           method: "POST",
@@ -66,7 +65,7 @@ const VerifyEmailCode = () => {
         (data) => {
           dispatch(alertActions.activateAlert({ isError: false, data }));
           setIsEmailCodeVerified(data.token);
-          sessionStorage.setItem("token-reset-password", data.token);
+          localStorage.setItem("token-reset-password", data.token);
           navigate("/change-password", { replace: true });
         }
       );
@@ -101,16 +100,14 @@ const VerifyEmailCode = () => {
         <form onSubmit={formik.handleSubmit}>
           <FormInput
             style={{
-              width: `calc(${
-                "Enter the code you got in your email".length * 8
-              }px + 1.2rem)`,
+              width: `calc(${"Enter the code you got in your email".length * 8
+                }px + 1.2rem)`,
             }}
             label="Email Code"
             placeholder="Enter the code you got in your email"
             name="code"
             value={formik.values.code}
             onChange={changeInputHandler}
-            // onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={
               formik.touched.code && formik.errors.code
@@ -118,11 +115,6 @@ const VerifyEmailCode = () => {
                 : null
             }
           />
-          {/* <div>
-            <button className={`button-28 ${classes.button}`} type="submit">
-              Verify Code
-            </button>
-          </div> */}
         </form>
       )}
       <LazyLoadImage

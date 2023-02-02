@@ -70,7 +70,7 @@ const ChangePassword = () => {
         .required("Required"),
     }),
     onSubmit: (values) => {
-      let token = sessionStorage.getItem("token-reset-password");
+      let token = localStorage.getItem("token-reset-password");
       changePasswordRequest(
         {
           method: "PUT",
@@ -87,9 +87,9 @@ const ChangePassword = () => {
           updateUserInfo(data.userData);
           loginHandler(token, data.userData);
           dispatch(alertActions.activateAlert({ isError: false, data }));
-          sessionStorage.removeItem("token-reset-password");
-          sessionStorage.removeItem("email");
-          sessionStorage.removeItem("forgot-password-email-sent");
+          localStorage.removeItem("token-reset-password");
+          localStorage.removeItem("email");
+          localStorage.removeItem("forgot-password-email-sent");
           navigate("/welcome");
         }
       );

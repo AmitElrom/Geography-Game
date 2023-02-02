@@ -43,9 +43,9 @@ const SignIn = () => {
   const { errorGoogle, sendRequest: signInGoogleRequest } = useHttpAxios();
   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
 
-  useEffect(() => {
-    sessionStorage.clear();
-  }, []);
+  // useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
 
   useEffect(() => {
     if (error) {

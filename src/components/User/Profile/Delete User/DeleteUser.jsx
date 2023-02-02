@@ -32,7 +32,7 @@ const DeleteUser = () => {
   const { logoutHandler } = useContext(authContext);
 
   const deleteUserHandler = async () => {
-    let token = sessionStorage.getItem("token");
+    let token = localStorage.getItem("token");
     await deleteUserRequest(
       {
         url: `${process.env.REACT_APP_SERVER_BASE_URL}/auth-elrom/users`,

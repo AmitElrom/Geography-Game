@@ -134,7 +134,7 @@ const Badges = () => {
   }, [error, dispatch]);
 
   useEffect(() => {
-    let token = sessionStorage.getItem("token");
+    let token = localStorage.getItem("token");
     getUserBadges(
       {
         method: "GET",

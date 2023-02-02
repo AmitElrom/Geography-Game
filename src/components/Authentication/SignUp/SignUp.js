@@ -62,7 +62,7 @@ const SignUp = () => {
   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
 
   useEffect(() => {
-    sessionStorage.clear();
+    localStorage.clear();
   }, []);
 
   useEffect(() => {

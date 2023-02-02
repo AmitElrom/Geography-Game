@@ -33,8 +33,8 @@ const MatchSummary = () => {
   }, [error, dispatch]);
 
   useEffect(() => {
-    let level = sessionStorage.getItem("last-match-level");
-    let token = sessionStorage.getItem("token");
+    let level = localStorage.getItem("last-match-level");
+    let token = localStorage.getItem("token");
     if (level) {
       getMatchSummaryRequest(
         {
