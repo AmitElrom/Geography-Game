@@ -65,11 +65,11 @@ const Option = ({
           dispatch(countriesActions.nextCountryHandler());
         }
       } else {
-        sessionStorage.setItem(
+        localStorage.setItem(
           "last-match-level",
           difficultyLevel.toLowerCase()
         );
-        let token = sessionStorage.getItem("token");
+        let token = localStorage.getItem("token");
         sendScoreRequest(
           {
             method: "PATCH",

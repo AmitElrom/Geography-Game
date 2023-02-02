@@ -12,7 +12,7 @@ import { alertActions } from "../../../store/alert-slice";
 const Scores = () => {
   const dispatch = useDispatch();
 
-  let level = sessionStorage.getItem("last-match-level");
+  let level = localStorage.getItem("last-match-level");
 
   const [usersWithScores, setUsersWithScores] = useState([]);
   const [userLevelsData, setUserLevelsData] = useState([]);
@@ -26,7 +26,7 @@ const Scores = () => {
   }, [error, dispatch]);
 
   useEffect(() => {
-    let token = sessionStorage.getItem("token");
+    let token = localStorage.getItem("token");
     getUsersScores(
       {
         url: `${process.env.REACT_APP_SERVER_BASE_URL}/score-elrom`,

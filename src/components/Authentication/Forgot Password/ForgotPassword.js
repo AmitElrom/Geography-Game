@@ -52,9 +52,9 @@ const ForgotPassword = () => {
         },
         (data) => {
           dispatch(alertActions.activateAlert({ isError: false, data }));
-          sessionStorage.setItem("email", values.email);
+          localStorage.setItem("email", values.email);
           setIsEmailSentForgotPassword(true);
-          sessionStorage.setItem("forgot-password-email-sent", true);
+          localStorage.setItem("forgot-password-email-sent", true);
           navigate("/verify-email-code", { replace: true });
         }
       );
