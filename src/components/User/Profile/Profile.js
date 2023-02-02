@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 import authContext from "../../../store/auth-context";
 
@@ -12,23 +12,40 @@ const Profile = () => {
     userData: { fullName },
   } = useContext(authContext);
 
-  const navigateHandler = (e) => {
-    navigate(`/profile${e.target.id}`);
-  };
-
   return (
     <div className={classes.profile}>
-      <h1 onClick={navigateHandler}>{fullName}</h1>
+      <h1 onClick={() => navigate("/profile")}>{fullName}</h1>
       <div className={classes.options}>
-        <h4 onClick={navigateHandler} id="/update-personal-info">
-          Update Personal Information
-        </h4>
-        <h4 onClick={navigateHandler} id="/change-password">
-          Change Password
-        </h4>
-        <h4 onClick={navigateHandler} id="/delete-user">
-          Delete User
-        </h4>
+        <NavLink
+          to="/profile/update-personal-info"
+          className={(navLinkObj) =>
+            navLinkObj.isActive
+              ? `${classes.link} ${classes.active}`
+              : classes.link
+          }
+        >
+          <h4>Update Personal Information</h4>
+        </NavLink>
+        <NavLink
+          to="/profile/change-password"
+          className={(navLinkObj) =>
+            navLinkObj.isActive
+              ? `${classes.link} ${classes.active}`
+              : classes.link
+          }
+        >
+          <h4>Change Password</h4>
+        </NavLink>
+        <NavLink
+          to="/profile/delete-user"
+          className={(navLinkObj) =>
+            navLinkObj.isActive
+              ? `${classes.link} ${classes.active}`
+              : classes.link
+          }
+        >
+          <h4>Delete User</h4>
+        </NavLink>
       </div>
       <Outlet />
     </div>

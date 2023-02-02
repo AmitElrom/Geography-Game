@@ -1,17 +1,17 @@
 .item {
-  font-size: calc(var(--content-font-size) * 1.5);
+  font-size: calc(var(--content-font-size) * 1.1);
   margin: 1.3rem 0;
 }
 
 @media (width <= 700px) {
   .item {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
 @media (width <= 600px) {
   .item {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 }
 

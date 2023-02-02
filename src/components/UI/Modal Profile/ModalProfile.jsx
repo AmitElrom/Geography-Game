@@ -1,5 +1,5 @@
-import React, { useState, useContext, useRef } from "react";
-import { useEffect } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 import authContext from "../../../store/auth-context";
 
@@ -10,6 +10,12 @@ const ModalProfile = ({ button, onClick, setIsModalShown }) => {
   const [text, setText] = useState("");
 
   const { userData } = useContext(authContext);
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   useEffect(() => {
     const { firstName, lastName, email } = userData;
@@ -42,11 +48,19 @@ const ModalProfile = ({ button, onClick, setIsModalShown }) => {
   return (
     <div className={classes["modal-overlay"]}>
       <div className={classes["modal-content"]} ref={modalRef}>
-        <div>
-          Are you absolutely sure?{" "}
-          <button onClick={() => setIsModalShown(false)}>x</button>
+        <div className={classes.top}>
+          <span className={classes.header}>Are you absolutely sure?</span>
+          <span>
+            <IoMdCloseCircleOutline
+              size={20}
+              className={classes["close-btn"]}
+              onClick={() => setIsModalShown(false)}
+            />
+          </span>
         </div>
-        <div>Unexpected bad things will happen if you don’t read this!</div>
+        <div className={classes.secondary}>
+          Unexpected bad things will happen if you don’t read this!
+        </div>
         <div>
           <p>
             This action cannot be undone. {userData?.fullName}, this will
@@ -54,15 +68,21 @@ const ModalProfile = ({ button, onClick, setIsModalShown }) => {
             associated with your profile.
           </p>
           <p>
-            Please type{" "}
-            <span style={{ color: "red", fontWeight: 800 }}>{text}</span> to
-            confirm.
+            Please type <span className={classes.text}>{text}</span> to confirm.
           </p>
-          <input type="text" onChange={changeInputHandler} />
+          <div className={classes["input-div"]}>
+            <input type="text" onChange={changeInputHandler} ref={inputRef} />
+          </div>
         </div>
-        <button onClick={onClick} disabled={!isTextWritten}>
-          {button}
-        </button>
+        <div className={classes["div-delete-btn"]}>
+          <button
+            className={`button-28`}
+            onClick={onClick}
+            disabled={!isTextWritten}
+          >
+            {button}
+          </button>
+        </div>
       </div>
     </div>
   );
