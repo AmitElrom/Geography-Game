@@ -52,7 +52,7 @@ const SignIn = () => {
       dispatch(alertActions.activateAlert({ isError: true, data: error }));
     }
     if (errorGoogle) {
-      dispatch(alertActions.activateAlert({ isError: true, data: error }));
+      dispatch(alertActions.activateAlert({ isError: true, data: errorGoogle }));
     }
   }, [error, errorGoogle, dispatch]);
 

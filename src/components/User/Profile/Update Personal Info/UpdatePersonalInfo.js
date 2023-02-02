@@ -16,7 +16,7 @@ import classes from "./UpdatePersonalInfo.module.css";
 
 import { alertActions } from "../../../../store/alert-slice";
 
-const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
+const UpdatePersonalInfo = ({ userInfo }) => {
   const dispatch = useDispatch();
 
   const {
@@ -70,7 +70,6 @@ const UpdatePersonalInfo = ({ userInfo, setToUpdateInfo }) => {
           },
           (data) => {
             dispatch(alertActions.activateAlert({ isError: false, data }));
-            setToUpdateInfo(false);
           }
         );
       }
