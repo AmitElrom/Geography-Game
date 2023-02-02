@@ -26,9 +26,6 @@ const Profile = () => {
         <h4 onClick={navigateHandler} id="/change-password">
           Change Password
         </h4>
-        <h4 onClick={navigateHandler} id="/reset-score">
-          Reset Score
-        </h4>
         <h4 onClick={navigateHandler} id="/delete-user">
           Delete User
         </h4>

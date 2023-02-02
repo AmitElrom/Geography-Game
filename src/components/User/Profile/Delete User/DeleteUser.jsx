@@ -11,10 +11,6 @@ const DeleteUser = () => {
 
   const { error, isLoading, sendRequest: deleteUserRequest } = useHttpAxios();
 
-  const openModalHandler = () => {
-    setIsModalShown(true);
-  };
-
   const deleteUserHandler = async () => {
     let token = sessionStorage.getItem("token");
     await deleteUserRequest(
@@ -36,7 +32,11 @@ const DeleteUser = () => {
   return (
     <div>
       {isModalShown && (
-        <ModalProfile button="Delete User" onClick={deleteUserHandler} />
+        <ModalProfile
+          button="I understand the consequences, delete this user's account"
+          onClick={deleteUserHandler}
+          setIsModalShown={setIsModalShown}
+        />
       )}
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
@@ -48,7 +48,7 @@ const DeleteUser = () => {
         <button
           className="button-28"
           style={{ width: "auto" }}
-          onClick={openModalHandler}
+          onClick={() => setIsModalShown(true)}
         >
           Delete User
         </button>

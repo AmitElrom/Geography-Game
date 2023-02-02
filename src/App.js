@@ -26,7 +26,6 @@ import Badges from './components/User/Badges/Badges/Badges';
 import PersonalInfo from './components/User/Profile/Personal Info/PersonalInfo';
 import UpdatePersonalInfo from './components/User/Profile/Update Personal Info/UpdatePersonalInfo';
 import DeleteUser from './components/User/Profile/Delete User/DeleteUser';
-import ResetScore from './components/User/Profile/Resert Score/ResetScore';
 
 function App() {
 
@@ -41,7 +40,7 @@ function App() {
   ]);
 
   const { userData } = useContext(authContext);
-  const { fullName, firstName, lastName, email } = userData;
+  const { firstName, lastName, email } = userData;
 
   useEffect(() => {
     setUserInfo([
@@ -63,7 +62,6 @@ function App() {
           <Route path='/scores' element={<Scores />} />
           <Route path='/profile' element={<Profile />} >
             <Route path='/profile' element={<PersonalInfo userInfo={userInfo} />} />
-            <Route path='/profile/reset-score' element={<ResetScore />} />
             <Route path='/profile/delete-user' element={<DeleteUser />} />
             <Route path='/profile/change-password' element={<ChangePasswordProfile />} />
             <Route path='/profile/update-personal-info' element={<UpdatePersonalInfo userInfo={userInfo} />} />
