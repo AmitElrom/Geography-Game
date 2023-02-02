@@ -11,7 +11,7 @@ const GameRules = () => {
 
   return (
     <div>
-      <RulesButton onClick={toggleRulesTextHandler} />
+      <RulesButton onClick={toggleRulesTextHandler} isOpen={isRulesTextVisible} />
       {isRulesTextVisible && <RulesText />}
     </div>
   );

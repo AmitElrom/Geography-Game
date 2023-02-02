@@ -1,9 +1,18 @@
 import React from "react";
 
-import classes from './RulesButton.module.css';
+import classes from "./RulesButton.module.css";
 
-const RulesButton = ({ onClick }) => {
-  return <button className={`button-28 ${classes.button}`} onClick={onClick}>Rules Of The Game</button>;
+const RulesButton = ({ onClick, isOpen }) => {
+  return (
+    <button
+      className={`button-28 ${classes.button} ${
+        isOpen ? classes["button-active"] : undefined
+      }`}
+      onClick={onClick}
+    >
+      Rules Of The Game
+    </button>
+  );
 };
 
 export default RulesButton;
