@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
 
 import useHttpAxios from "../../../hooks/use-http-axios";
 
@@ -42,10 +41,6 @@ const SignIn = () => {
   const { error, isLoading, sendRequest: signInRequest } = useHttpAxios();
   const { errorGoogle, sendRequest: signInGoogleRequest } = useHttpAxios();
   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
-
-  // useEffect(() => {
-  //   localStorage.clear();
-  // }, []);
 
   useEffect(() => {
     if (error) {
@@ -124,32 +119,6 @@ const SignIn = () => {
       }
     );
     setIsLoadingGoogle(false);
-    // try {
-    //   const { data } = await axios.get(
-    //     "https://www.googleapis.com/oauth2/v3/userinfo",
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${accessToken}`,
-    //       },
-    //     }
-    //   );
-    //   setIsLoadingGoogle(false);
-    //   dispatch(
-    //     alertActions.activateAlert({
-    //       isError: true,
-    //       data: `A user with email of ${data?.email} doesn't exist, please sign in with another registered email, or sign up with that email`,
-    //       longError: true,
-    //     })
-    //   );
-    // } catch (error) {
-    //   setIsLoadingGoogle(false);
-    //   dispatch(
-    //     alertActions.activateAlert({
-    //       isError: true,
-    //       data: error,
-    //     })
-    //   );
-    // }
   };
 
   const signIn = useGoogleLogin({
